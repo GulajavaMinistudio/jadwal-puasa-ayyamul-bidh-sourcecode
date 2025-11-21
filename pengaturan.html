@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pengaturan aplikasi Puasa Ayyamul Bidh" />
+    <title>Pengaturan - Puasa Ayyamul Bidh</title>
+
+    <!-- Bootstrap 5.3.8 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-moon-stars-fill me-2"></i>
+          Puasa Ayyamul Bidh
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="bi bi-house-fill"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="kalender.html">
+                <i class="bi bi-calendar3"></i> Kalender
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tracker.html">
+                <i class="bi bi-check2-square"></i> Tracker
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="jadwal-shalat.html">
+                <i class="bi bi-clock"></i> Jadwal Shalat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="panduan.html">
+                <i class="bi bi-book"></i> Panduan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="pengaturan.html">
+                <i class="bi bi-gear"></i> Pengaturan
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="mb-4">
+            <i class="bi bi-gear-fill text-secondary"></i>
+            Pengaturan
+          </h2>
+        </div>
+      </div>
+
+      <!-- Location Settings -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title mb-4">
+                <i class="bi bi-geo-alt-fill text-danger"></i>
+                Pengaturan Lokasi
+              </h4>
+
+              <form id="locationForm">
+                <div class="mb-3">
+                  <label for="citySelect" class="form-label">Pilih Kota</label>
+                  <select class="form-select" id="citySelect">
+                    <option value="">-- Pilih Kota --</option>
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Surabaya">Surabaya</option>
+                    <option value="Medan">Medan</option>
+                    <option value="Semarang">Semarang</option>
+                    <option value="Makassar">Makassar</option>
+                    <option value="Palembang">Palembang</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                    <option value="Malang">Malang</option>
+                    <option value="Bogor">Bogor</option>
+                    <option value="Depok">Depok</option>
+                    <option value="Tangerang">Tangerang</option>
+                    <option value="Bekasi">Bekasi</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="autoDetectBtn"
+                  >
+                    <i class="bi bi-geo-alt"></i> Deteksi Lokasi Otomatis
+                  </button>
+                  <div id="gpsStatus" class="mt-2 small"></div>
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="alert alert-info">
+                  <small
+                    ><i class="bi bi-info-circle"></i> Lokasi saat ini:
+                    <strong id="currentLocation">Belum diatur</strong></small
+                  >
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check-lg"></i> Simpan Lokasi
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prayer Method Settings -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title mb-4">
+                <i class="bi bi-clock-fill text-info"></i>
+                Metode Kalkulasi Waktu Shalat
+              </h4>
+
+              <form id="methodForm">
+                <div class="mb-3">
+                  <label for="methodSelect" class="form-label"
+                    >Pilih Metode</label
+                  >
+                  <select class="form-select" id="methodSelect">
+                    <option value="20" selected>
+                      Kementerian Agama Republik Indonesia (Recommended)
+                    </option>
+                    <option value="3">Muslim World League (MWL)</option>
+                    <option value="2">
+                      Islamic Society of North America (ISNA)
+                    </option>
+                    <option value="5">
+                      Egyptian General Authority of Survey
+                    </option>
+                    <option value="4">Umm Al-Qura University, Makkah</option>
+                    <option value="1">
+                      University of Islamic Sciences, Karachi
+                    </option>
+                    <option value="7">
+                      Institute of Geophysics, University of Tehran
+                    </option>
+                  </select>
+                  <div class="form-text">
+                    <small
+                      >Untuk Indonesia, gunakan metode Kementerian Agama
+                      RI.</small
+                    >
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check-lg"></i> Simpan Metode
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Management -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title mb-4">
+                <i class="bi bi-database-fill text-warning"></i>
+                Manajemen Data
+              </h4>
+
+              <div class="mb-3">
+                <button type="button" class="btn btn-primary" id="exportBtn">
+                  <i class="bi bi-download"></i> Export Data
+                </button>
+                <small class="form-text d-block mt-2"
+                  >Download semua data puasa Anda dalam format JSON</small
+                >
+              </div>
+
+              <div class="mb-3">
+                <label for="importFile" class="form-label">Import Data</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="importFile"
+                  accept=".json"
+                />
+                <small class="form-text"
+                  >Upload file JSON yang telah di-export sebelumnya</small
+                >
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="alert alert-danger">
+                <h6 class="alert-heading">
+                  <i class="bi bi-exclamation-triangle-fill"></i> Zona Bahaya
+                </h6>
+                <p class="mb-2">
+                  Reset akan menghapus SEMUA data puasa yang telah Anda catat.
+                  Tindakan ini tidak dapat dibatalkan!
+                </p>
+                <button type="button" class="btn btn-danger" id="resetBtn">
+                  <i class="bi bi-trash"></i> Reset Semua Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title mb-4">
+                <i class="bi bi-info-circle-fill text-success"></i>
+                Tentang Aplikasi
+              </h4>
+
+              <table class="table table-borderless">
+                <tr>
+                  <td class="fw-bold" style="width: 200px">Nama Aplikasi</td>
+                  <td>Puasa Ayyamul Bidh</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Versi</td>
+                  <td>1.0.0</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Dibuat Oleh</td>
+                  <td>
+                    <a
+                      href="https://github.com/GulajavaMinistudio"
+                      target="_blank"
+                      >Gulajava Ministudio</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Dibuat Dengan</td>
+                  <td>Google Antigravity, Gemini AI, dan Claude Sonnet</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Sumber Data</td>
+                  <td>
+                    <a href="https://aladhan.com" target="_blank"
+                      >Aladhan API</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Framework CSS</td>
+                  <td>Bootstrap 5.3.8</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Tahun</td>
+                  <td>2025</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+      <div class="container text-center">
+        <p class="text-muted mb-0">
+          &copy; 2025 Puasa Ayyamul Bidh | Data dari
+          <a
+            href="https://aladhan.com"
+            target="_blank"
+            class="text-decoration-none"
+            >Aladhan API</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">Konfirmasi Reset</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah Anda yakin ingin menghapus SEMUA data?</p>
+            <p class="fw-bold text-danger">
+              Tindakan ini tidak dapat dibatalkan!
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmResetBtn">
+              Ya, Hapus Semua Data
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- App JS Modules -->
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/tracker.js"></script>
+
+    <!-- Settings Page Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const tracker = new FastingTracker();
+
+        // Load current settings
+        function loadCurrentSettings() {
+          const config = Storage.get("app_config");
+          if (config) {
+            if (config.location.city) {
+              document.getElementById("citySelect").value =
+                config.location.city;
+              document.getElementById("currentLocation").textContent = `${
+                config.location.city
+              }, ${config.location.country || "Indonesia"}`;
+            } else if (config.location.latitude) {
+              document.getElementById(
+                "currentLocation"
+              ).textContent = `GPS (${config.location.latitude.toFixed(
+                4
+              )}, ${config.location.longitude.toFixed(4)})`;
+            }
+
+            if (config.prayer_method) {
+              document.getElementById("methodSelect").value =
+                config.prayer_method;
+            }
+          }
+        }
+
+        // Save location
+        document
+          .getElementById("locationForm")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const city = document.getElementById("citySelect").value;
+
+            if (!city) {
+              alert("Pilih kota terlebih dahulu!");
+              return;
+            }
+
+            const config = Storage.get("app_config") || {};
+            config.location = {
+              city: city,
+              country: "Indonesia",
+              method: "manual",
+            };
+            config.first_time_setup = true;
+
+            Storage.save("app_config", config);
+            alert("Lokasi berhasil disimpan! Halaman akan di-refresh.");
+            window.location.reload();
+          });
+
+        // Auto-detect location
+        document
+          .getElementById("autoDetectBtn")
+          .addEventListener("click", () => {
+            const statusEl = document.getElementById("gpsStatus");
+            statusEl.textContent = "Mendeteksi lokasi...";
+            statusEl.className = "mt-2 small text-info";
+
+            if (!navigator.geolocation) {
+              statusEl.textContent = "Browser tidak mendukung geolocation";
+              statusEl.className = "mt-2 small text-danger";
+              return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const config = Storage.get("app_config") || {};
+                config.location = {
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude,
+                  method: "gps",
+                };
+                config.first_time_setup = true;
+
+                Storage.save("app_config", config);
+                statusEl.textContent = "Lokasi berhasil terdeteksi!";
+                statusEl.className = "mt-2 small text-success";
+
+                setTimeout(() => window.location.reload(), 1500);
+              },
+              (error) => {
+                statusEl.textContent =
+                  "Gagal mendeteksi lokasi. Gunakan pilihan manual.";
+                statusEl.className = "mt-2 small text-danger";
+              }
+            );
+          });
+
+        // Save prayer method
+        document
+          .getElementById("methodForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const method = parseInt(
+              document.getElementById("methodSelect").value
+            );
+
+            const config = Storage.get("app_config") || {};
+            config.prayer_method = method;
+
+            Storage.save("app_config", config);
+            alert("Metode berhasil disimpan!");
+          });
+
+        // Export data
+        document.getElementById("exportBtn").addEventListener("click", () => {
+          const data = Storage.exportData();
+          const filename = `puasa-ayyamul-bidh-${
+            new Date().toISOString().split("T")[0]
+          }.json`;
+          Utils.downloadJSON(data, filename);
+        });
+
+        // Import data
+        document
+          .getElementById("importFile")
+          .addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            try {
+              const data = await Utils.parseJSONFile(file);
+              const success = Storage.importData(data);
+
+              if (success) {
+                alert("Data berhasil di-import! Halaman akan di-refresh.");
+                window.location.reload();
+              } else {
+                alert("Gagal import data. File tidak valid.");
+              }
+            } catch (error) {
+              alert("Error: " + error.message);
+            }
+          });
+
+        // Reset data
+        document.getElementById("resetBtn").addEventListener("click", () => {
+          const modal = new bootstrap.Modal(
+            document.getElementById("confirmModal")
+          );
+          modal.show();
+        });
+
+        document
+          .getElementById("confirmResetBtn")
+          .addEventListener("click", () => {
+            Storage.clear();
+            tracker.resetAll();
+            alert("Semua data berhasil dihapus!");
+            window.location.href = "index.html";
+          });
+
+        // Initial load
+        loadCurrentSettings();
+      });
+    </script>
+  </body>
+</html>
