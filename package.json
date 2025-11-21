@@ -4,10 +4,11 @@
     "description": "Aplikasi web untuk tracking puasa Ayyamul Bidh (13, 14, 15 Hijriyah) dengan fitur jadwal waktu shalat, kalender Hijriyah, dan statistik puasa.",
     "main": "index.html",
     "scripts": {
-        "start": "http-server -p 8000 -o",
-        "dev": "http-server -p 8000 -o -c-1",
-        "serve": "http-server -p 8000",
-        "preview": "http-server -p 3000 -o"
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "start": "vite",
+        "serve": "http-server -p 8000"
     },
     "keywords": [
         "puasa",
@@ -28,7 +29,10 @@
     },
     "homepage": "https://github.com/yourusername/puasa-ayyamul-bidh#readme",
     "devDependencies": {
-        "http-server": "^14.1.1"
+        "@vitejs/plugin-legacy": "^7.2.1",
+        "http-server": "^14.1.1",
+        "terser": "^5.44.1",
+        "vite": "^7.2.4"
     },
     "engines": {
         "node": ">=14.0.0",
