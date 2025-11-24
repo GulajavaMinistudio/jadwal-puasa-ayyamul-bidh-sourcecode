@@ -3,8 +3,11 @@
  * Mengelola semua operasi terkait waktu shalat
  */
 
-class PrayerTimesAPI {
-  constructor(apiBaseURL = 'https://api.aladhan.com/v1') {
+import { Storage } from "./storage.js";
+import { Utils } from "./utils.js";
+
+export class PrayerTimesAPI {
+  constructor(apiBaseURL = "https://api.aladhan.com/v1") {
     this.baseURL = apiBaseURL;
     this.defaultMethod = 20; // Kementerian Agama RI
   }
@@ -17,26 +20,35 @@ class PrayerTimesAPI {
    * @param {string} date - Tanggal (format: DD-MM-YYYY), default: hari ini
    * @returns {Promise<object>} Data waktu shalat
    */
-  async getTimingsByCity(city, country, method = this.defaultMethod, date = null) {
+  async getTimingsByCity(
+    city,
+    country,
+    method = this.defaultMethod,
+    date = null
+  ) {
     try {
       const dateStr = date || Utils.formatDateForAPI(new Date());
-      const url = `${this.baseURL}/timingsByCity/${dateStr}?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}`;
-      
+      const url = `${
+        this.baseURL
+      }/timingsByCity/${dateStr}?city=${encodeURIComponent(
+        city
+      )}&country=${encodeURIComponent(country)}&method=${method}`;
+
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.code !== 200) {
-        throw new Error('API error: ' + data.status);
+        throw new Error("API error: " + data.status);
       }
-      
+
       return this.parseTimingsData(data.data);
     } catch (error) {
-      console.error('Error fetching prayer times by city:', error);
+      console.error("Error fetching prayer times by city:", error);
       throw error;
     }
   }
@@ -49,26 +61,31 @@ class PrayerTimesAPI {
    * @param {string} date - Tanggal (format: DD-MM-YYYY)
    * @returns {Promise<object>} Data waktu shalat
    */
-  async getTimingsByCoordinates(latitude, longitude, method = this.defaultMethod, date = null) {
+  async getTimingsByCoordinates(
+    latitude,
+    longitude,
+    method = this.defaultMethod,
+    date = null
+  ) {
     try {
       const dateStr = date || Utils.formatDateForAPI(new Date());
       const url = `${this.baseURL}/timings/${dateStr}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
-      
+
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.code !== 200) {
-        throw new Error('API error: ' + data.status);
+        throw new Error("API error: " + data.status);
       }
-      
+
       return this.parseTimingsData(data.data);
     } catch (error) {
-      console.error('Error fetching prayer times by coordinates:', error);
+      console.error("Error fetching prayer times by coordinates:", error);
       throw error;
     }
   }
@@ -82,25 +99,35 @@ class PrayerTimesAPI {
    * @param {number} method - Metode kalkulasi
    * @returns {Promise<Array>} Array data waktu shalat untuk 1 bulan
    */
-  async getMonthlyCalendar(city, country, year, month, method = this.defaultMethod) {
+  async getMonthlyCalendar(
+    city,
+    country,
+    year,
+    month,
+    method = this.defaultMethod
+  ) {
     try {
-      const url = `${this.baseURL}/calendarByCity/${year}/${month}?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}`;
-      
+      const url = `${
+        this.baseURL
+      }/calendarByCity/${year}/${month}?city=${encodeURIComponent(
+        city
+      )}&country=${encodeURIComponent(country)}&method=${method}`;
+
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.code !== 200) {
-        throw new Error('API error: ' + data.status);
+        throw new Error("API error: " + data.status);
       }
-      
-      return data.data.map(day => this.parseTimingsData(day));
+
+      return data.data.map((day) => this.parseTimingsData(day));
     } catch (error) {
-      console.error('Error fetching monthly calendar:', error);
+      console.error("Error fetching monthly calendar:", error);
       throw error;
     }
   }
@@ -123,7 +150,7 @@ class PrayerTimesAPI {
         hijriMonth: data.date.hijri.month.en,
         hijriMonthAr: data.date.hijri.month.ar,
         hijriMonthNumber: data.date.hijri.month.number,
-        hijriYear: data.date.hijri.year
+        hijriYear: data.date.hijri.year,
       },
       timings: {
         Fajr: data.timings.Fajr,
@@ -134,8 +161,8 @@ class PrayerTimesAPI {
         Maghrib: data.timings.Maghrib,
         Isha: data.timings.Isha,
         Imsak: data.timings.Imsak,
-        Midnight: data.timings.Midnight
-      }
+        Midnight: data.timings.Midnight,
+      },
     };
   }
 
@@ -151,7 +178,7 @@ class PrayerTimesAPI {
 
     // Cek cache
     if (Storage.isCacheValid(cacheKey, cacheMaxAge)) {
-      console.log('Using cached prayer times');
+      console.log("Using cached prayer times");
       return Storage.getCache(cacheKey);
     }
 
@@ -159,11 +186,19 @@ class PrayerTimesAPI {
     let data;
     try {
       if (location.city && location.country) {
-        data = await this.getTimingsByCity(location.city, location.country, method);
+        data = await this.getTimingsByCity(
+          location.city,
+          location.country,
+          method
+        );
       } else if (location.latitude && location.longitude) {
-        data = await this.getTimingsByCoordinates(location.latitude, location.longitude, method);
+        data = await this.getTimingsByCoordinates(
+          location.latitude,
+          location.longitude,
+          method
+        );
       } else {
-        throw new Error('Invalid location data');
+        throw new Error("Invalid location data");
       }
 
       // Save ke cache
@@ -173,7 +208,7 @@ class PrayerTimesAPI {
       // Jika error, coba gunakan cache lama (meskipun expired)
       const cachedData = Storage.getCache(cacheKey);
       if (cachedData) {
-        console.warn('Using expired cache due to API error');
+        console.warn("Using expired cache due to API error");
         return cachedData;
       }
       throw error;
@@ -190,31 +225,31 @@ class PrayerTimesAPI {
     const currentTime = now.getHours() * 60 + now.getMinutes();
 
     const prayers = [
-      { name: 'Subuh', time: timings.Fajr },
-      { name: 'Dzuhur', time: timings.Dhuhr },
-      { name: 'Ashar', time: timings.Asr },
-      { name: 'Maghrib', time: timings.Maghrib },
-      { name: 'Isya', time: timings.Isha }
+      { name: "Subuh", time: timings.Fajr },
+      { name: "Dzuhur", time: timings.Dhuhr },
+      { name: "Ashar", time: timings.Asr },
+      { name: "Maghrib", time: timings.Maghrib },
+      { name: "Isya", time: timings.Isha },
     ];
 
     for (const prayer of prayers) {
-      const [hours, minutes] = prayer.time.split(':').map(Number);
+      const [hours, minutes] = prayer.time.split(":").map(Number);
       const prayerTime = hours * 60 + minutes;
 
       if (prayerTime > currentTime) {
         return {
           name: prayer.name,
           time: Utils.formatTime(prayer.time),
-          countdown: Utils.calculateCountdown(prayer.time)
+          countdown: Utils.calculateCountdown(prayer.time),
         };
       }
     }
 
     // Jika semua waktu sudah lewat, next adalah Subuh besok
     return {
-      name: 'Subuh',
+      name: "Subuh",
       time: Utils.formatTime(timings.Fajr),
-      countdown: Utils.calculateCountdown(timings.Fajr)
+      countdown: Utils.calculateCountdown(timings.Fajr),
     };
   }
 
@@ -228,17 +263,17 @@ class PrayerTimesAPI {
     const currentTime = now.getHours() * 60 + now.getMinutes();
 
     const prayerPeriods = [
-      { name: 'Subuh', start: timings.Fajr, end: timings.Sunrise },
-      { name: 'Dzuhur', start: timings.Dhuhr, end: timings.Asr },
-      { name: 'Ashar', start: timings.Asr, end: timings.Maghrib },
-      { name: 'Maghrib', start: timings.Maghrib, end: timings.Isha },
-      { name: 'Isya', start: timings.Isha, end: '23:59' }
+      { name: "Subuh", start: timings.Fajr, end: timings.Sunrise },
+      { name: "Dzuhur", start: timings.Dhuhr, end: timings.Asr },
+      { name: "Ashar", start: timings.Asr, end: timings.Maghrib },
+      { name: "Maghrib", start: timings.Maghrib, end: timings.Isha },
+      { name: "Isya", start: timings.Isha, end: "23:59" },
     ];
 
     for (const period of prayerPeriods) {
-      const [startHours, startMinutes] = period.start.split(':').map(Number);
-      const [endHours, endMinutes] = period.end.split(':').map(Number);
-      
+      const [startHours, startMinutes] = period.start.split(":").map(Number);
+      const [endHours, endMinutes] = period.end.split(":").map(Number);
+
       const startTime = startHours * 60 + startMinutes;
       const endTime = endHours * 60 + endMinutes;
 
@@ -255,18 +290,13 @@ class PrayerTimesAPI {
    */
   static getCalculationMethods() {
     return [
-      { value: 20, label: 'Kementerian Agama Republik Indonesia' },
-      { value: 3, label: 'Muslim World League (MWL)' },
-      { value: 2, label: 'Islamic Society of North America (ISNA)' },
-      { value: 5, label: 'Egyptian General Authority of Survey' },
-      { value: 4, label: 'Umm Al-Qura University, Makkah' },
-      { value: 1, label: 'University of Islamic Sciences, Karachi' },
-      { value: 7, label: 'Institute of Geophysics, University of Tehran' }
+      { value: 20, label: "Kementerian Agama Republik Indonesia" },
+      { value: 3, label: "Muslim World League (MWL)" },
+      { value: 2, label: "Islamic Society of North America (ISNA)" },
+      { value: 5, label: "Egyptian General Authority of Survey" },
+      { value: 4, label: "Umm Al-Qura University, Makkah" },
+      { value: 1, label: "University of Islamic Sciences, Karachi" },
+      { value: 7, label: "Institute of Geophysics, University of Tehran" },
     ];
   }
-}
-
-// Export untuk digunakan di module lain
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = PrayerTimesAPI;
 }

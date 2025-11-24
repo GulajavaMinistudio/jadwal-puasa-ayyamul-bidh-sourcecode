@@ -1,272 +1,341 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jadwal waktu shalat lengkap berdasarkan lokasi Anda">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jadwal waktu shalat lengkap berdasarkan lokasi Anda"
+    />
     <title>Jadwal Shalat - Puasa Ayyamul Bidh</title>
-    
+
     <!-- Bootstrap 5.3.8 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
     <!-- Navbar (sama seperti index.html) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="bi bi-moon-stars-fill me-2"></i>
-                Puasa Ayyamul Bidh
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="bi bi-house-fill"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="kalender.html">
-                            <i class="bi bi-calendar3"></i> Kalender
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tracker.html">
-                            <i class="bi bi-check2-square"></i> Tracker
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="jadwal-shalat.html">
-                            <i class="bi bi-clock"></i> Jadwal Shalat
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="panduan.html">
-                            <i class="bi bi-book"></i> Panduan
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pengaturan.html">
-                            <i class="bi bi-gear"></i> Pengaturan
-                        </a>
-                    </li>
-                </ul>
-           </div>
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-moon-stars-fill me-2"></i>
+          Puasa Ayyamul Bidh
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="bi bi-house-fill"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="kalender.html">
+                <i class="bi bi-calendar3"></i> Kalender
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tracker.html">
+                <i class="bi bi-check2-square"></i> Tracker
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="jadwal-shalat.html">
+                <i class="bi bi-clock"></i> Jadwal Shalat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="panduan.html">
+                <i class="bi bi-book"></i> Panduan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pengaturan.html">
+                <i class="bi bi-gear"></i> Pengaturan
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <main class="container my-4">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="mb-4">
-                    <i class="bi bi-clock-fill text-info"></i>
-                    Jadwal Waktu Shalat
-                </h2>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <h2 class="mb-4">
+            <i class="bi bi-clock-fill text-info"></i>
+            Jadwal Waktu Shalat
+          </h2>
         </div>
+      </div>
 
-        <!-- Location Info -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title mb-2">
-                                    <i class="bi bi-geo-alt-fill text-danger"></i>
-                                    <span id="locationName">Loading...</span>
-                                </h5>
-                                <p class="text-muted small mb-0" id="locationDetails">Memuat lokasi...</p>
-                            </div>
-                            <a href="pengaturan.html" class="btn btn-outline-primary">
-                                <i class="bi bi-pencil"></i> Ubah Lokasi
-                            </a>
-                        </div>
-                    </div>
+      <!-- Location Info -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="card-title mb-2">
+                    <i class="bi bi-geo-alt-fill text-danger"></i>
+                    <span id="locationName">Loading...</span>
+                  </h5>
+                  <p class="text-muted small mb-0" id="locationDetails">
+                    Memuat lokasi...
+                  </p>
                 </div>
+                <a href="pengaturan.html" class="btn btn-outline-primary">
+                  <i class="bi bi-pencil"></i> Ubah Lokasi
+                </a>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Today's Prayer Times (Large Display) -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4">Waktu Shalat Hari Ini</h4>
-                        <div id="prayerTimesToday">
-                            <!-- Will be populated by JS -->
-                        </div>
-                        
-                        <!-- Next Prayer Info -->
-                        <div class="alert alert-info mt-4 text-center" id="nextPrayerInfo">
-                            <h5 class="mb-0">Memuat...</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <!-- Today's Prayer Times (Large Display) -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow border-0">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Waktu Shalat Hari Ini</h4>
+              <div id="prayerTimesToday">
+                <!-- Will be populated by JS -->
+              </div>
 
-        <!-- Monthly Calendar Table -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h4 class="card-title mb-0">Jadwal Bulanan</h4>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-outline-secondary" id="prevMonth">
-                                    <i class="bi bi-chevron-left"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary" id="currentMonthBtn">
-                                    <span id="currentMonthLabel">Loading...</span>
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary" id="nextMonth">
-                                    <i class="bi bi-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="monthlyPrayerTable">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <th>Imsak</th>
-                                        <th>Subuh</th>
-                                        <th>Dzuhur</th>
-                                        <th>Ashar</th>
-                                        <th>Maghrib</th>
-                                        <th>Isya</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="monthlyPrayerBody">
-                                    <!-- Will be populated by JS -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+              <!-- Next Prayer Info -->
+              <div
+                class="alert alert-info mt-4 text-center"
+                id="nextPrayerInfo"
+              >
+                <h5 class="mb-0">Memuat...</h5>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Monthly Calendar Table -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card shadow border-0">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h4 class="card-title mb-0">Jadwal Bulanan</h4>
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    id="prevMonth"
+                  >
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    id="currentMonthBtn"
+                  >
+                    <span id="currentMonthLabel">Loading...</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    id="nextMonth"
+                  >
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-hover" id="monthlyPrayerTable">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Tanggal</th>
+                      <th>Imsak</th>
+                      <th>Subuh</th>
+                      <th>Dzuhur</th>
+                      <th>Ashar</th>
+                      <th>Maghrib</th>
+                      <th>Isya</th>
+                    </tr>
+                  </thead>
+                  <tbody id="monthlyPrayerBody">
+                    <!-- Will be populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-light py-4 mt-5">
-        <div class="container text-center">
-            <p class="text-muted mb-0">
-                &copy; 2025 Puasa Ayyamul Bidh | Data dari 
-                <a href="https://aladhan.com" target="_blank" class="text-decoration-none">Aladhan API</a>
-            </p>
-        </div>
+      <div class="container text-center">
+        <p class="text-muted mb-0">
+          &copy; 2025 Puasa Ayyamul Bidh | Data dari
+          <a
+            href="https://aladhan.com"
+            target="_blank"
+            class="text-decoration-none"
+            >Aladhan API</a
+          >
+        </p>
+      </div>
     </footer>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- App JS Modules -->
-    <script src="js/storage.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/prayer-times.js"></script>
-    <script src="js/hijri-calendar.js"></script>
-    <script src="js/tracker.js"></script>
-    
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="/js/main.js"></script>
+
     <!-- Prayer Times Page Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', async () => {
+    <script type="module">
+      import { PrayerTimesAPI } from "/js/prayer-times.js";
+      import { Storage } from "/js/storage.js";
+      import { Utils } from "/js/utils.js";
+
+      document.addEventListener("DOMContentLoaded", async () => {
         const prayerAPI = new PrayerTimesAPI();
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear();
-        
+
         // Load location info
         function loadLocationInfo() {
-            const config = Storage.get('app_config');
-            if (config && config.location) {
-                const loc = config.location;
-                if (loc.city) {
-                    document.getElementById('locationName').textContent = `${loc.city}, ${loc.country || 'Indonesia'}`;
-                    document.getElementById('locationDetails').textContent = `Metode: Kementerian Agama RI`;
-                } else if (loc.latitude && loc.longitude) {
-                    document.getElementById('locationName').textContent = 'GPS Location';
-                    document.getElementById('locationDetails').textContent = `Koordinat: ${loc.latitude.toFixed(4)}, ${loc.longitude.toFixed(4)}`;
-                }
+          const config = Storage.get("app_config");
+          if (config && config.location) {
+            const loc = config.location;
+            if (loc.city) {
+              document.getElementById("locationName").textContent = `${
+                loc.city
+              }, ${loc.country || "Indonesia"}`;
+              document.getElementById(
+                "locationDetails"
+              ).textContent = `Metode: Kementerian Agama RI`;
+            } else if (loc.latitude && loc.longitude) {
+              document.getElementById("locationName").textContent =
+                "GPS Location";
+              document.getElementById(
+                "locationDetails"
+              ).textContent = `Koordinat: ${loc.latitude.toFixed(
+                4
+              )}, ${loc.longitude.toFixed(4)}`;
             }
+          }
         }
-        
+
         // Load today's prayer times
         async function loadTodayPrayerTimes() {
-            try {
-                const config = Storage.get('app_config');
-                const data = await prayerAPI.getPrayerTimesWithCache(config.location);
-                
-                const timings = data.timings;
-                const prayers = [
-                    { name: 'Imsak', time: timings.Imsak, icon: 'bi-sunrise' },
-                    { name: 'Subuh', time: timings.Fajr, icon: 'bi-brightness-high' },
-                    { name: 'Dzuhur', time: timings.Dhuhr, icon: 'bi-sun' },
-                    { name: 'Ashar', time: timings.Asr, icon: 'bi-cloud-sun' },
-                    { name: 'Maghrib', time: timings.Maghrib, icon: 'bi-sunset' },
-                    { name: 'Isya', time: timings.Isha, icon: 'bi-moon-stars' }
-                ];
-                
-                const container = document.getElementById('prayerTimesToday');
-                container.innerHTML = prayers.map(prayer => `
+          try {
+            const config = Storage.get("app_config");
+            const data = await prayerAPI.getPrayerTimesWithCache(
+              config.location
+            );
+
+            const timings = data.timings;
+            const prayers = [
+              { name: "Imsak", time: timings.Imsak, icon: "bi-sunrise" },
+              { name: "Subuh", time: timings.Fajr, icon: "bi-brightness-high" },
+              { name: "Dzuhur", time: timings.Dhuhr, icon: "bi-sun" },
+              { name: "Ashar", time: timings.Asr, icon: "bi-cloud-sun" },
+              { name: "Maghrib", time: timings.Maghrib, icon: "bi-sunset" },
+              { name: "Isya", time: timings.Isha, icon: "bi-moon-stars" },
+            ];
+
+            const container = document.getElementById("prayerTimesToday");
+            container.innerHTML = prayers
+              .map(
+                (prayer) => `
                     <div class="prayer-detail-card">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <i class="bi ${prayer.icon} me-2"></i>
                                 <span class="prayer-name">${prayer.name}</span>
                             </div>
-                            <span class="prayer-time-large">${Utils.formatTime(prayer.time)}</span>
+                            <span class="prayer-time-large">${Utils.formatTime(
+                              prayer.time
+                            )}</span>
                         </div>
                     </div>
-                `).join('');
-                
-                // Update next prayer
-                const nextPrayer = prayerAPI.getNextPrayerTime(timings);
-                document.getElementById('nextPrayerInfo').innerHTML = `
+                `
+              )
+              .join("");
+
+            // Update next prayer
+            const nextPrayer = prayerAPI.getNextPrayerTime(timings);
+            document.getElementById("nextPrayerInfo").innerHTML = `
                     <h5 class="mb-1">Shalat Berikutnya: <strong>${nextPrayer.name}</strong></h5>
                     <p class="mb-0">${nextPrayer.time} - ${nextPrayer.countdown}</p>
                 `;
-                
-            } catch (error) {
-                console.error('Error loading prayer times:', error);
-            }
+          } catch (error) {
+            console.error("Error loading prayer times:", error);
+          }
         }
-        
+
         // Load monthly calendar
         async function loadMonthlyCalendar(month, year) {
-            try {
-                const config = Storage.get('app_config');
-                const city = config.location.city;
-                const country = config.location.country || 'Indonesia';
-                
-                document.getElementById('currentMonthLabel').textContent = 
-                    new Date(year, month - 1).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
-                
-                const data = await prayerAPI.getMonthlyCalendar(city, country, year, month);
-                
-                const tbody = document.getElementById('monthlyPrayerBody');
-                tbody.innerHTML = data.map((day, index) => {
-                    const date = new Date(year, month - 1, index + 1);
-                    const isToday = date.toDateString() === new Date().toDateString();
-                    const rowClass = isToday ? 'table-primary' : '';
-                    
-                    return `
+          try {
+            const config = Storage.get("app_config");
+            const city = config.location.city;
+            const country = config.location.country || "Indonesia";
+
+            document.getElementById("currentMonthLabel").textContent = new Date(
+              year,
+              month - 1
+            ).toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+
+            const data = await prayerAPI.getMonthlyCalendar(
+              city,
+              country,
+              year,
+              month
+            );
+
+            const tbody = document.getElementById("monthlyPrayerBody");
+            tbody.innerHTML = data
+              .map((day, index) => {
+                const date = new Date(year, month - 1, index + 1);
+                const isToday =
+                  date.toDateString() === new Date().toDateString();
+                const rowClass = isToday ? "table-primary" : "";
+
+                return `
                         <tr class="${rowClass}">
-                            <td><strong>${index + 1} ${date.toLocaleDateString('id-ID', { month: 'short' })}</strong></td>
+                            <td><strong>${index + 1} ${date.toLocaleDateString(
+                  "id-ID",
+                  { month: "short" }
+                )}</strong></td>
                             <td>${Utils.formatTime(day.timings.Imsak)}</td>
                             <td>${Utils.formatTime(day.timings.Fajr)}</td>
                             <td>${Utils.formatTime(day.timings.Dhuhr)}</td>
@@ -275,46 +344,48 @@
                             <td>${Utils.formatTime(day.timings.Isha)}</td>
                         </tr>
                     `;
-                }).join('');
-                
-            } catch (error) {
-                console.error('Error loading monthly calendar:', error);
-            }
+              })
+              .join("");
+          } catch (error) {
+            console.error("Error loading monthly calendar:", error);
+          }
         }
-        
+
         // Event listeners for month navigation
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentMonth--;
-            if (currentMonth < 1) {
-                currentMonth = 12;
-                currentYear--;
-            }
-            loadMonthlyCalendar(currentMonth, currentYear);
+        document.getElementById("prevMonth").addEventListener("click", () => {
+          currentMonth--;
+          if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+          }
+          loadMonthlyCalendar(currentMonth, currentYear);
         });
-        
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentMonth++;
-            if (currentMonth > 12) {
-                currentMonth = 1;
-                currentYear++;
-            }
-            loadMonthlyCalendar(currentMonth, currentYear);
+
+        document.getElementById("nextMonth").addEventListener("click", () => {
+          currentMonth++;
+          if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+          }
+          loadMonthlyCalendar(currentMonth, currentYear);
         });
-        
-        document.getElementById('currentMonthBtn').addEventListener('click', () => {
+
+        document
+          .getElementById("currentMonthBtn")
+          .addEventListener("click", () => {
             currentMonth = new Date().getMonth() + 1;
             currentYear = new Date().getFullYear();
             loadMonthlyCalendar(currentMonth, currentYear);
-        });
-        
+          });
+
         // Initial load
         loadLocationInfo();
         loadTodayPrayerTimes();
         loadMonthlyCalendar(currentMonth, currentYear);
-        
+
         // Auto-refresh every minute
         setInterval(loadTodayPrayerTimes, 60000);
-    });
+      });
     </script>
-</body>
+  </body>
 </html>

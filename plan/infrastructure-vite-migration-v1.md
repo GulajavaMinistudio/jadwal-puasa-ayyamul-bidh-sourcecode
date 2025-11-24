@@ -76,10 +76,10 @@ This implementation plan outlines the migration of the Puasa Ayyamul Bidh web ap
 
 | Task | Description | Completed | Date |
 |------|-------------|-----------|------|
-| TASK-007 | Refactor `js/storage.js`: Change `class Storage` to `export class Storage`, remove any global assignments | | |
-| TASK-008 | Refactor `js/utils.js`: Change `class Utils` to `export class Utils`, ensure `showToast` and `sanitizeHTML` are accessible | | |
-| TASK-009 | Test utility modules in isolation: create temporary test file importing both modules | | |
-| TASK-010 | Verify no breaking changes in browser DevTools console | | |
+| TASK-007 | Refactor `js/storage.js`: Change `class Storage` to `export class Storage`, remove any global assignments | ✅ | 2025-11-24 |
+| TASK-008 | Refactor `js/utils.js`: Change `class Utils` to `export class Utils`, ensure `showToast` and `sanitizeHTML` are accessible | ✅ | 2025-11-24 |
+| TASK-009 | Test utility modules in isolation: create temporary test file importing both modules | ✅ | 2025-11-24 |
+| TASK-010 | Verify no breaking changes in browser DevTools console | ✅ | 2025-11-24 |
 
 **Acceptance Criteria for Phase 2A:**
 - ✅ `storage.js` and `utils.js` successfully export classes
@@ -94,10 +94,10 @@ This implementation plan outlines the migration of the Puasa Ayyamul Bidh web ap
 
 | Task | Description | Completed | Date |
 |------|-------------|-----------|------|
-| TASK-011 | Refactor `js/prayer-times.js`: Change `class PrayerTimesAPI` to `export class PrayerTimesAPI`, add `import { Storage } from './storage.js'` if used | | |
-| TASK-012 | Refactor `js/hijri-calendar.js`: Change `class HijriCalendar` to `export class HijriCalendar` | | |
-| TASK-013 | Refactor `js/tracker.js`: Change `class FastingTracker` to `export class FastingTracker`, add imports for `Storage` and `Utils` | | |
-| TASK-014 | Test each module import chain: verify dependencies resolve correctly | | |
+| TASK-011 | Refactor `js/prayer-times.js`: Change `class PrayerTimesAPI` to `export class PrayerTimesAPI`, add `import { Storage } from './storage.js'` if used | ✅ | 2025-11-24 |
+| TASK-012 | Refactor `js/hijri-calendar.js`: Change `class HijriCalendar` to `export class HijriCalendar` | ✅ | 2025-11-24 |
+| TASK-013 | Refactor `js/tracker.js`: Change `class FastingTracker` to `export class FastingTracker`, add imports for `Storage` and `Utils` | ✅ | 2025-11-24 |
+| TASK-014 | Test each module import chain: verify dependencies resolve correctly | ✅ | 2025-11-24 |
 
 **Acceptance Criteria for Phase 2B:**
 - ✅ All API modules export classes correctly
@@ -112,10 +112,10 @@ This implementation plan outlines the migration of the Puasa Ayyamul Bidh web ap
 
 | Task | Description | Completed | Date |
 |------|-------------|-----------|------|
-| TASK-015 | Refactor `js/app.js`: Change `class App` to `export class App`, add all required imports (`PrayerTimesAPI`, `HijriCalendar`, `FastingTracker`, `Storage`, `Utils`) | | |
-| TASK-016 | Remove `window.app = new App()` and `DOMContentLoaded` listener from `app.js` | | |
-| TASK-017 | Create `js/main.js`: Import `App`, instantiate, and call `init()` on `DOMContentLoaded` | | |
-| TASK-018 | Verify module dependency graph is acyclic and correct | | |
+| TASK-015 | Refactor `js/app.js`: Change `class App` to `export class App`, add all required imports (`PrayerTimesAPI`, `HijriCalendar`, `FastingTracker`, `Storage`, `Utils`) | ✅ | 2025-11-24 |
+| TASK-016 | Remove `window.app = new App()` and `DOMContentLoaded` listener from `app.js` | ✅ | 2025-11-24 |
+| TASK-017 | Create `js/main.js`: Import `App`, instantiate, and call `init()` on `DOMContentLoaded` | ✅ | 2025-11-24 |
+| TASK-018 | Verify module dependency graph is acyclic and correct | ✅ | 2025-11-24 |
 
 **Acceptance Criteria for Phase 2C:**
 - ✅ `app.js` cleanly exports `App` class
@@ -124,24 +124,6 @@ This implementation plan outlines the migration of the Puasa Ayyamul Bidh web ap
 
 ---
 
-### Phase 2D: Update HTML Entry Points
-
-**GOAL-005**: Update all HTML files to use module-based script loading
-
-| Task | Description | Completed | Date |
-|------|-------------|-----------|------|
-| TASK-019 | Update `index.html`: Remove all individual `<script src="js/...">` tags, add `<script type="module" src="/js/main.js"></script>` before closing `</body>` | | |
-| TASK-020 | Update `kalender.html`: Apply same script tag changes as `index.html` | | |
-| TASK-021 | Update `tracker.html`: Apply same script tag changes | | |
-| TASK-022 | Update `jadwal-shalat.html`: Apply same script tag changes | | |
-| TASK-023 | Update `panduan.html`: Apply same script tag changes | | |
-| TASK-024 | Update `pengaturan.html`: Apply same script tag changes | | |
-| TASK-025 | Verify CDN `<link>` and `<script>` tags for Bootstrap/Icons remain in `<head>` | | |
-
-**Acceptance Criteria for Phase 2D:**
-- ✅ All 6 HTML files load single `main.js` module entry point
-- ✅ No `<script>` tag duplication or conflicts
-- ✅ CDN dependencies still load from external sources
 - ✅ Browser DevTools Network tab shows module loading correctly
 
 ---

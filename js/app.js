@@ -3,7 +3,13 @@
  * Mengelola inisialisasi dan koordinasi antar modules
  */
 
-class App {
+import { PrayerTimesAPI } from "./prayer-times.js";
+import { HijriCalendar } from "./hijri-calendar.js";
+import { FastingTracker } from "./tracker.js";
+import { Storage } from "./storage.js";
+import { Utils } from "./utils.js";
+
+export class App {
   constructor() {
     // Initialize modules
     this.prayerTimesAPI = new PrayerTimesAPI();
@@ -423,21 +429,26 @@ class App {
       countdownEl.textContent = info.daysUntil;
     }
 
-    // Update progress bar
+    // Update progress bar based on actual fasting completion
     if (progressEl && this.currentData.hijriDate) {
-      const currentDay = this.currentData.hijriDate.day;
-      let progress = 0;
+      const currentMonth = this.currentData.hijriDate.month;
+      const currentYear = this.currentData.hijriDate.year;
 
-      if (currentDay <= 13) {
-        progress = (currentDay / 13) * 100;
-      } else if (currentDay <= 15) {
-        progress = 100;
-      } else {
-        progress = 0;
-      }
+      // Get actual fasting stats from tracker
+      const monthStats = this.tracker.getMonthlyStats(
+        currentMonth,
+        currentYear
+      );
+      const completedDays = monthStats.totalDays; // 0-3
+      const progress = (completedDays / 3) * 100; // Calculate percentage
 
       progressEl.style.width = `${progress}%`;
       progressEl.setAttribute("aria-valuenow", progress);
+
+      // Update progress bar text content
+      progressEl.textContent = `${completedDays}/3 hari (${Math.round(
+        progress
+      )}%)`;
     }
   }
 
@@ -536,16 +547,3 @@ class App {
     await this.loadApp();
   }
 }
-
-// Initialize app when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  window.app = new App();
-  window.app.init();
-});
-
-// Cleanup on page unload (Priority 1: Memory leak prevention)
-window.addEventListener("beforeunload", () => {
-  if (window.app) {
-    window.app.destroy();
-  }
-});

@@ -3,8 +3,11 @@
  * Mengelola konversi kalender dan kalkulasi hari Ayyamul Bidh
  */
 
-class HijriCalendar {
-  constructor(apiBaseURL = 'https://api.aladhan.com/v1') {
+import { Storage } from "./storage.js";
+import { Utils } from "./utils.js";
+
+export class HijriCalendar {
+  constructor(apiBaseURL = "https://api.aladhan.com/v1") {
     this.baseURL = apiBaseURL;
     this.AYYAMUL_BIDH_DATES = [13, 14, 15];
   }
@@ -17,7 +20,7 @@ class HijriCalendar {
   async gregorianToHijri(date) {
     try {
       const cacheKey = `hijri_${date}`;
-      
+
       // Cek cache (data konversi bisa di-cache permanent)
       const cached = Storage.getCache(cacheKey);
       if (cached) {
@@ -26,31 +29,31 @@ class HijriCalendar {
 
       const url = `${this.baseURL}/gToH/${date}`;
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.code !== 200) {
-        throw new Error('API error: ' + data.status);
+        throw new Error("API error: " + data.status);
       }
-      
+
       const result = {
         day: parseInt(data.data.hijri.day),
         month: parseInt(data.data.hijri.month.number),
         monthName: data.data.hijri.month.en,
         monthNameAr: data.data.hijri.month.ar,
         year: parseInt(data.data.hijri.year),
-        formatted: `${data.data.hijri.day} ${data.data.hijri.month.en} ${data.data.hijri.year} H`
+        formatted: `${data.data.hijri.day} ${data.data.hijri.month.en} ${data.data.hijri.year} H`,
       };
-      
+
       // Save ke cache
       Storage.saveCache(cacheKey, result);
       return result;
     } catch (error) {
-      console.error('Error converting Gregorian to Hijri:', error);
+      console.error("Error converting Gregorian to Hijri:", error);
       throw error;
     }
   }
@@ -63,7 +66,7 @@ class HijriCalendar {
   async hijriToGregorian(date) {
     try {
       const cacheKey = `gregorian_${date}`;
-      
+
       // Cek cache
       const cached = Storage.getCache(cacheKey);
       if (cached) {
@@ -72,30 +75,30 @@ class HijriCalendar {
 
       const url = `${this.baseURL}/hToG/${date}`;
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.code !== 200) {
-        throw new Error('API error: ' + data.status);
+        throw new Error("API error: " + data.status);
       }
-      
+
       const result = {
         day: parseInt(data.data.gregorian.day),
         month: parseInt(data.data.gregorian.month.number),
         monthName: data.data.gregorian.month.en,
         year: parseInt(data.data.gregorian.year),
-        formatted: data.data.gregorian.date
+        formatted: data.data.gregorian.date,
       };
-      
+
       // Save ke cache
       Storage.saveCache(cacheKey, result);
       return result;
     } catch (error) {
-      console.error('Error converting Hijri to Gregorian:', error);
+      console.error("Error converting Hijri to Gregorian:", error);
       throw error;
     }
   }
@@ -118,23 +121,29 @@ class HijriCalendar {
    */
   async getAyyamulBidhDates(hijriMonth, hijriYear) {
     const dates = [];
-    
+
     for (const day of this.AYYAMUL_BIDH_DATES) {
-      const hijriDate = `${String(day).padStart(2, '0')}-${String(hijriMonth).padStart(2, '0')}-${hijriYear}`;
+      const hijriDate = `${String(day).padStart(2, "0")}-${String(
+        hijriMonth
+      ).padStart(2, "0")}-${hijriYear}`;
       try {
         const gregorian = await this.hijriToGregorian(hijriDate);
         dates.push({
           hijriDay: day,
           hijriMonth: hijriMonth,
           hijriYear: hijriYear,
-          gregorianDate: new Date(gregorian.year, gregorian.month - 1, gregorian.day),
-          formatted: gregorian.formatted
+          gregorianDate: new Date(
+            gregorian.year,
+            gregorian.month - 1,
+            gregorian.day
+          ),
+          formatted: gregorian.formatted,
         });
       } catch (error) {
         console.error(`Error converting Hijri date ${hijriDate}:`, error);
       }
     }
-    
+
     return dates;
   }
 
@@ -154,24 +163,24 @@ class HijriCalendar {
    */
   calculateDaysUntilNextAyyamulBidh(currentHijriDate) {
     const currentDay = currentHijriDate.day;
-    console.log('Calculating Ayyamul Bidh for day:', currentDay);
-    
+    console.log("Calculating Ayyamul Bidh for day:", currentDay);
+
     if (currentDay < 13) {
       // Masih menuju tanggal 13 bulan ini
       const daysLeft = 13 - currentDay;
       return {
         daysUntil: daysLeft,
         nextDate: 13,
-        status: 'upcoming',
-        message: `🌙 Tinggal ${daysLeft} hari lagi menuju Ayyamul Bidh bulan ini!`
+        status: "upcoming",
+        message: `🌙 Tinggal ${daysLeft} hari lagi menuju Ayyamul Bidh bulan ini!`,
       };
     } else if (currentDay >= 13 && currentDay <= 15) {
       // Sedang dalam periode Ayyamul Bidh
       return {
         daysUntil: 0,
         nextDate: currentDay,
-        status: 'current',
-        message: `✨ HARI INI PUASA AYYAMUL BIDH! (${currentDay} ${currentHijriDate.monthName} ${currentHijriDate.year} H)`
+        status: "current",
+        message: `✨ HARI INI PUASA AYYAMUL BIDH! (${currentDay} ${currentHijriDate.monthName} ${currentHijriDate.year} H)`,
       };
     } else {
       // Sudah lewat, hitung ke bulan depan
@@ -179,12 +188,12 @@ class HijriCalendar {
       const estimatedDaysInMonth = 30;
       const daysUntilNextMonth = estimatedDaysInMonth - currentDay;
       const totalDays = daysUntilNextMonth + 13;
-      
+
       return {
         daysUntil: totalDays,
         nextDate: 13,
-        status: 'next_month',
-        message: `📅 Ayyamul Bidh bulan depan dalam ${totalDays} hari lagi`
+        status: "next_month",
+        message: `📅 Ayyamul Bidh bulan depan dalam ${totalDays} hari lagi`,
       };
     }
   }
@@ -198,12 +207,14 @@ class HijriCalendar {
    */
   async generateMonthlyCalendar(month, year, isHijri = false) {
     const calendar = [];
-    
+
     if (isHijri) {
       // Generate kalender Hijri
       // Estimasi 30 hari untuk bulan Hijri
       for (let day = 1; day <= 30; day++) {
-        const hijriDate = `${String(day).padStart(2, '0')}-${String(month).padStart(2, '0')}-${year}`;
+        const hijriDate = `${String(day).padStart(2, "0")}-${String(
+          month
+        ).padStart(2, "0")}-${year}`;
         try {
           const gregorian = await this.hijriToGregorian(hijriDate);
           calendar.push({
@@ -213,7 +224,7 @@ class HijriCalendar {
             gregorianDay: gregorian.day,
             gregorianMonth: gregorian.month,
             gregorianYear: gregorian.year,
-            isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(day)
+            isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(day),
           });
         } catch (error) {
           // Jika error, mungkin bulan hanya 29 hari
@@ -223,9 +234,11 @@ class HijriCalendar {
     } else {
       // Generate kalender Gregorian dengan konversi ke Hijri
       const daysInMonth = new Date(year, month, 0).getDate();
-      
+
       for (let day = 1; day <= daysInMonth; day++) {
-        const gregorianDate = `${String(day).padStart(2, '0')}-${String(month).padStart(2, '0')}-${year}`;
+        const gregorianDate = `${String(day).padStart(2, "0")}-${String(
+          month
+        ).padStart(2, "0")}-${year}`;
         try {
           const hijri = await this.gregorianToHijri(gregorianDate);
           calendar.push({
@@ -236,14 +249,14 @@ class HijriCalendar {
             hijriMonth: hijri.month,
             hijriYear: hijri.year,
             hijriMonthName: hijri.monthName,
-            isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(hijri.day)
+            isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(hijri.day),
           });
         } catch (error) {
           console.error(`Error converting date ${gregorianDate}:`, error);
         }
       }
     }
-    
+
     return calendar;
   }
 
@@ -264,31 +277,26 @@ class HijriCalendar {
   async getUpcomingAyyamulBidh(numberOfMonths = 3) {
     const upcoming = [];
     const currentHijri = await this.getCurrentHijriDate();
-    
+
     for (let i = 0; i < numberOfMonths; i++) {
       let month = currentHijri.month + i;
       let year = currentHijri.year;
-      
+
       // Handle year overflow
       if (month > 12) {
         month = month - 12;
         year = year + 1;
       }
-      
+
       const dates = await this.getAyyamulBidhDates(month, year);
       upcoming.push({
         hijriMonth: month,
         hijriMonthName: this.getHijriMonthName(month),
         hijriYear: year,
-        dates: dates
+        dates: dates,
       });
     }
-    
+
     return upcoming;
   }
-}
-
-// Export untuk digunakan di module lain
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = HijriCalendar;
 }

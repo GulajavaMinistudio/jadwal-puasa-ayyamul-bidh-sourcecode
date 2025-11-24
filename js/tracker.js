@@ -3,9 +3,12 @@
  * Mengelola tracking dan statistik puasa Ayyamul Bidh
  */
 
-class FastingTracker {
+import { Storage } from "./storage.js";
+import { Utils } from "./utils.js";
+
+export class FastingTracker {
   constructor() {
-    this.storageKey = 'puasa_ayyamul_bidh';
+    this.storageKey = "puasa_ayyamul_bidh";
     this.loadData();
   }
 
@@ -30,7 +33,7 @@ class FastingTracker {
    * @returns {string} Key format YYYY-MM
    */
   getMonthKey(month, year) {
-    return `${year}-${String(month).padStart(2, '0')}`;
+    return `${year}-${String(month).padStart(2, "0")}`;
   }
 
   /**
@@ -43,12 +46,12 @@ class FastingTracker {
   markFasting(hijriDay, hijriMonth, hijriYear) {
     // Validasi: harus tanggal 13, 14, atau 15
     if (![13, 14, 15].includes(hijriDay)) {
-      console.warn('Bukan hari Ayyamul Bidh (harus 13, 14, atau 15)');
+      console.warn("Bukan hari Ayyamul Bidh (harus 13, 14, atau 15)");
       return false;
     }
 
     const monthKey = this.getMonthKey(hijriMonth, hijriYear);
-    
+
     // Inisialisasi array untuk bulan ini jika belum ada
     if (!this.data[monthKey]) {
       this.data[monthKey] = [];
@@ -74,7 +77,7 @@ class FastingTracker {
    */
   unmarkFasting(hijriDay, hijriMonth, hijriYear) {
     const monthKey = this.getMonthKey(hijriMonth, hijriYear);
-    
+
     if (!this.data[monthKey]) {
       return false;
     }
@@ -82,12 +85,12 @@ class FastingTracker {
     const index = this.data[monthKey].indexOf(hijriDay);
     if (index > -1) {
       this.data[monthKey].splice(index, 1);
-      
+
       // Hapus key jika array kosong
       if (this.data[monthKey].length === 0) {
         delete this.data[monthKey];
       }
-      
+
       this.saveData();
       return true;
     }
@@ -145,7 +148,7 @@ class FastingTracker {
       totalDays: totalDays,
       isComplete: isComplete,
       percentage: percentage,
-      status: totalDays === 3 ? 'complete' : (totalDays > 0 ? 'partial' : 'none')
+      status: totalDays === 3 ? "complete" : totalDays > 0 ? "partial" : "none",
     };
   }
 
@@ -163,9 +166,9 @@ class FastingTracker {
     for (let month = 1; month <= 12; month++) {
       const monthStats = this.getMonthlyStats(month, hijriYear);
       monthlyDetails.push(monthStats);
-      
+
       totalDays += monthStats.totalDays;
-      
+
       if (monthStats.isComplete) {
         completeMonths++;
       } else if (monthStats.totalDays > 0) {
@@ -184,7 +187,7 @@ class FastingTracker {
       completeMonths: completeMonths,
       partialMonths: partialMonths,
       emptyMonths: 12 - completeMonths - partialMonths,
-      monthlyDetails: monthlyDetails
+      monthlyDetails: monthlyDetails,
     };
   }
 
@@ -218,7 +221,7 @@ class FastingTracker {
       }
 
       const monthStats = this.getMonthlyStats(month, year);
-      
+
       if (monthStats.isComplete) {
         streak++;
         month--;
@@ -239,7 +242,7 @@ class FastingTracker {
    */
   getLongestStreak() {
     const allMonths = Object.keys(this.data)
-      .filter(key => this.data[key].length === 3)
+      .filter((key) => this.data[key].length === 3)
       .sort();
 
     if (allMonths.length === 0) return 0;
@@ -248,11 +251,11 @@ class FastingTracker {
     let currentStreak = 1;
 
     for (let i = 1; i < allMonths.length; i++) {
-      const [prevYear, prevMonth] = allMonths[i - 1].split('-').map(Number);
-      const [currYear, currMonth] = allMonths[i].split('-').map(Number);
+      const [prevYear, prevMonth] = allMonths[i - 1].split("-").map(Number);
+      const [currYear, currMonth] = allMonths[i].split("-").map(Number);
 
       // Cek apakah bulan berurutan
-      const isConsecutive = 
+      const isConsecutive =
         (currYear === prevYear && currMonth === prevMonth + 1) ||
         (currYear === prevYear + 1 && prevMonth === 12 && currMonth === 1);
 
@@ -273,16 +276,16 @@ class FastingTracker {
    */
   getFastingHistory() {
     const history = [];
-    
+
     for (const monthKey in this.data) {
-      const [year, month] = monthKey.split('-').map(Number);
+      const [year, month] = monthKey.split("-").map(Number);
       history.push({
         monthKey: monthKey,
         month: month,
         monthName: Utils.getHijriMonthName(month),
         year: year,
         days: this.data[monthKey],
-        ...this.getMonthlyStats(month, year)
+        ...this.getMonthlyStats(month, year),
       });
     }
 
@@ -304,7 +307,7 @@ class FastingTracker {
       puasa_ayyamul_bidh: this.data,
       exported_at: new Date().toISOString(),
       total_days: this.getTotalFastingDays(),
-      longest_streak: this.getLongestStreak()
+      longest_streak: this.getLongestStreak(),
     };
   }
 
@@ -322,7 +325,7 @@ class FastingTracker {
       }
       return false;
     } catch (error) {
-      console.error('Error importing history:', error);
+      console.error("Error importing history:", error);
       return false;
     }
   }
@@ -334,9 +337,4 @@ class FastingTracker {
     this.data = {};
     this.saveData();
   }
-}
-
-// Export untuk digunakan di module lain
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = FastingTracker;
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name=" viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Utility Modules</title>
+</head>
+<body>
+  <h1>Testing Phase 2A: Utility Modules</h1>
+  <div id="test-results"></div>
+
+  <script type="module">
+    // Test imports
+    import { Storage } from './js/storage.js';
+    import { Utils } from './js/utils.js';
+
+    const results = document.getElementById('test-results');
+
+    try {
+      // Test Storage
+      Storage.save('test_key', { foo: 'bar' });
+      const retrieved = Storage.get('test_key');
+      
+      // Test Utils
+      const formatted = Utils.formatDate(new Date());
+      const sanitized = Utils.sanitizeHTML('<script>alert("test")</script>');
+
+      results.innerHTML = `
+        <h2 style="color: green;">✅ Tests Passed!</h2>
+        <ul>
+          <li><strong>Storage.save():</strong> OK</li>
+          <li><strong>Storage.get():</strong> ${JSON.stringify(retrieved)}</li>
+          <li><strong>Utils.formatDate():</strong> ${formatted}</li>
+          <li><strong>Utils.sanitizeHTML():</strong> ${sanitized}</li>
+        </ul>
+        <p>Both modules loaded successfully as ES Modules!</p>
+      `;
+
+      console.log('✅ Phase 2A Test: PASSED');
+      console.log('Storage:', Storage);
+      console.log('Utils:', Utils);
+
+    } catch (error) {
+      results.innerHTML = `
+        <h2 style="color: red;">❌ Test Failed</h2>
+        <pre>${error.message}\n${error.stack}</pre>
+      `;
+      console.error('❌ Phase 2A Test: FAILED', error);
+    }
+  </script>
+</body>
+</html>

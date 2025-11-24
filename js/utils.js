@@ -3,7 +3,7 @@
  * Fungsi-fungsi pembantu yang digunakan di seluruh aplikasi
  */
 
-const Utils = {
+export const Utils = {
   /**
    * Format tanggal ke string
    * @param {Date} date - Objek Date
@@ -343,8 +343,3 @@ const Utils = {
     return this.dayNames[dayNumber] || "";
   },
 };
-
-// Export untuk digunakan di module lain
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = Utils;
-}
