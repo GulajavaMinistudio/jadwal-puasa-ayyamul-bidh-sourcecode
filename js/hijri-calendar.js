@@ -5,11 +5,13 @@
 
 import { Storage } from "./storage.js";
 import { Utils } from "./utils.js";
+import { Config } from "./config.js";
+import { Validators } from "./validators.js";
 
 export class HijriCalendar {
-  constructor(apiBaseURL = "https://api.aladhan.com/v1") {
+  constructor(apiBaseURL = Config.API.BASE_URL) {
     this.baseURL = apiBaseURL;
-    this.AYYAMUL_BIDH_DATES = [13, 14, 15];
+    this.AYYAMUL_BIDH_DATES = Config.AYYAMUL_BIDH.DATES;
   }
 
   /**
@@ -40,13 +42,24 @@ export class HijriCalendar {
         throw new Error("API error: " + data.status);
       }
 
-      const result = {
-        day: parseInt(data.data.hijri.day),
-        month: parseInt(data.data.hijri.month.number),
+      // Validate dan sanitize API response
+      const hijriValidation = Validators.validateHijriDate({
+        day: data.data.hijri.day,
+        month: data.data.hijri.month.number,
         monthName: data.data.hijri.month.en,
-        monthNameAr: data.data.hijri.month.ar,
-        year: parseInt(data.data.hijri.year),
+        year: data.data.hijri.year,
         formatted: `${data.data.hijri.day} ${data.data.hijri.month.en} ${data.data.hijri.year} H`,
+      });
+
+      if (!hijriValidation.valid) {
+        throw new Error(
+          "Invalid Hijri date from API: " + hijriValidation.error
+        );
+      }
+
+      const result = {
+        ...hijriValidation.data,
+        monthNameAr: Validators.sanitizeString(data.data.hijri.month.ar),
       };
 
       // Save ke cache
@@ -89,9 +102,9 @@ export class HijriCalendar {
       const result = {
         day: parseInt(data.data.gregorian.day),
         month: parseInt(data.data.gregorian.month.number),
-        monthName: data.data.gregorian.month.en,
+        monthName: Validators.sanitizeString(data.data.gregorian.month.en),
         year: parseInt(data.data.gregorian.year),
-        formatted: data.data.gregorian.date,
+        formatted: Validators.sanitizeString(data.data.gregorian.date),
       };
 
       // Save ke cache
@@ -163,7 +176,6 @@ export class HijriCalendar {
    */
   calculateDaysUntilNextAyyamulBidh(currentHijriDate) {
     const currentDay = currentHijriDate.day;
-    console.log("Calculating Ayyamul Bidh for day:", currentDay);
 
     if (currentDay < 13) {
       // Masih menuju tanggal 13 bulan ini

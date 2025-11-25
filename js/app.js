@@ -8,6 +8,7 @@ import { HijriCalendar } from "./hijri-calendar.js";
 import { FastingTracker } from "./tracker.js";
 import { Storage } from "./storage.js";
 import { Utils } from "./utils.js";
+import { Config } from "./config.js";
 
 export class App {
   constructor() {
@@ -35,7 +36,7 @@ export class App {
   async init() {
     try {
       // Load config dari localStorage
-      this.config = Storage.get("app_config");
+      this.config = Storage.get(Config.STORAGE_KEYS.APP_CONFIG);
 
       // Cek first time setup
       if (!this.config || !this.config.first_time_setup) {
@@ -160,11 +161,11 @@ export class App {
   async saveLocation(locationData) {
     this.config = {
       location: locationData,
-      prayer_method: 20, // Default: Kemenag RI
+      prayer_method: Config.API.DEFAULT_METHOD, // Default: Kemenag RI
       first_time_setup: true,
     };
 
-    Storage.save("app_config", this.config);
+    Storage.save(Config.STORAGE_KEYS.APP_CONFIG, this.config);
   }
 
   /**
@@ -351,8 +352,8 @@ export class App {
     const nextPrayer = this.prayerTimesAPI.getNextPrayerTime(timings);
     const nextPrayerEl = document.getElementById("nextPrayer");
     if (nextPrayerEl && nextPrayer) {
-      // Clear existing content
-      nextPrayerEl.innerHTML = "";
+      // Clear existing content safely using textContent
+      nextPrayerEl.textContent = "";
 
       // Create elements safely
       const strongEl = document.createElement("strong");
@@ -494,14 +495,14 @@ export class App {
     // Update countdown setiap menit
     const minuteInterval = setInterval(() => {
       this.updatePrayerTimesDisplay();
-    }, 60000); // 60 detik
+    }, Config.INTERVALS.PRAYER_COUNTDOWN_UPDATE);
     this.intervals.push(minuteInterval);
 
     // Re-fetch data setiap jam
     const hourInterval = setInterval(async () => {
       await this.loadPrayerTimes();
       this.updatePrayerTimesDisplay();
-    }, 3600000); // 1 jam
+    }, Config.INTERVALS.DATA_REFRESH);
     this.intervals.push(hourInterval);
   }
 

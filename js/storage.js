@@ -3,6 +3,9 @@
  * Mengelola semua operasi penyimpanan data di browser
  */
 
+import { Config } from "./config.js";
+import { Validators } from "./validators.js";
+
 export const Storage = {
   /**
    * Menyimpan data ke localStorage
@@ -21,9 +24,9 @@ export const Storage = {
   },
 
   /**
-   * Mengambil data dari localStorage
+   * Mengambil data dari localStorage dengan validation
    * @param {string} key - Key untuk data
-   * @returns {*} Parsed value atau null jika tidak ada
+   * @returns {*} Parsed dan validated value atau null jika tidak ada
    */
   get(key) {
     try {
@@ -31,7 +34,41 @@ export const Storage = {
       if (serializedValue === null) {
         return null;
       }
-      return JSON.parse(serializedValue);
+
+      // Parse JSON
+      const parsedValue = JSON.parse(serializedValue);
+
+      // Validate berdasarkan key type
+      let validationResult;
+      if (key === Config.STORAGE_KEYS.APP_CONFIG) {
+        validationResult = Validators.validateStorageData(
+          parsedValue,
+          "config"
+        );
+      } else if (key === Config.STORAGE_KEYS.FASTING_DATA) {
+        validationResult = Validators.validateStorageData(
+          parsedValue,
+          "fasting"
+        );
+      } else if (key === Config.STORAGE_KEYS.CACHE) {
+        validationResult = Validators.validateStorageData(parsedValue, "cache");
+      } else {
+        // For unknown keys, just deep clone to prevent prototype pollution
+        validationResult = Validators.validateStorageData(
+          parsedValue,
+          "unknown"
+        );
+      }
+
+      if (!validationResult.valid) {
+        console.warn(
+          `Invalid data in localStorage for key "${key}":`,
+          validationResult.error
+        );
+        return null;
+      }
+
+      return validationResult.data;
     } catch (error) {
       console.error("Error reading from localStorage:", error);
       return null;
@@ -57,8 +94,8 @@ export const Storage = {
    */
   clear() {
     try {
-      // Hanya hapus key yang terkait aplikasi
-      const appKeys = ["app_config", "puasa_ayyamul_bidh", "cache"];
+      // Hanya hapus key yang terkait aplikasi (menggunakan constants)
+      const appKeys = Object.values(Config.STORAGE_KEYS);
       appKeys.forEach((key) => localStorage.removeItem(key));
       return true;
     } catch (error) {
@@ -74,8 +111,8 @@ export const Storage = {
   exportData() {
     try {
       const data = {
-        app_config: this.get("app_config"),
-        puasa_ayyamul_bidh: this.get("puasa_ayyamul_bidh"),
+        app_config: this.get(Config.STORAGE_KEYS.APP_CONFIG),
+        puasa_ayyamul_bidh: this.get(Config.STORAGE_KEYS.FASTING_DATA),
         exported_at: new Date().toISOString(),
       };
       return data;
@@ -86,17 +123,37 @@ export const Storage = {
   },
 
   /**
-   * Import data dari JSON
+   * Import data dari JSON dengan validation
    * @param {object} data - Data yang akan di-import
    */
   importData(data) {
     try {
+      // Validate dan save app_config
       if (data.app_config) {
-        this.save("app_config", data.app_config);
+        const configValidation = Validators.validateStorageData(
+          data.app_config,
+          "config"
+        );
+        if (configValidation.valid) {
+          this.save(Config.STORAGE_KEYS.APP_CONFIG, configValidation.data);
+        } else {
+          console.warn("Invalid app_config data:", configValidation.error);
+        }
       }
+
+      // Validate dan save fasting data
       if (data.puasa_ayyamul_bidh) {
-        this.save("puasa_ayyamul_bidh", data.puasa_ayyamul_bidh);
+        const fastingValidation = Validators.validateStorageData(
+          data.puasa_ayyamul_bidh,
+          "fasting"
+        );
+        if (fastingValidation.valid) {
+          this.save(Config.STORAGE_KEYS.FASTING_DATA, fastingValidation.data);
+        } else {
+          console.warn("Invalid fasting data:", fastingValidation.error);
+        }
       }
+
       return true;
     } catch (error) {
       console.error("Error importing data:", error);
@@ -111,7 +168,7 @@ export const Storage = {
    * @returns {boolean} True jika cache masih valid
    */
   isCacheValid(cacheKey, maxAgeMs) {
-    const cache = this.get("cache") || {};
+    const cache = this.get(Config.STORAGE_KEYS.CACHE) || {};
     const cacheData = cache[cacheKey];
 
     if (!cacheData || !cacheData.timestamp) {
@@ -130,12 +187,12 @@ export const Storage = {
    * @param {*} data - Data yang akan di-cache
    */
   saveCache(cacheKey, data) {
-    const cache = this.get("cache") || {};
+    const cache = this.get(Config.STORAGE_KEYS.CACHE) || {};
     cache[cacheKey] = {
       data: data,
       timestamp: new Date().getTime(),
     };
-    this.save("cache", cache);
+    this.save(Config.STORAGE_KEYS.CACHE, cache);
   },
 
   /**
@@ -144,7 +201,7 @@ export const Storage = {
    * @returns {*} Data dari cache atau null
    */
   getCache(cacheKey) {
-    const cache = this.get("cache") || {};
+    const cache = this.get(Config.STORAGE_KEYS.CACHE) || {};
     const cacheData = cache[cacheKey];
     return cacheData ? cacheData.data : null;
   },

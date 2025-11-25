@@ -5,11 +5,35 @@
 
 import { Storage } from "./storage.js";
 import { Utils } from "./utils.js";
+import { Config } from "./config.js";
+import { Validators } from "./validators.js";
 
 export class PrayerTimesAPI {
-  constructor(apiBaseURL = "https://api.aladhan.com/v1") {
+  constructor(apiBaseURL = Config.API.BASE_URL) {
     this.baseURL = apiBaseURL;
-    this.defaultMethod = 20; // Kementerian Agama RI
+    this.defaultMethod = Config.API.DEFAULT_METHOD;
+  }
+
+  /**
+   * Shared method untuk fetch dari API dengan error handling
+   * @param {string} url - API URL
+   * @returns {Promise<object>} API response data
+   * @private
+   */
+  async _fetchFromAPI(url) {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.code !== 200) {
+      throw new Error("API error: " + data.status);
+    }
+
+    return data;
   }
 
   /**
@@ -34,18 +58,7 @@ export class PrayerTimesAPI {
         city
       )}&country=${encodeURIComponent(country)}&method=${method}`;
 
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.code !== 200) {
-        throw new Error("API error: " + data.status);
-      }
-
+      const data = await this._fetchFromAPI(url);
       return this.parseTimingsData(data.data);
     } catch (error) {
       console.error("Error fetching prayer times by city:", error);
@@ -71,18 +84,7 @@ export class PrayerTimesAPI {
       const dateStr = date || Utils.formatDateForAPI(new Date());
       const url = `${this.baseURL}/timings/${dateStr}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
 
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.code !== 200) {
-        throw new Error("API error: " + data.status);
-      }
-
+      const data = await this._fetchFromAPI(url);
       return this.parseTimingsData(data.data);
     } catch (error) {
       console.error("Error fetching prayer times by coordinates:", error);
@@ -113,18 +115,7 @@ export class PrayerTimesAPI {
         city
       )}&country=${encodeURIComponent(country)}&method=${method}`;
 
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.code !== 200) {
-        throw new Error("API error: " + data.status);
-      }
-
+      const data = await this._fetchFromAPI(url);
       return data.data.map((day) => this.parseTimingsData(day));
     } catch (error) {
       console.error("Error fetching monthly calendar:", error);
@@ -133,36 +124,45 @@ export class PrayerTimesAPI {
   }
 
   /**
-   * Parse data dari API response
+   * Parse dan validate data dari API response
    * @param {object} data - Raw data dari API
-   * @returns {object} Parsed data
+   * @returns {object} Parsed dan validated data
    */
   parseTimingsData(data) {
+    // Validate date data
+    const dateValidation = Validators.validateDateData(data.date);
+    if (!dateValidation.valid) {
+      console.warn("Invalid date data from API:", dateValidation.error);
+    }
+
+    // Validate timings
+    const timingsValidation = Validators.validatePrayerTimings(data.timings);
+    if (!timingsValidation.valid) {
+      throw new Error(
+        "Invalid prayer timings from API: " + timingsValidation.error
+      );
+    }
+
+    const dateData = dateValidation.data || data.date;
+    const validatedTimings = timingsValidation.data;
+
     return {
       date: {
-        gregorian: data.date.gregorian.date,
-        hijri: data.date.hijri.date,
-        readable: data.date.readable,
-        gregorianDay: data.date.gregorian.day,
-        gregorianMonth: data.date.gregorian.month.en,
-        gregorianYear: data.date.gregorian.year,
-        hijriDay: data.date.hijri.day,
-        hijriMonth: data.date.hijri.month.en,
-        hijriMonthAr: data.date.hijri.month.ar,
-        hijriMonthNumber: data.date.hijri.month.number,
-        hijriYear: data.date.hijri.year,
+        gregorian: dateData.gregorian?.date || data.date.gregorian.date,
+        hijri: dateData.hijri?.date || data.date.hijri.date,
+        readable: dateData.readable || data.date.readable,
+        gregorianDay: dateData.gregorian?.day || data.date.gregorian.day,
+        gregorianMonth:
+          dateData.gregorian?.month || data.date.gregorian.month.en,
+        gregorianYear: dateData.gregorian?.year || data.date.gregorian.year,
+        hijriDay: dateData.hijri?.day || data.date.hijri.day,
+        hijriMonth: dateData.hijri?.month?.en || data.date.hijri.month.en,
+        hijriMonthAr: dateData.hijri?.month?.ar || data.date.hijri.month.ar,
+        hijriMonthNumber:
+          dateData.hijri?.month?.number || data.date.hijri.month.number,
+        hijriYear: dateData.hijri?.year || data.date.hijri.year,
       },
-      timings: {
-        Fajr: data.timings.Fajr,
-        Sunrise: data.timings.Sunrise,
-        Dhuhr: data.timings.Dhuhr,
-        Asr: data.timings.Asr,
-        Sunset: data.timings.Sunset,
-        Maghrib: data.timings.Maghrib,
-        Isha: data.timings.Isha,
-        Imsak: data.timings.Imsak,
-        Midnight: data.timings.Midnight,
-      },
+      timings: validatedTimings,
     };
   }
 
@@ -174,7 +174,7 @@ export class PrayerTimesAPI {
    */
   async getPrayerTimesWithCache(location, method = this.defaultMethod) {
     const cacheKey = `prayer_times_${JSON.stringify(location)}`;
-    const cacheMaxAge = 24 * 60 * 60 * 1000; // 24 jam
+    const cacheMaxAge = Config.CACHE.PRAYER_TIMES_MAX_AGE;
 
     // Cek cache
     if (Storage.isCacheValid(cacheKey, cacheMaxAge)) {
@@ -289,14 +289,6 @@ export class PrayerTimesAPI {
    * List metode kalkulasi waktu shalat
    */
   static getCalculationMethods() {
-    return [
-      { value: 20, label: "Kementerian Agama Republik Indonesia" },
-      { value: 3, label: "Muslim World League (MWL)" },
-      { value: 2, label: "Islamic Society of North America (ISNA)" },
-      { value: 5, label: "Egyptian General Authority of Survey" },
-      { value: 4, label: "Umm Al-Qura University, Makkah" },
-      { value: 1, label: "University of Islamic Sciences, Karachi" },
-      { value: 7, label: "Institute of Geophysics, University of Tehran" },
-    ];
+    return Config.PRAYER_METHODS;
   }
 }

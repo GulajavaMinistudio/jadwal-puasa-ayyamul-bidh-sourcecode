@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const app = new App();
   app.init();
 
-  // Store app instance globally for debugging (optional)
-  window.app = app;
+  // Store app instance globally for debugging (development only)
+  if (process?.env?.NODE_ENV === "development") {
+    window.app = app;
+  }
 });
 
 // Cleanup on page unload (Priority 1: Memory leak prevention)

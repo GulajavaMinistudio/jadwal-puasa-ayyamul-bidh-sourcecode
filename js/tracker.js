@@ -5,10 +5,12 @@
 
 import { Storage } from "./storage.js";
 import { Utils } from "./utils.js";
+import { Config } from "./config.js";
+import { Validators } from "./validators.js";
 
 export class FastingTracker {
   constructor() {
-    this.storageKey = "puasa_ayyamul_bidh";
+    this.storageKey = Config.STORAGE_KEYS.FASTING_DATA;
     this.loadData();
   }
 
@@ -45,7 +47,7 @@ export class FastingTracker {
    */
   markFasting(hijriDay, hijriMonth, hijriYear) {
     // Validasi: harus tanggal 13, 14, atau 15
-    if (![13, 14, 15].includes(hijriDay)) {
+    if (!Config.AYYAMUL_BIDH.DATES.includes(hijriDay)) {
       console.warn("Bukan hari Ayyamul Bidh (harus 13, 14, atau 15)");
       return false;
     }
@@ -229,8 +231,8 @@ export class FastingTracker {
         break;
       }
 
-      // Limit untuk mencegah infinite loop (max 24 bulan)
-      if (streak >= 24) break;
+      // Limit untuk mencegah infinite loop
+      if (streak >= Config.VALIDATION.MAX_STREAK_CALCULATION) break;
     }
 
     return streak;
@@ -312,14 +314,26 @@ export class FastingTracker {
   }
 
   /**
-   * Import history dari JSON
+   * Import history dari JSON dengan validation
    * @param {object} data - Data yang akan di-import
    * @returns {boolean} True jika berhasil
    */
   importHistory(data) {
     try {
       if (data.puasa_ayyamul_bidh) {
-        this.data = data.puasa_ayyamul_bidh;
+        // Validate data structure untuk prevent prototype pollution
+        const validation = Validators.validateStorageData(
+          data.puasa_ayyamul_bidh,
+          "fasting"
+        );
+
+        if (!validation.valid) {
+          console.error("Invalid fasting history data:", validation.error);
+          return false;
+        }
+
+        // Deep clone validated data untuk extra safety
+        this.data = Validators.deepClone(validation.data);
         this.saveData();
         return true;
       }
