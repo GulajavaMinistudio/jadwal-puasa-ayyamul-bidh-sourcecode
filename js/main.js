@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   app.init();
 
   // Store app instance globally for debugging (development only)
-  if (process?.env?.NODE_ENV === "development") {
+  if (import.meta.env?.DEV) {
     window.app = app;
   }
 });

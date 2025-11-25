@@ -1,296 +1,427 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Panduan lengkap tentang puasa Ayyamul Bidh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Panduan lengkap tentang puasa Ayyamul Bidh"
+    />
     <title>Panduan - Puasa Ayyamul Bidh</title>
-    
+
     <!-- Bootstrap 5.3.8 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="bi bi-moon-stars-fill me-2"></i>
-                Puasa Ayyamul Bidh
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="bi bi-house-fill"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="kalender.html">
-                            <i class="bi bi-calendar3"></i> Kalender
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tracker.html">
-                            <i class="bi bi-check2-square"></i> Tracker
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="jadwal-shalat.html">
-                            <i class="bi bi-clock"></i> Jadwal Shalat
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="panduan.html">
-                            <i class="bi bi-book"></i> Panduan
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pengaturan.html">
-                            <i class="bi bi-gear"></i> Pengaturan
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-moon-stars-fill me-2"></i>
+          Puasa Ayyamul Bidh
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="bi bi-house-fill"></i> Beranda
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="kalender.html">
+                <i class="bi bi-calendar3"></i> Kalender
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tracker.html">
+                <i class="bi bi-check2-square"></i> Tracker
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="jadwal-shalat.html">
+                <i class="bi bi-clock"></i> Jadwal Shalat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="panduan.html">
+                <i class="bi bi-book"></i> Panduan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pengaturan.html">
+                <i class="bi bi-gear"></i> Pengaturan
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <main class="container my-4">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="mb-4">
-                    <i class="bi bi-book-fill text-success"></i>
-                    Panduan Puasa Ayyamul Bidh
-                </h2>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <h2 class="mb-4">
+            <i class="bi bi-book-fill text-success"></i>
+            Panduan Puasa Ayyamul Bidh
+          </h2>
         </div>
+      </div>
 
-        <!-- Tentang Ayyamul Bidh -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="info-card">
-                    <h3 class="info-card-title">
-                        <i class="bi bi-info-circle-fill text-primary"></i>
-                        Apa itu Puasa Ayyamul Bidh?
-                    </h3>
-                    <div class="info-card-content">
-                        <p><strong>Ayyamul Bidh</strong> (الأيام البيض) secara harfiah berarti "hari-hari putih". Disebut demikian karena pada malam-malam tersebut (malam tanggal 13, 14, dan 15 Hijriyah), bulan bersinar sempurna (purnama) sehingga malam menjadi terang benderang.</p>
-                        
-                        <p>Puasa Ayyamul Bidh adalah <strong>puasa sunnah</strong> yang sangat dianjurkan, dilaksanakan pada tanggal <strong>13, 14, dan 15</strong> dari setiap bulan Hijriyah.</p>
-                        
-                        <h5 class="mt-4 mb-3">Keutamaan Puasa Ayyamul Bidh:</h5>
-                        <ul>
-                            <li>Termasuk puasa sunnah yang sangat dianjurkan oleh Rasulullah ﷺ</li>
-                            <li>Setara dengan puasa sepanjang tahun (jika dilakukan setiap bulan)</li>
-                            <li>Menghapus dosa-dosa kecil</li>
-                            <li>Menjaga kesehatan fisik dan spiritual</li>
-                            <li>Melatih pengendalian diri</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <!-- Tentang Ayyamul Bidh -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="info-card">
+            <h3 class="info-card-title">
+              <i class="bi bi-info-circle-fill text-primary"></i>
+              Apa itu Puasa Ayyamul Bidh?
+            </h3>
+            <div class="info-card-content">
+              <p>
+                <strong>Ayyamul Bidh</strong> (الأيام البيض) secara harfiah
+                berarti "hari-hari putih". Disebut demikian karena pada
+                malam-malam tersebut (malam tanggal 13, 14, dan 15 Hijriyah),
+                bulan bersinar sempurna (purnama) sehingga malam menjadi terang
+                benderang.
+              </p>
 
-        <!-- Doa-Doa -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="info-card">
-                    <h3 class="info-card-title">
-                        <i class="bi bi-chat-quote-fill text-info"></i>
-                        Doa-Doa Puasa
-                    </h3>
-                    
-                    <!-- Niat Puasa -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Niat Puasa Sunnah:</h5>
-                        <div class="arabic-text">
-                            نَوَيْتُ صَوْمَ غَدٍ سُنَّةً ِللهِ تَعَالَى
-                        </div>
-                        <div class="transliteration">
-                            <em>Nawaitu shauma ghadin sunnatan lillahi ta'ala</em>
-                        </div>
-                        <div class="translation">
-                            <strong>Artinya:</strong> "Saya niat puasa esok hari sunnah karena Allah Ta'ala"
-                        </div>
-                    </div>
-                    
-                    <!-- Doa Berbuka -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Doa Berbuka Puasa:</h5>
-                        <div class="arabic-text">
-                            اَللّهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ
-                        </div>
-                        <div class="transliteration">
-                            <em>Allahumma laka shumtu wa bika aamantu wa 'ala rizqika afthartu</em>
-                        </div>
-                        <div class="translation">
-                            <strong>Artinya:</strong> "Ya Allah, karena-Mu aku berpuasa, kepada-Mu aku beriman, dan dengan rezeki-Mu aku berbuka"
-                        </div>
-                    </div>
-                    
-                    <!-- Doa Berbuka Alternatif -->
-                    <div>
-                        <h5 class="mb-3">Doa Berbuka (Alternatif):</h5>
-                        <div class="arabic-text">
-                            ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوْقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللهُ
-                        </div>
-                        <div class="transliteration">
-                            <em>Dzahaba zhoma'u wabtallatil 'uruuqu wa tsabatal ajru insyaa Allah</em>
-                        </div>
-                        <div class="translation">
-                            <strong>Artinya:</strong> "Telah hilang dahaga, telah basah kerongkongan, dan telah diraih pahala, insya Allah"
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+              <p>
+                Puasa Ayyamul Bidh adalah <strong>puasa sunnah</strong> yang
+                sangat dianjurkan, dilaksanakan pada tanggal
+                <strong>13, 14, dan 15</strong> dari setiap bulan Hijriyah.
+              </p>
 
-        <!-- Hadits Terkait -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="info-card">
-                    <h3 class="info-card-title">
-                        <i class="bi bi-journal-text text-warning"></i>
-                        Hadits Tentang Puasa Ayyamul Bidh
-                    </h3>
-                    
-                    <div class="alert alert-light border-start border-5 border-success">
-                        <p class="mb-2"><strong>Dari Abu Dzar radhiyallahu 'anhu, Rasulullah ﷺ bersabda:</strong></p>
-                        <p class="fst-italic">"Apabila kamu berpuasa tiga hari dalam sebulan, maka berpuasalah pada tanggal 13, 14, dan 15."</p>
-                        <small class="text-muted">HR. At-Tirmidzi, An-Nasa'i, dan Ahmad</small>
-                    </div>
-                    
-                    <div class="alert alert-light border-start border-5 border-success">
-                        <p class="mb-2"><strong>Dari Abu Hurairah radhiyallahu 'anhu, ia berkata:</strong></p>
-                        <p class="fst-italic">"Kekasihku (Rasulullah ﷺ) berwasiat kepadaku tiga perkara yang tidak akan kutinggalkan hingga aku mati: puasa tiga hari setiap bulan, shalat Dhuha, dan witir sebelum tidur."</p>
-                        <small class="text-muted">HR. Bukhari dan Muslim</small>
-                    </div>
-                </div>
+              <h5 class="mt-4 mb-3">Keutamaan Puasa Ayyamul Bidh:</h5>
+              <ul>
+                <li>
+                  Termasuk puasa sunnah yang sangat dianjurkan oleh Rasulullah ﷺ
+                </li>
+                <li>
+                  Setara dengan puasa sepanjang tahun (jika dilakukan setiap
+                  bulan)
+                </li>
+                <li>Menghapus dosa-dosa kecil</li>
+                <li>Menjaga kesehatan fisik dan spiritual</li>
+                <li>Melatih pengendalian diri</li>
+              </ul>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- FAQ -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <h3 class="mb-3">
-                    <i class="bi bi-question-circle-fill text-danger"></i>
-                    Pertanyaan Yang Sering Ditanyakan (FAQ)
-                </h3>
-                
-                <div class="accordion" id="faqAccordion">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                Apakah boleh puasa hanya 1 atau 2 hari saja?
-                            </button>
-                        </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <p>Ya, boleh. Meskipun yang dianjurkan adalah puasa 3 hari penuh (13, 14, 15), namun puasa 1 atau 2 hari saja tetap mendapat pahala. Yang terpenting adalah niat yang ikhlas karena Allah.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                Bagaimana jika terlewat di bulan ini?
-                            </button>
-                        </h2>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <p>Tidak apa-apa. Puasa Ayyamul Bidh adalah puasa sunnah, bukan wajib. Jika terlewat bulan ini, Anda bisa mulai lagi di bulan berikutnya. Tidak ada kewajiban untuk mengqadha.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                Apakah sama dengan puasa Senin-Kamis?
-                            </button>
-                        </h2>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <p>Tidak sama. Puasa Ayyamul Bidh berdasarkan kalender Hijriyah (tanggal 13, 14, 15), sedangkan puasa Senin-Kamis berdasarkan hari dalam seminggu. Keduanya adalah puasa sunnah yang dianjurkan dan bisa dilakukan bersamaan.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                Apakah puasa Ayyamul Bidh berlaku di bulan Ramadan?
-                            </button>
-                        </h2>
-                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <p>Puasa Ayyamul Bidh tetap bisa dilakukan di bulan Ramadan (tanggal 13, 14, 15 Ramadan), namun pahalanya sudah termasuk dalam pahala puasa Ramadan yang wajib. Puasa Ayyamul Bidh lebih utama dilakukan di bulan-bulan selain Ramadan.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                                Kenapa disebut "hari putih"?
-                            </button>
-                        </h2>
-                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <p>Disebut "ayyamul bidh" (الأيام البيض) atau "hari putih" karena pada malam-malam tersebut bulan bersinar sangat terang (bulan purnama), membuat malam menjadi "putih" atau terang benderang. Ini merupakan fenomena astronomi yang terjadi setiap pertengahan bulan Hijriyah.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <!-- Doa-Doa -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="info-card">
+            <h3 class="info-card-title">
+              <i class="bi bi-chat-quote-fill text-info"></i>
+              Doa-Doa Puasa
+            </h3>
 
-        <!-- Tips -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-                    <h5 class="alert-heading">
-                        <i class="bi bi-lightbulb-fill"></i>
-                        Tips Menjalankan Puasa Ayyamul Bidh
-                    </h5>
-                    <ul class="mb-0">
-                        <li>Set reminder atau alarm untuk mengingatkan jadwal puasa</li>
-                        <li>Gunakan aplikasi ini untuk tracking agar tidak lupa</li>
-                        <li>Ajak keluarga atau teman untuk sama-sama berpuasa</li>
-                        <li>Perbanyak ibadah lainnya seperti tilawah Quran dan dzikir</li>
-                        <li>Jaga kesehatan dengan sahur dan berbuka yang bergizi</li>
-                        <li>Niatkan dengan ikhlas karena Allah semata</li>
-                    </ul>
-                </div>
+            <!-- Niat Puasa -->
+            <div class="mb-4">
+              <h5 class="mb-3">Niat Puasa Sunnah:</h5>
+              <div class="arabic-text">
+                نَوَيْتُ صَوْمَ غَدٍ سُنَّةً ِللهِ تَعَالَى
+              </div>
+              <div class="transliteration">
+                <em>Nawaitu shauma ghadin sunnatan lillahi ta'ala</em>
+              </div>
+              <div class="translation">
+                <strong>Artinya:</strong> "Saya niat puasa esok hari sunnah
+                karena Allah Ta'ala"
+              </div>
             </div>
+
+            <!-- Doa Berbuka -->
+            <div class="mb-4">
+              <h5 class="mb-3">Doa Berbuka Puasa:</h5>
+              <div class="arabic-text">
+                اَللّهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَى رِزْقِكَ
+                أَفْطَرْتُ
+              </div>
+              <div class="transliteration">
+                <em
+                  >Allahumma laka shumtu wa bika aamantu wa 'ala rizqika
+                  afthartu</em
+                >
+              </div>
+              <div class="translation">
+                <strong>Artinya:</strong> "Ya Allah, karena-Mu aku berpuasa,
+                kepada-Mu aku beriman, dan dengan rezeki-Mu aku berbuka"
+              </div>
+            </div>
+
+            <!-- Doa Berbuka Alternatif -->
+            <div>
+              <h5 class="mb-3">Doa Berbuka (Alternatif):</h5>
+              <div class="arabic-text">
+                ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوْقُ وَثَبَتَ الأَجْرُ إِنْ
+                شَاءَ اللهُ
+              </div>
+              <div class="transliteration">
+                <em
+                  >Dzahaba zhoma'u wabtallatil 'uruuqu wa tsabatal ajru insyaa
+                  Allah</em
+                >
+              </div>
+              <div class="translation">
+                <strong>Artinya:</strong> "Telah hilang dahaga, telah basah
+                kerongkongan, dan telah diraih pahala, insya Allah"
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Hadits Terkait -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="info-card">
+            <h3 class="info-card-title">
+              <i class="bi bi-journal-text text-warning"></i>
+              Hadits Tentang Puasa Ayyamul Bidh
+            </h3>
+
+            <div class="alert alert-light border-start border-5 border-success">
+              <p class="mb-2">
+                <strong
+                  >Dari Abu Dzar radhiyallahu 'anhu, Rasulullah ﷺ
+                  bersabda:</strong
+                >
+              </p>
+              <p class="fst-italic">
+                "Apabila kamu berpuasa tiga hari dalam sebulan, maka berpuasalah
+                pada tanggal 13, 14, dan 15."
+              </p>
+              <small class="text-muted"
+                >HR. At-Tirmidzi, An-Nasa'i, dan Ahmad</small
+              >
+            </div>
+
+            <div class="alert alert-light border-start border-5 border-success">
+              <p class="mb-2">
+                <strong
+                  >Dari Abu Hurairah radhiyallahu 'anhu, ia berkata:</strong
+                >
+              </p>
+              <p class="fst-italic">
+                "Kekasihku (Rasulullah ﷺ) berwasiat kepadaku tiga perkara yang
+                tidak akan kutinggalkan hingga aku mati: puasa tiga hari setiap
+                bulan, shalat Dhuha, dan witir sebelum tidur."
+              </p>
+              <small class="text-muted">HR. Bukhari dan Muslim</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <h3 class="mb-3">
+            <i class="bi bi-question-circle-fill text-danger"></i>
+            Pertanyaan Yang Sering Ditanyakan (FAQ)
+          </h3>
+
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq1"
+                >
+                  Apakah boleh puasa hanya 1 atau 2 hari saja?
+                </button>
+              </h2>
+              <div
+                id="faq1"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Ya, boleh. Meskipun yang dianjurkan adalah puasa 3 hari
+                    penuh (13, 14, 15), namun puasa 1 atau 2 hari saja tetap
+                    mendapat pahala. Yang terpenting adalah niat yang ikhlas
+                    karena Allah.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq2"
+                >
+                  Bagaimana jika terlewat di bulan ini?
+                </button>
+              </h2>
+              <div
+                id="faq2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Tidak apa-apa. Puasa Ayyamul Bidh adalah puasa sunnah, bukan
+                    wajib. Jika terlewat bulan ini, Anda bisa mulai lagi di
+                    bulan berikutnya. Tidak ada kewajiban untuk mengqadha.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq3"
+                >
+                  Apakah sama dengan puasa Senin-Kamis?
+                </button>
+              </h2>
+              <div
+                id="faq3"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Tidak sama. Puasa Ayyamul Bidh berdasarkan kalender Hijriyah
+                    (tanggal 13, 14, 15), sedangkan puasa Senin-Kamis
+                    berdasarkan hari dalam seminggu. Keduanya adalah puasa
+                    sunnah yang dianjurkan dan bisa dilakukan bersamaan.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq4"
+                >
+                  Apakah puasa Ayyamul Bidh berlaku di bulan Ramadan?
+                </button>
+              </h2>
+              <div
+                id="faq4"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Puasa Ayyamul Bidh tetap bisa dilakukan di bulan Ramadan
+                    (tanggal 13, 14, 15 Ramadan), namun pahalanya sudah termasuk
+                    dalam pahala puasa Ramadan yang wajib. Puasa Ayyamul Bidh
+                    lebih utama dilakukan di bulan-bulan selain Ramadan.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq5"
+                >
+                  Kenapa disebut "hari putih"?
+                </button>
+              </h2>
+              <div
+                id="faq5"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Disebut "ayyamul bidh" (الأيام البيض) atau "hari putih"
+                    karena pada malam-malam tersebut bulan bersinar sangat
+                    terang (bulan purnama), membuat malam menjadi "putih" atau
+                    terang benderang. Ini merupakan fenomena astronomi yang
+                    terjadi setiap pertengahan bulan Hijriyah.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="alert alert-success">
+            <h5 class="alert-heading">
+              <i class="bi bi-lightbulb-fill"></i>
+              Tips Menjalankan Puasa Ayyamul Bidh
+            </h5>
+            <ul class="mb-0">
+              <li>Set reminder atau alarm untuk mengingatkan jadwal puasa</li>
+              <li>Gunakan aplikasi ini untuk tracking agar tidak lupa</li>
+              <li>Ajak keluarga atau teman untuk sama-sama berpuasa</li>
+              <li>Perbanyak ibadah lainnya seperti tilawah Quran dan dzikir</li>
+              <li>Jaga kesehatan dengan sahur dan berbuka yang bergizi</li>
+              <li>Niatkan dengan ikhlas karena Allah semata</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-light py-4 mt-5">
-        <div class="container text-center">
-            <p class="text-muted mb-0">
-                &copy; 2025 Puasa Ayyamul Bidh | Data dari 
-                <a href="https://aladhan.com" target="_blank" class="text-decoration-none">Aladhan API</a>
-            </p>
-        </div>
+      <div class="container text-center">
+        <p class="text-muted mb-0">
+          &copy; 2025 Puasa Ayyamul Bidh | Dikembangkan oleh
+          <strong>Gulajava Ministudio</strong>
+        </p>
+      </div>
     </footer>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>

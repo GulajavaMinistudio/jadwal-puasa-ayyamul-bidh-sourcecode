@@ -140,7 +140,9 @@ export const Validators = {
         };
       }
 
-      validatedTimings[timeKey] = timeStr;
+      // Clean timezone suffix if present and store clean time
+      const cleanedTime = timeStr.replace(/\s*\([^)]*\)\s*$/, "").trim();
+      validatedTimings[timeKey] = cleanedTime;
     }
 
     // Add optional Midnight if exists
@@ -349,11 +351,16 @@ export const Validators = {
 
   /**
    * Check if time format is valid (HH:MM or HH:MM:SS)
+   * Also handles timezone suffixes like "04:32 (WIB)"
    * @param {string} timeStr - Time string
    * @returns {boolean} True if valid
    */
   isValidTimeFormat(timeStr) {
-    return /^([0-1]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/.test(timeStr);
+    // Remove timezone suffix if present (e.g., "04:32 (WIB)" -> "04:32")
+    const cleanedTime = String(timeStr)
+      .replace(/\s*\([^)]*\)\s*$/, "")
+      .trim();
+    return /^([0-1]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/.test(cleanedTime);
   },
 
   /**

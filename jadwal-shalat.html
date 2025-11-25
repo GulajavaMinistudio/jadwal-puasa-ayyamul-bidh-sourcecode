@@ -51,7 +51,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" href="index.html">
-                <i class="bi bi-house-fill"></i> Dashboard
+                <i class="bi bi-house-fill"></i> Beranda
               </a>
             </li>
             <li class="nav-item">
@@ -104,7 +104,7 @@
                 <div>
                   <h5 class="card-title mb-2">
                     <i class="bi bi-geo-alt-fill text-danger"></i>
-                    <span id="locationName">Loading...</span>
+                    <span id="locationName">Memuat...</span>
                   </h5>
                   <p class="text-muted small mb-0" id="locationDetails">
                     Memuat lokasi...
@@ -163,7 +163,7 @@
                     class="btn btn-outline-secondary"
                     id="currentMonthBtn"
                   >
-                    <span id="currentMonthLabel">Loading...</span>
+                    <span id="currentMonthLabel">Memuat...</span>
                   </button>
                   <button
                     type="button"
@@ -203,13 +203,8 @@
     <footer class="bg-light py-4 mt-5">
       <div class="container text-center">
         <p class="text-muted mb-0">
-          &copy; 2025 Puasa Ayyamul Bidh | Data dari
-          <a
-            href="https://aladhan.com"
-            target="_blank"
-            class="text-decoration-none"
-            >Aladhan API</a
-          >
+          &copy; 2025 Puasa Ayyamul Bidh | Dikembangkan oleh
+          <strong>Gulajava Ministudio</strong>
         </p>
       </div>
     </footer>
@@ -245,7 +240,7 @@
               ).textContent = `Metode: Kementerian Agama RI`;
             } else if (loc.latitude && loc.longitude) {
               document.getElementById("locationName").textContent =
-                "GPS Location";
+                "Lokasi GPS";
               document.getElementById(
                 "locationDetails"
               ).textContent = `Koordinat: ${loc.latitude.toFixed(

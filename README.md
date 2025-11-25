@@ -1,49 +1,129 @@
 # 🌙 Aplikasi Web Puasa Ayyamul Bidh
 
-> Aplikasi web modern untuk melacak dan mengelola jadwal puasa Ayyamul Bidh (puasa sunnah tanggal 13, 14, 15 Hijriyah) dengan fitur lengkap: jadwal shalat, kalender Hijriyah, dan tracker statistik.
+> Aplikasi web modern untuk melacak dan mengelola jadwal puasa Ayyamul Bidh (puasa sunnah tanggal 13, 14, 15 Hijriyah). Dibangun dengan JavaScript murni, tanpa framework kompleks, namun tetap powerful dan mudah digunakan. Sempurna untuk Muslim yang ingin menjalankan puasa sunnah dengan teratur dan terorganisir.
 
 [![Security](https://img.shields.io/badge/Security-8.5%2F10-green)]()
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-7.0%2F10-brightgreen)]()
-[![License](https://img.shields.io/badge/License-Open%20Source-blue)]()
+[![License](https://img.shields.io/badge/License-MIT-blue)]()
+[![Status](https://img.shields.io/badge/Status-Active-success)]()
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🗓️ **Dashboard** - Info tanggal Hijriyah, countdown puasa, dan statistik
-- 🕌 **Jadwal Shalat** - Waktu shalat realtime berdasarkan lokasi dengan countdown
-- 📅 **Kalender Hijriyah** - Konversi dan visualisasi kalender dengan highlight Ayyamul Bidh
-- 📊 **Tracker Puasa** - Checklist,statistik, dan streak tracking
-- 📖 **Panduan Lengkap** - Informasi, doa-doa, dan FAQ
-- ⚙️ **Pengaturan** - Konfigurasi lokasi, metode kalkulasi, export/import data
+### 🏠 Dashboard Terintegrasi
+- **Tanggal Ganda**: Menampilkan tanggal Hijriyah dan Masehi hari ini secara real-time
+- **Jam Digital Real-Time**: Menampilkan waktu aktual (HH:MM:SS) dengan zona waktu Indonesia (WIB/WITA/WIT) otomatis
+- **Hitung Mundur Dinamis**: Informasi waktu menuju Ayyamul Bidh berikutnya dengan teks yang jelas
+- **Statistik Cepat**: Ringkasan puasa bulan ini, tahun ini, dan capaian berturut-turut (streak)
+- **Akses Cepat**: Tombol pintas ke fitur-fitur utama
+
+### 🕌 Jadwal Shalat Komprehensif
+- **7 Waktu Shalat**: Imsak, Subuh, Syuruq, Dzuhur, Ashar, Maghrib, Isya
+- **Jam Digital Real-Time**: Jam yang diperbarui setiap detik dengan deteksi zona waktu otomatis
+- **Hitung Mundur Shalat**: Informasi waktu tersisa ke shalat berikutnya dengan format "Akan tiba dalam X menit"
+- **Penanda Otomatis**: Menandai waktu shalat yang sedang berlangsung
+- **Tabel Bulanan**: Jadwal lengkap untuk satu bulan
+- **Lokasi Akurat**: Berdasarkan GPS atau input manual
+
+### 📅 Kalender Hijriyah Interaktif
+- **Konversi Dual-Direction**: Gregorian ↔ Hijri
+- **Visual Menarik**: Kalender dengan highlight tanggal Ayyamul Bidh (13, 14, 15)
+- **Navigasi Mudah**: Berpindah antar bulan dengan cepat
+- **Info Detail**: Informasi lengkap untuk setiap tanggal
+
+### 📊 Tracker Puasa Pintar
+- **Mark/Unmark Fleksibel**: Tandai hari puasa dengan mudah
+- **Statistik Lengkap**: 
+  - Progress bulanan (target 3 hari per bulan)
+  - Progress tahunan (target 36 hari per tahun)
+  - Streak tracking (berapa bulan berturut-turut)
+- **History Lengkap**: Riwayat puasa dengan filter
+- **Backup Data**: Export/import untuk keamanan data
+
+### 📖 Panduan Islami
+- **Dalil Shahih**: Hadits tentang keutamaan puasa Ayyamul Bidh
+- **Doa Lengkap**: Doa berbuka dan sahur dalam bahasa Arab dan terjemahan
+- **FAQ Praktis**: Jawaban pertanyaan umum
+- **Tips Bermanfaat**: Panduan menjalankan puasa sunnah
+
+### ⚙️ Pengaturan Fleksibel
+- **Lokasi**: Auto-detect GPS atau manual input kota
+- **Metode Kalkulasi**: Pilih dari 7 metode (default: Kemenag RI)
+- **Data Management**: Export/import data dalam format JSON
+- **Reset Safety**: Reset data dengan konfirmasi ganda
 
 ---
 
 ## 🚀 Quick Start
 
-### Opsi 1: Langsung di Browser
+### 🌟 Untuk Pengguna (Non-Technical)
+
+**Cara Termudah - Langsung di Browser:**
+
+1. **Download atau Clone Project**
+   - Klik tombol "Code" → "Download ZIP" di GitHub
+   - Extract file ZIP ke folder di komputer Anda
+
+2. **Buka Aplikasi**
+   - Double-click file `index.html`
+   - Atau klik kanan → "Open with" → Pilih browser favorit (Chrome/Firefox/Edge)
+
+3. **Setup Lokasi (Pertama Kali)**
+   - Aplikasi akan meminta izin lokasi GPS → Klik "Allow/Izinkan"
+   - Atau skip dan set lokasi manual di halaman **Pengaturan**
+
+4. **Siap Digunakan!** 🎉
+   - Dashboard akan menampilkan informasi lengkap
+   - Tandai hari puasa Anda di halaman **Tracker**
+   - Lihat jadwal shalat di halaman **Jadwal Shalat**
+
+**Tips Pengguna:**
+- 💾 Export data secara berkala untuk backup (Menu Pengaturan)
+- 🔖 Bookmark aplikasi untuk akses cepat
+- 📍 Update lokasi jika pindah kota
+- 🌙 Cek countdown Ayyamul Bidh di dashboard setiap hari
+
+---
+
+### 👨‍💻 Untuk Developer
+
+**Opsi 1: Langsung di Browser (No Build)**
 ```bash
 # Clone repository
 git clone https://github.com/yourusername/puasa-ayyamul-bidh.git
+cd puasa-ayyamul-bidh
 
 # Buka index.html di browser
-# Atau gunakan Live Server di VS Code
+# Atau gunakan Live Server extension di VS Code
 ```
 
-### Opsi 2: Development Server
+**Opsi 2: Development Server (Recommended)**
 ```bash
 # Install dependencies (dev only)
 npm install
 
-# Run development server
+# Run development server dengan Vite
 npm run dev
 
-# Buka http://localhost:5173
+# Buka http://localhost:5173 di browser
+```
+
+**Opsi 3: Alternative HTTP Server**
+```bash
+# Install http-server globally (jika belum)
+npm install -g http-server
+
+# atau gunakan npm script
+npm run serve
+
+# Buka http://localhost:8000
 ```
 
 **Setup Awal:**
-1. Pilih lokasi (auto-detect GPS atau manual)
-2. Aplikasi siap digunakan!
+1. Izinkan lokasi GPS atau set manual di Pengaturan
+2. Pilih metode kalkulasi (default: Kemenag RI)
+3. Aplikasi siap untuk development!
 
 ---
 
@@ -185,55 +265,6 @@ Aplikasi menerapkan **security-first approach** dengan multiple layers of protec
 
 **Details**: See `plan/code-review-report.md` and `plan/implementation-summary.md`
 
----
-
-## 📱 Features Lengkap
-
-### 1. Dashboard
-- Tanggal Hijriyah & Masehi hari ini
-- Countdown ke Ayyamul Bidh berikutnya
-- Waktu shalat hari ini dengan countdown
-- Statistik puasa (bulan ini, tahun ini, streak)
-- Quick actions
-
-### 2. Jadwal Shalat
-- 7 waktu (Imsak, Subuh, Syuruq, Dzuhur, Ashar, Maghrib, Isya)
-- Countdown real-time ke shalat berikutnya
-- Highlight waktu shalat saat ini
-- Tabel jadwal bulanan
-- Location-based calculation
-
-### 3. Kalender Hijriyah
-- Konversi Gregorian ↔ Hijri
-- Visual kalendar with  Ayyamul Bidh highlights
-- Navigation antar bulan
-- Info detail per tanggal
-
-### 4. Tracker Puasa
-- Mark/unmark hari puasa
-- Statistik per bulan (3 hari progress)
-- Statistik per tahun (36 hari target)
-- Streak tracking (bulan berturut-turut)
-- History lengkap dengan filter
-- Export/import untuk backup
-
-### 5. Panduan
-- Dalil puasa Ayyamul Bidh
-- Doa berbuka & sahur
-- FAQ lengkap
-- Tips menjalankan puasa
-
-### 6. Pengaturan
-- Ubah lokasi (GPS atau manual)
-- Pilih metode kalkulasi (Kemenag RI, MWL, ISNA, dll)
-- Export data (JSON)
-- Import data dari backup
-- Reset data (dengan konfirmasi)
-
----
-
-## 🎨 UI/UX
-
 ### Design Principles
 - **Mobile-first** - Responsive dari smartphone sampai desktop
 - **Accessible** - Semantic HTML, ARIA labels, keyboard navigation
@@ -249,6 +280,98 @@ Aplikasi menerapkan **security-first approach** dengan multiple layers of protec
 ### Typography
 - Latin: **Inter** (Google Fonts)
 - Arabic: **Amiri** (Google Fonts)
+
+---
+
+## 📱 Features Lengkap
+
+### 1. 🏠 Dashboard
+- **Tanggal Dual Calendar**: Tanggal Hijriyah & Masehi hari ini dengan auto-update
+- **Countdown Ayyamul Bidh**: Hitung mundur dinamis ke puasa berikutnya (13, 14, 15 Hijriyah)
+- **Waktu Shalat Hari Ini**: 
+  - **Jam Real-Time**: Menampilkan HH:MM:SS yang update setiap detik ⏰
+  - **Timezone Auto-Detect**: WIB/WITA/WIT berdasarkan lokasi sistem
+  - Countdown ke shalat berikutnya dengan teks "Akan tiba dalam X menit"
+  - Grid 6 waktu shalat dengan highlight waktu aktif
+- **Statistik Visual**: 
+  - Progress puasa bulan ini (X/3 hari)
+  - Total tahun ini (X/36 hari)
+  - Streak bulan berturut-turut
+- **Quick Actions**: Tombol akses cepat ke semua halaman
+
+### 2. 🕌 Jadwal Shalat
+- **Real-Time Clock Display**: 
+  - Clock digital dengan update setiap detik
+  - Timezone auto-detection (WIB/WITA/WIT)
+  - Desain modern dengan gradient biru muda
+- **7 Waktu Lengkap**: Imsak, Subuh, Syuruq, Dzuhur, Ashar, Maghrib, Isya
+- **Countdown Real-Time**: Hitung mundur ke shalat berikutnya dengan teks yang lebih jelas
+- **Visual Highlight**: Card khusus untuk shalat berikutnya
+- **Tabel Jadwal Bulanan**: Jadwal lengkap 30 hari dengan scroll horizontal
+- **Location-Based**: Kalkulasi akurat berdasarkan koordinat GPS atau kota
+
+### 3. 📅 Kalender Hijriyah
+- **Konversi Tanggal**: 
+  - Gregorian → Hijri
+  - Hijri → Gregorian
+- **Visual Kalender**: 
+  - Grid kalender interaktif
+  - Highlight khusus untuk tanggal 13, 14, 15 (Ayyamul Bidh)
+  - Penanda hari ini
+- **Navigasi Mudah**: 
+  - Prev/Next month
+  - Jump to specific month/year
+- **Info Detail**: Klik tanggal untuk info lebih lengkap
+
+### 4. 📊 Tracker Puasa
+- **Check/Uncheck Interface**: Mark hari puasa dengan satu klik
+- **Statistik Multi-Level**:
+  - **Per Bulan**: Progress 3 hari target (dengan persentase)
+  - **Per Tahun**: Progress 36 hari target (dengan persentase)
+  - **Streak**: Berapa bulan berturut-turut lengkap (3/3 hari)
+- **History Lengkap**: 
+  - List semua hari puasa yang sudah dijalankan
+  - Filter per bulan/tahun
+  - Sortir berdasarkan tanggal
+- **Data Export/Import**: 
+  - Format JSON untuk portabilitas
+  - Backup otomatis sebelum import
+  - Validasi data integrity
+
+### 5. 📖 Panduan
+- **Dalil & Hadits**: 
+  - Keutamaan puasa Ayyamul Bidh
+  - Hadits shahih dengan sanad
+  - Penjelasan konteks
+- **Doa-Doa**: 
+  - Doa berbuka puasa (Arab + Latin + Terjemah)
+  - Doa sahur (Arab + Latin + Terjemah)
+  - Niat puasa sunnah
+- **FAQ Lengkap**: 
+  - Apa itu Ayyamul Bidh?
+  - Bolehkah puasa jika ada yang terlewat?
+  - Tips untuk konsisten
+  - Dan 10+ pertanyaan lainnya
+- **Tips Praktis**: Panduan menjalankan puasa dengan mudah
+
+### 6. ⚙️ Pengaturan
+- **Location Management**:
+  - Auto-detect via GPS (dengan permission request)
+  - Manual input: City + Country
+  - Save preferences ke localStorage
+- **Calculation Method** (7 pilihan):
+  - Kementerian Agama RI (Default) ⭐
+  - Muslim World League (MWL)
+  - Islamic Society of North America (ISNA)
+  - Egyptian General Authority of Survey
+  - Umm Al-Qura University, Makkah
+  - University of Islamic Sciences, Karachi
+  - Institute of Geophysics, Tehran
+- **Data Management**:
+  - **Export**: Download semua data sebagai JSON
+  - **Import**: Upload backup file dengan validasi
+  - **Reset**: Hapus semua data dengan konfirmasi ganda
+- **Privacy Note**: Semua data tersimpan di browser, tidak ada server
 
 ---
 
@@ -381,6 +504,21 @@ GET /v1/calendarByCity/{year}/{month}?city={city}&country={country}
 - [ ] Multi-language belum ada
 
 **See**: Issues tracker on GitHub
+
+---
+
+## 🆕 Update Terkini (2025-11-25)
+
+### ✨ Fitur Baru & Peningkatan
+1.  **Jam Digital & Zona Waktu Otomatis**
+    -   Menambahkan jam digital real-time pada dashboard dan halaman jadwal shalat.
+    -   Deteksi otomatis zona waktu Indonesia (WIB/WITA/WIT) berdasarkan lokasi pengguna.
+    -   Perbaikan format hitung mundur menjadi lebih natural ("Akan tiba dalam X menit").
+
+2.  **Perbaikan Responsivitas Menu**
+    -   Optimasi tampilan menu navigasi untuk perangkat mobile.
+    -   Perbaikan layout dan alignment ikon pada tampilan desktop.
+    -   Peningkatan aksesibilitas tombol navigasi.
 
 ---
 
