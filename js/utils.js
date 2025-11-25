@@ -342,4 +342,18 @@ export const Utils = {
   getDayName(dayNumber) {
     return this.dayNames[dayNumber] || "";
   },
+
+  /**
+   * Get Indonesian timezone based on UTC offset
+   * @returns {string} WIB, WITA, or WIT
+   */
+  getIndonesianTimezone() {
+    const offset = -(new Date().getTimezoneOffset() / 60);
+
+    if (offset === 7) return "WIB"; // UTC+7
+    if (offset === 8) return "WITA"; // UTC+8
+    if (offset === 9) return "WIT"; // UTC+9
+
+    return "WIB"; // Default
+  },
 };

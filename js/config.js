@@ -27,6 +27,7 @@ export const Config = {
    * Update intervals
    */
   INTERVALS: {
+    SECOND: 1000, // 1 detik (for real-time clock)
     PRAYER_COUNTDOWN_UPDATE: 60 * 1000, // 1 menit
     DATA_REFRESH: 60 * 60 * 1000, // 1 jam
   },

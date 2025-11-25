@@ -504,3 +504,29 @@ html {
 *:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ==================== */
+/* Real-Time Clock      */
+/* ==================== */
+.current-time-display {
+  font-family: "Inter", sans-serif;
+}
+
+.current-time-display .alert {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  border: 1px solid #0ea5e9;
+  box-shadow: 0 2px 4px rgba(14, 165, 233, 0.1);
+}
+
+.current-time-display #currentTime {
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: #0369a1;
+  font-variant-numeric: tabular-nums; /* Monospace numbers */
+}
+
+@media (max-width: 576px) {
+  .current-time-display #currentTime {
+    font-size: 1.25rem;
+  }
+}

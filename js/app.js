@@ -28,6 +28,7 @@ export class App {
 
     // Interval IDs for cleanup (Priority 1: Memory leak fix)
     this.intervals = [];
+    this.clockInterval = null; // Real-time clock interval
   }
 
   /**
@@ -209,6 +210,9 @@ export class App {
       // Setup auto-update
       this.setupAutoUpdate();
 
+      // Setup real-time clock
+      this.setupClock();
+
       // Hide loading
       this.showLoading(false);
     } catch (error) {
@@ -364,7 +368,7 @@ export class App {
 
       const smallEl = document.createElement("small");
       smallEl.className = "text-muted";
-      smallEl.textContent = nextPrayer.countdown;
+      smallEl.textContent = `Akan tiba dalam ${nextPrayer.countdown}`;
 
       // Append elements
       nextPrayerEl.appendChild(strongEl);
@@ -531,6 +535,12 @@ export class App {
   clearIntervals() {
     this.intervals.forEach((id) => clearInterval(id));
     this.intervals = [];
+
+    // Clear clock interval too
+    if (this.clockInterval) {
+      clearInterval(this.clockInterval);
+      this.clockInterval = null;
+    }
   }
 
   /**
@@ -539,6 +549,49 @@ export class App {
    */
   destroy() {
     this.clearIntervals();
+  }
+
+  /**
+   * Setup real-time clock
+   */
+  setupClock() {
+    // Clear existing clock interval
+    if (this.clockInterval) {
+      clearInterval(this.clockInterval);
+    }
+
+    // Initial update
+    this.updateClock();
+
+    // Update every second
+    this.clockInterval = setInterval(() => {
+      this.updateClock();
+    }, Config.INTERVALS.SECOND);
+  }
+
+  /**
+   * Update clock display
+   */
+  updateClock() {
+    const clockEl = document.getElementById("currentTime");
+    const timezoneEl = document.getElementById("currentTimezone");
+
+    if (!clockEl) return;
+
+    const now = new Date();
+
+    // Format time (HH:MM:SS)
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+
+    clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+
+    // Determine timezone
+    if (timezoneEl) {
+      const timezone = Utils.getIndonesianTimezone();
+      timezoneEl.textContent = timezone;
+    }
   }
 
   /**
