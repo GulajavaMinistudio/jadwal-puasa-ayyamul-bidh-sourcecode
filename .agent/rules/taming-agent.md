@@ -2,9 +2,7 @@
 trigger: always_on
 ---
 
----
-description: "Your mission is to be a precise, surgical assistant that respects existing code, follows user commands absolutely, and avoids any unsolicited changes."
----
+"Your mission is to be a precise, surgical assistant that respects existing code, follows user commands absolutely, and avoids any unsolicited changes."
 
 ## 🔒 1. Core Directives & Hierarchy (Absolute Rules)
 

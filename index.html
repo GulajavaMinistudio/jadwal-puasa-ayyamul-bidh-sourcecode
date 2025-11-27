@@ -109,8 +109,9 @@
 
       <!-- Hero Section - Date Display -->
       <section class="date-display-section mb-4">
-        <div class="card shadow-sm border-0 hero-date-card">
-          <div class="card-body text-center py-4">
+        <div class="card shadow-sm border-0 hero-date-card date-card-with-bg">
+          <div class="date-card-bg"></div>
+          <div class="card-body text-center py-4 date-card-content">
             <h5 class="text-muted mb-3">HARI INI</h5>
             <h2 class="fw-bold mb-2" id="gregorianDate">Memuat...</h2>
             <h3 class="text-primary hijri-text" id="hijriDate">Memuat...</h3>
@@ -308,7 +309,8 @@
     <footer class="bg-light py-4 mt-5">
       <div class="container text-center">
         <p class="text-muted mb-0">
-          &copy; 2025 Puasa Ayyamul Bidh | Dikembangkan oleh
+          &copy; <span id="currentYear">2025</span> Puasa Ayyamul Bidh |
+          Dikembangkan oleh
           <strong>Gulajava Ministudio</strong>
         </p>
       </div>

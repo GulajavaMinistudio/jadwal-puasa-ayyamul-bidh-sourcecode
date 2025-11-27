@@ -16,6 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Auto-update copyright year in footer
+document.addEventListener("DOMContentLoaded", () => {
+  const yearElement = document.getElementById("currentYear");
+  if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = currentYear;
+  }
+});
+
 // Cleanup on page unload (Priority 1: Memory leak prevention)
 window.addEventListener("beforeunload", () => {
   if (window.app) {
