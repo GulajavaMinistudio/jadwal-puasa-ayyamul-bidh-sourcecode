@@ -7,11 +7,22 @@ import { Storage } from "./storage.js";
 import { Utils } from "./utils.js";
 import { Config } from "./config.js";
 import { Validators } from "./validators.js";
+import { RequestQueue } from "./request-queue.js";
+import { HijriCalculator } from "./hijri-calculator.js";
 
 export class HijriCalendar {
   constructor(apiBaseURL = Config.API.BASE_URL) {
     this.baseURL = apiBaseURL;
     this.AYYAMUL_BIDH_DATES = Config.AYYAMUL_BIDH.DATES;
+
+    // Initialize request queue with rate limiting
+    // Max 3 concurrent requests, 300ms delay between them to be safe
+    this.requestQueue = new RequestQueue({
+      maxConcurrent: 3,
+      delay: 300,
+      retryAttempts: 2,
+      retryDelay: 1000,
+    });
   }
 
   /**
@@ -20,27 +31,30 @@ export class HijriCalendar {
    * @returns {Promise<object>} Data tanggal Hijri
    */
   async gregorianToHijri(date) {
+    const cacheKey = `hijri_${date}`;
+
+    // Cek cache (data konversi bisa di-cache permanent)
+    const cached = Storage.getCache(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     try {
-      const cacheKey = `hijri_${date}`;
+      // Use RequestQueue for API call
+      const data = await this.requestQueue.enqueue(async () => {
+        const url = `${this.baseURL}/gToH/${date}`;
+        const response = await fetch(url);
 
-      // Cek cache (data konversi bisa di-cache permanent)
-      const cached = Storage.getCache(cacheKey);
-      if (cached) {
-        return cached;
-      }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      const url = `${this.baseURL}/gToH/${date}`;
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.code !== 200) {
-        throw new Error("API error: " + data.status);
-      }
+        const json = await response.json();
+        if (json.code !== 200) {
+          throw new Error("API error: " + json.status);
+        }
+        return json;
+      });
 
       // Validate dan sanitize API response
       const hijriValidation = Validators.validateHijriDate({
@@ -66,8 +80,31 @@ export class HijriCalendar {
       Storage.saveCache(cacheKey, result);
       return result;
     } catch (error) {
-      console.error("Error converting Gregorian to Hijri:", error);
-      throw error;
+      console.warn(`API failed for ${date}, using local fallback:`, error);
+
+      // Fallback to local calculation
+      try {
+        const [day, month, year] = date.split("-").map(Number);
+        const localDate = new Date(year, month - 1, day);
+        const fallbackData = HijriCalculator.gregorianToHijri(localDate);
+
+        const fallbackResult = {
+          day: fallbackData.day,
+          month: fallbackData.month,
+          monthName: fallbackData.monthName,
+          year: fallbackData.year,
+          formatted: `${fallbackData.day} ${fallbackData.monthName} ${fallbackData.year} H`,
+          monthNameAr: "", // Local calc doesn't have Arabic name
+          isFallback: true,
+        };
+
+        // Save fallback result to cache
+        Storage.saveCache(cacheKey, fallbackResult);
+        return fallbackResult;
+      } catch (fallbackError) {
+        console.error("Fallback calculation failed:", fallbackError);
+        throw error; // Throw original error if fallback also fails
+      }
     }
   }
 
@@ -77,27 +114,30 @@ export class HijriCalendar {
    * @returns {Promise<object>} Data tanggal Gregorian
    */
   async hijriToGregorian(date) {
+    const cacheKey = `gregorian_${date}`;
+
+    // Cek cache
+    const cached = Storage.getCache(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     try {
-      const cacheKey = `gregorian_${date}`;
+      // Use RequestQueue for API call
+      const data = await this.requestQueue.enqueue(async () => {
+        const url = `${this.baseURL}/hToG/${date}`;
+        const response = await fetch(url);
 
-      // Cek cache
-      const cached = Storage.getCache(cacheKey);
-      if (cached) {
-        return cached;
-      }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      const url = `${this.baseURL}/hToG/${date}`;
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.code !== 200) {
-        throw new Error("API error: " + data.status);
-      }
+        const json = await response.json();
+        if (json.code !== 200) {
+          throw new Error("API error: " + json.status);
+        }
+        return json;
+      });
 
       const result = {
         day: parseInt(data.data.gregorian.day),
@@ -247,26 +287,39 @@ export class HijriCalendar {
       // Generate kalender Gregorian dengan konversi ke Hijri
       const daysInMonth = new Date(year, month, 0).getDate();
 
+      // Create array of promises to run in parallel (controlled by RequestQueue)
+      const promises = [];
+
       for (let day = 1; day <= daysInMonth; day++) {
         const gregorianDate = `${String(day).padStart(2, "0")}-${String(
           month
         ).padStart(2, "0")}-${year}`;
-        try {
-          const hijri = await this.gregorianToHijri(gregorianDate);
-          calendar.push({
-            gregorianDay: day,
-            gregorianMonth: month,
-            gregorianYear: year,
-            hijriDay: hijri.day,
-            hijriMonth: hijri.month,
-            hijriYear: hijri.year,
-            hijriMonthName: hijri.monthName,
-            isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(hijri.day),
-          });
-        } catch (error) {
-          console.error(`Error converting date ${gregorianDate}:`, error);
-        }
+
+        promises.push(
+          this.gregorianToHijri(gregorianDate)
+            .then((hijri) => ({
+              gregorianDay: day,
+              gregorianMonth: month,
+              gregorianYear: year,
+              hijriDay: hijri.day,
+              hijriMonth: hijri.month,
+              hijriYear: hijri.year,
+              hijriMonthName: hijri.monthName,
+              isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(hijri.day),
+              isFallback: hijri.isFallback || false,
+            }))
+            .catch((error) => {
+              console.error(`Error converting date ${gregorianDate}:`, error);
+              return null;
+            })
+        );
       }
+
+      // Wait for all requests to complete
+      const results = await Promise.all(promises);
+
+      // Filter out nulls (failed requests)
+      calendar.push(...results.filter((item) => item !== null));
     }
 
     return calendar;
