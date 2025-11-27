@@ -302,20 +302,43 @@
         async function loadMonthlyCalendar(month, year) {
           try {
             const config = Storage.get("app_config");
-            const city = config.location.city;
-            const country = config.location.country || "Indonesia";
+            const method = config.prayer_method || 99; // Default to 99 if missing
 
             document.getElementById("currentMonthLabel").textContent = new Date(
               year,
               month - 1
             ).toLocaleDateString("id-ID", { month: "long", year: "numeric" });
 
-            const data = await prayerAPI.getMonthlyCalendar(
-              city,
-              country,
-              year,
-              month
-            );
+            let data;
+
+            // Check if using GPS or City
+            if (config.location.latitude && config.location.longitude) {
+              // Use GPS coordinates
+              data = await prayerAPI.getMonthlyCalendarByCoordinates(
+                config.location.latitude,
+                config.location.longitude,
+                year,
+                month,
+                method
+              );
+            } else {
+              // Use City
+              const city = config.location.city;
+              const country = config.location.country || "Indonesia";
+
+              if (!city) {
+                console.error("No location set");
+                return;
+              }
+
+              data = await prayerAPI.getMonthlyCalendar(
+                city,
+                country,
+                year,
+                month,
+                method
+              );
+            }
 
             const tbody = document.getElementById("monthlyPrayerBody");
             tbody.innerHTML = data
@@ -343,6 +366,13 @@
               .join("");
           } catch (error) {
             console.error("Error loading monthly calendar:", error);
+            document.getElementById("monthlyPrayerBody").innerHTML = `
+              <tr>
+                <td colspan="7" class="text-center text-danger">
+                  Gagal memuat jadwal. Pastikan koneksi internet lancar.
+                </td>
+              </tr>
+            `;
           }
         }
 

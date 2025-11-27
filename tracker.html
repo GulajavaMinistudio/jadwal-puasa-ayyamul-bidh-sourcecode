@@ -139,7 +139,7 @@
                 <div class="col-md-4">
                   <div class="text-center p-3 bg-white rounded">
                     <h2 class="fw-bold mb-2" id="completeMonths">0/12</h2>
-                    <p class="text-muted mb-0">Bulan Complete</p>
+                    <p class="text-muted mb-0">Bulan Lengkap</p>
                   </div>
                 </div>
 
@@ -299,7 +299,7 @@
                     }/3 hari (${monthStats.percentage}%)
                     ${
                       monthStats.isComplete
-                        ? " 🎉 <strong>COMPLETE!</strong>"
+                        ? " 🎉 <strong>LENGKAP!</strong>"
                         : ""
                     }
                 </div>
@@ -407,9 +407,9 @@
                                 }">
                                     ${item.totalDays}/3 - ${
                 item.status === "complete"
-                  ? "Complete"
+                  ? "Lengkap"
                   : item.status === "partial"
-                  ? "Partial"
+                  ? "Sebagian"
                   : "Kosong"
               }
                                 </span>

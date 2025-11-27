@@ -37,10 +37,30 @@ export class PrayerTimesAPI {
   }
 
   /**
+   * Build API URL with custom method parameters
+   * @param {string} baseUrl - Base API URL
+   * @param {number} method - Calculation method
+   * @returns {string} Complete URL with parameters
+   * @private
+   */
+  _buildUrlWithMethodParams(baseUrl, method) {
+    let url = `${baseUrl}&method=${method}`;
+
+    // Add custom parameters for method 99 (Kemenag RI Akurat)
+    if (method === 99) {
+      const customParams = Config.API.KEMENAG_CUSTOM;
+      url += `&methodSettings=${customParams.methodSettings}`;
+      url += `&tune=${customParams.tune}`;
+    }
+
+    return url;
+  }
+
+  /**
    * Get waktu shalat berdasarkan kota
    * @param {string} city - Nama kota
    * @param {string} country - Nama negara
-   * @param {number} method - Metode kalkulasi (default: 20 untuk Kemenag RI)
+   * @param {number} method - Metode kalkulasi (default: 99 untuk Kemenag RI Akurat)
    * @param {string} date - Tanggal (format: DD-MM-YYYY), default: hari ini
    * @returns {Promise<object>} Data waktu shalat
    */
@@ -52,11 +72,13 @@ export class PrayerTimesAPI {
   ) {
     try {
       const dateStr = date || Utils.formatDateForAPI(new Date());
-      const url = `${
+      const baseUrl = `${
         this.baseURL
       }/timingsByCity/${dateStr}?city=${encodeURIComponent(
         city
-      )}&country=${encodeURIComponent(country)}&method=${method}`;
+      )}&country=${encodeURIComponent(country)}`;
+
+      const url = this._buildUrlWithMethodParams(baseUrl, method);
 
       const data = await this._fetchFromAPI(url);
       return this.parseTimingsData(data.data);
@@ -82,7 +104,8 @@ export class PrayerTimesAPI {
   ) {
     try {
       const dateStr = date || Utils.formatDateForAPI(new Date());
-      const url = `${this.baseURL}/timings/${dateStr}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+      const baseUrl = `${this.baseURL}/timings/${dateStr}?latitude=${latitude}&longitude=${longitude}`;
+      const url = this._buildUrlWithMethodParams(baseUrl, method);
 
       const data = await this._fetchFromAPI(url);
       return this.parseTimingsData(data.data);
@@ -93,7 +116,7 @@ export class PrayerTimesAPI {
   }
 
   /**
-   * Get kalender waktu shalat bulanan
+   * Get kalender waktu shalat bulanan berdasarkan kota
    * @param {string} city - Nama kota
    * @param {string} country - Nama negara
    * @param {number} year - Tahun
@@ -109,16 +132,46 @@ export class PrayerTimesAPI {
     method = this.defaultMethod
   ) {
     try {
-      const url = `${
+      const baseUrl = `${
         this.baseURL
       }/calendarByCity/${year}/${month}?city=${encodeURIComponent(
         city
-      )}&country=${encodeURIComponent(country)}&method=${method}`;
+      )}&country=${encodeURIComponent(country)}`;
+
+      const url = this._buildUrlWithMethodParams(baseUrl, method);
 
       const data = await this._fetchFromAPI(url);
       return data.data.map((day) => this.parseTimingsData(day));
     } catch (error) {
       console.error("Error fetching monthly calendar:", error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get kalender waktu shalat bulanan berdasarkan koordinat
+   * @param {number} latitude - Latitude
+   * @param {number} longitude - Longitude
+   * @param {number} year - Tahun
+   * @param {number} month - Bulan (1-12)
+   * @param {number} method - Metode kalkulasi
+   * @returns {Promise<Array>} Array data waktu shalat untuk 1 bulan
+   */
+  async getMonthlyCalendarByCoordinates(
+    latitude,
+    longitude,
+    year,
+    month,
+    method = this.defaultMethod
+  ) {
+    try {
+      const baseUrl = `${this.baseURL}/calendar/${year}/${month}?latitude=${latitude}&longitude=${longitude}`;
+      const url = this._buildUrlWithMethodParams(baseUrl, method);
+
+      const data = await this._fetchFromAPI(url);
+      return data.data.map((day) => this.parseTimingsData(day));
+    } catch (error) {
+      console.error("Error fetching monthly calendar by coordinates:", error);
       throw error;
     }
   }

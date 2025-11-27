@@ -162,7 +162,7 @@ export class App {
   async saveLocation(locationData) {
     this.config = {
       location: locationData,
-      prayer_method: Config.API.DEFAULT_METHOD, // Default: Kemenag RI
+      prayer_method: Config.API.DEFAULT_METHOD, // Default: Kemenag RI (Akurat)
       first_time_setup: true,
     };
 
@@ -237,7 +237,7 @@ export class App {
   async loadPrayerTimes() {
     try {
       const location = this.config.location;
-      const method = this.config.prayer_method || 20;
+      const method = this.config.prayer_method || Config.API.DEFAULT_METHOD;
 
       this.currentData.prayerTimes =
         await this.prayerTimesAPI.getPrayerTimesWithCache(location, method);

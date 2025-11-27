@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import legacy from "@vitejs/plugin-legacy";
+import { VitePWA } from "vite-plugin-pwa";
 import { resolve } from "path";
 
 // https://vitejs.dev/config/
@@ -12,6 +13,57 @@ export default defineConfig({
     legacy({
       targets: ["defaults", "not IE 11"],
       additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+    }),
+    VitePWA({
+      registerType: "autoUpdate",
+      includeAssets: ["assets/**/*"],
+      manifest: {
+        name: "Puasa Ayyamul Bidh",
+        short_name: "Ayyamul Bidh",
+        description:
+          "Aplikasi web untuk tracking puasa Ayyamul Bidh (13, 14, 15 Hijriyah) dengan fitur jadwal waktu shalat, kalender Hijriyah, dan statistik puasa.",
+        theme_color: "#1e3a8a",
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/puasa-ayyamul-bidh/",
+        icons: [
+          {
+            src: "/puasa-ayyamul-bidh/pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/puasa-ayyamul-bidh/pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "/puasa-ayyamul-bidh/maskable-icon.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,json,woff2}"],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/api\.aladhan\.com\/.*/i,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "aladhan-api-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24, // 24 hours
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
 

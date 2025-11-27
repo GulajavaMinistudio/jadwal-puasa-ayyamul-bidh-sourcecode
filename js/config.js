@@ -37,8 +37,22 @@ export const Config = {
    */
   API: {
     BASE_URL: "https://api.aladhan.com/v1",
-    DEFAULT_METHOD: 20, // Kementerian Agama RI
+    DEFAULT_METHOD: 99, // Custom Kemenag RI (Akurat)
     TIMEOUT: 10000, // 10 detik
+
+    /**
+     * Custom Kemenag RI Parameters
+     * Sesuai standar resmi Kementerian Agama RI:
+     * - Fajr: -20° (matahari 20° di bawah horizon timur)
+     * - Isha: -18° (matahari 18° di bawah horizon barat)
+     * - Tune: Offset untuk match jadwal resmi Kemenag
+     *   Format: Imsak,Fajr,Sunrise,Dhuhr,Asr,Maghrib,Sunset,Isha,Midnight
+     */
+    KEMENAG_CUSTOM: {
+      method: 99,
+      methodSettings: "20,null,18", // Fajr 20°, Maghrib null (sunset), Isha 18°
+      tune: "2,2,0,3,2,8,0,3,0", // Offset untuk akurasi
+    },
   },
 
   /**
@@ -81,7 +95,12 @@ export const Config = {
    * Prayer calculation methods
    */
   PRAYER_METHODS: [
-    { value: 20, label: "Kementerian Agama Republik Indonesia" },
+    {
+      value: 99,
+      label: "Kementerian Agama RI (Akurat - Recommended)",
+      isCustom: true,
+    },
+    { value: 20, label: "Kementerian Agama RI (Standard Aladhan)" },
     { value: 3, label: "Muslim World League (MWL)" },
     { value: 2, label: "Islamic Society of North America (ISNA)" },
     { value: 5, label: "Egyptian General Authority of Survey" },
