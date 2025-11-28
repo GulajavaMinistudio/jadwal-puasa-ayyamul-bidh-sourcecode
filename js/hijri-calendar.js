@@ -251,6 +251,37 @@ export class HijriCalendar {
   }
 
   /**
+   * Generate kalender INSTANT menggunakan local calculation (tanpa API)
+   * Digunakan untuk first-pass rendering yang cepat
+   * @param {number} month - Bulan (1-12)
+   * @param {number} year - Tahun
+   * @returns {Array} Array data kalender (synchronous, no API calls)
+   */
+  generateMonthlyCalendarInstant(month, year) {
+    const calendar = [];
+    const daysInMonth = new Date(year, month, 0).getDate();
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const gregorianDate = new Date(year, month - 1, day);
+      const hijri = HijriCalculator.gregorianToHijri(gregorianDate);
+
+      calendar.push({
+        gregorianDay: day,
+        gregorianMonth: month,
+        gregorianYear: year,
+        hijriDay: hijri.day,
+        hijriMonth: hijri.month,
+        hijriYear: hijri.year,
+        hijriMonthName: hijri.monthName,
+        isAyyamulBidh: this.AYYAMUL_BIDH_DATES.includes(hijri.day),
+        isApproximate: true, // Flag untuk indicate ini local calculation
+      });
+    }
+
+    return calendar;
+  }
+
+  /**
    * Generate data kalender untuk bulan tertentu
    * @param {number} month - Bulan (1-12)
    * @param {number} year - Tahun

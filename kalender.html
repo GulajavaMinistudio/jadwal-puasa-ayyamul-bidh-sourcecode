@@ -227,107 +227,112 @@
         let currentMonth = new Date().getMonth() + 1;
         let currentYear = new Date().getFullYear();
 
-        // Generate calendar
+        // Generate calendar with progressive enhancement
         async function generateCalendar(month, year) {
           try {
             document.getElementById("currentMonthYear").textContent = new Date(
               year,
               month - 1
             ).toLocaleDateString("id-ID", { month: "long", year: "numeric" });
-
             const tbody = document.getElementById("calendarBody");
 
-            // Show loading state
-            tbody.innerHTML = `
-              <tr>
-                <td colspan="7" class="text-center py-5">
-                  <div class="d-flex flex-column align-items-center justify-content-center">
-                    <div class="spinner-border text-primary mb-3" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <h5 class="text-muted fw-normal">Memuat data kalender Hijriyah...</h5>
-                    <div class="progress mt-3 w-50" style="height: 6px;">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%"></div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            `;
-
-            const calendarData = await hijriCalendar.generateMonthlyCalendar(
+            // FASE 1: Instant render dengan local calculation (CEPAT!)
+            const instantData = hijriCalendar.generateMonthlyCalendarInstant(
               month,
-              year,
-              false
+              year
             );
-            // tbody is already defined above
+            renderCalendar(instantData, month, year, true); // true = show updating badge
 
-            // Get first day of month and number of days
-            const firstDay = new Date(year, month - 1, 1).getDay();
-            const daysInMonth = new Date(year, month, 0).getDate();
-            const today = new Date();
-            const todayStr = `${today.getDate()}-${
-              today.getMonth() + 1
-            }-${today.getFullYear()}`;
+            // FASE 2: Load dari API di background, lalu replace (AKURAT!)
+            try {
+              const apiData = await hijriCalendar.generateMonthlyCalendar(
+                month,
+                year,
+                false
+              );
 
-            let html = "<tr>";
-
-            // Empty cells for days before month starts
-            for (let i = 0; i < firstDay; i++) {
-              html += "<td></td>";
+              // Smooth replace dengan API data yang lebih akurat
+              renderCalendar(apiData, month, year, false); // false = hide updating badge
+            } catch (error) {
+              console.warn("API load failed, using local calculation:", error);
+              // Kalau API gagal, data lokal sudah ditampilkan jadi OK
             }
-
-            // Calendar days
-            for (let day = 1; day <= daysInMonth; day++) {
-              const dayData = calendarData[day - 1];
-              const isToday = `${day}-${month}-${year}` === todayStr;
-              const isAyyamulBidh = dayData && dayData.isAyyamulBidh;
-              const isMarked =
-                dayData &&
-                tracker.isFastingMarked(
-                  dayData.hijriDay,
-                  dayData.hijriMonth,
-                  dayData.hijriYear
-                );
-
-              let cellClass = "";
-              if (isToday) cellClass += " today";
-              if (isAyyamulBidh) cellClass += " ayyamul-bidh";
-              if (isMarked) cellClass += " marked";
-
-              html += `
-                        <td>
-                            <div class="calendar-date${cellClass}">
-                                ${day}
-                            </div>
-                            ${
-                              dayData
-                                ? `<small class="text-muted d-block" style="font-size: 0.7rem;">${
-                                    dayData.hijriDay
-                                  } ${Utils.getHijriMonthName(
-                                    dayData.hijriMonth
-                                  ).substring(0, 3)}</small>`
-                                : ""
-                            }
-                        </td>
-                    `;
-
-              // New row after Saturday
-              if ((firstDay + day) % 7 === 0) {
-                html += "</tr><tr>";
-              }
-            }
-
-            // Empty cells to complete final row
-            const remainingCells = (7 - ((firstDay + daysInMonth) % 7)) % 7;
-            for (let i = 0; i < remainingCells; i++) {
-              html += "<td></td>";
-            }
-
-            html += "</tr>";
-            tbody.innerHTML = html;
           } catch (error) {
             console.error("Error generating calendar:", error);
           }
+        }
+        // Render function yang reusable (TAMBAHKAN function BARU ini)
+        function renderCalendar(calendarData, month, year, isUpdating = false) {
+          const tbody = document.getElementById("calendarBody");
+          const firstDay = new Date(year, month - 1, 1).getDay();
+          const daysInMonth = new Date(year, month, 0).getDate();
+          const today = new Date();
+          const todayStr = `${today.getDate()}-${
+            today.getMonth() + 1
+          }-${today.getFullYear()}`;
+          let html = "<tr>";
+          // Empty cells for days before month starts
+          for (let i = 0; i < firstDay; i++) {
+            html += "<td></td>";
+          }
+          // Calendar days
+          for (let day = 1; day <= daysInMonth; day++) {
+            const dayData = calendarData[day - 1];
+            const isToday = `${day}-${month}-${year}` === todayStr;
+            const isAyyamulBidh = dayData && dayData.isAyyamulBidh;
+            const isMarked =
+              dayData &&
+              tracker.isFastingMarked(
+                dayData.hijriDay,
+                dayData.hijriMonth,
+                dayData.hijriYear
+              );
+            let cellClass = "";
+            if (isToday) cellClass += " today";
+            if (isAyyamulBidh) cellClass += " ayyamul-bidh";
+            if (isMarked) cellClass += " marked";
+            html += `
+                      <td style="${
+                        isUpdating
+                          ? "opacity: 0.75; transition: opacity 0.3s;"
+                          : ""
+                      }">
+                          <div class="calendar-date${cellClass}">
+                              ${day}
+                          </div>
+                          ${
+                            dayData
+                              ? `<small class="text-muted d-block" style="font-size: 0.7rem;">${
+                                  dayData.hijriDay
+                                } ${Utils.getHijriMonthName(
+                                  dayData.hijriMonth
+                                ).substring(0, 3)}</small>`
+                              : ""
+                          }
+                          ${
+                            isUpdating && day === 1
+                              ? `<div style="position: absolute; top: 2px; right: 2px;">
+                                   <span class="badge bg-success" style="font-size: 0.75rem; padding: 0.35rem 0.5rem;">
+                                     <span class="spinner-border spinner-border-sm" role="status" style="width: 10px; height: 10px; margin-right: 4px;"></span>
+                                     Memperbarui data...
+                                   </span>
+                                 </div>`
+                              : ""
+                          }
+                      </td>
+                  `;
+            // New row after Saturday
+            if ((firstDay + day) % 7 === 0) {
+              html += "</tr><tr>";
+            }
+          }
+          // Empty cells to complete final row
+          const remainingCells = (7 - ((firstDay + daysInMonth) % 7)) % 7;
+          for (let i = 0; i < remainingCells; i++) {
+            html += "<td></td>";
+          }
+          html += "</tr>";
+          tbody.innerHTML = html;
         }
 
         // Load upcoming Ayyamul Bidh
