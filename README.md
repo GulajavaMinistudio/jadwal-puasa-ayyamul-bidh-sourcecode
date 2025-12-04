@@ -1,152 +1,228 @@
 # 🌙 Aplikasi Web Puasa Ayyamul Bidh
 
-> Aplikasi web modern untuk melacak dan mengelola jadwal puasa Ayyamul Bidh (puasa sunnah tanggal 13, 14, 15 Hijriyah). Dibangun dengan JavaScript murni, tanpa framework kompleks, namun tetap powerful dan mudah digunakan. Sempurna untuk Muslim yang ingin menjalankan puasa sunnah dengan teratur dan terorganisir.
+> **Aplikasi web modern untuk melacak dan mengelola jadwal puasa Ayyamul Bidh** – puasa sunnah yang dijalankan setiap tanggal 13, 14, dan 15 dalam kalender Hijriyah. Dibangun dengan teknologi web standar (HTML5, CSS3, Vanilla JavaScript) tanpa framework kompleks, sehingga ringan, cepat, dan mudah dipelihara.
 
-[![Security](https://img.shields.io/badge/Security-8.5%2F10-green)]()
+[![Security Rating](https://img.shields.io/badge/Security-8.5%2F10-green)]()
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-7.0%2F10-brightgreen)]()
 [![License](https://img.shields.io/badge/License-MIT-blue)]()
-[![Status](https://img.shields.io/badge/Status-Active-success)]()
+[![Status](https://img.shields.io/badge/Status-Active%20Development-success)]()
+[![Language](https://img.shields.io/badge/UI%20Language-100%25%20Bahasa%20Indonesia-blue)]()
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Fitur-Fitur Unggulan
 
-### 🏠 Dashboard Terintegrasi
-- **Tanggal Ganda**: Menampilkan tanggal Hijriyah dan Masehi hari ini secara real-time
-- **Jam Digital Real-Time**: Menampilkan waktu aktual (HH:MM:SS) dengan zona waktu Indonesia (WIB/WITA/WIT) otomatis
-- **Hitung Mundur Dinamis**: Informasi waktu menuju Ayyamul Bidh berikutnya dengan teks yang jelas
-- **Statistik Cepat**: Ringkasan puasa bulan ini, tahun ini, dan capaian berturut-turut (streak)
-- **Akses Cepat**: Tombol pintas ke fitur-fitur utama
+### 🏠 Dashboard Informasi Terintegrasi
+
+Dashboard memberikan ringkasan lengkap semua informasi penting dalam satu tampilan:
+
+- **📅 Tanggal Ganda**: Menampilkan tanggal Hijriyah dan Masehi hari ini secara real-time
+- **⏰ Jam Digital**: Jam yang diperbarui setiap detik dengan deteksi zona waktu Indonesia otomatis (WIB/WITA/WIT)
+- **⏳ Hitung Mundur Ayyamul Bidh**: Informasi berapa hari lagi menuju periode puasa Ayyamul Bidh berikutnya
+- **🕌 Jadwal Shalat Hari Ini**: Ringkasan 6 waktu shalat dengan countdown ke shalat berikutnya
+- **📊 Statistik Puasa**: 
+  - Progress puasa bulan ini (dari target 3 hari)
+  - Total puasa tahun ini (dari target 36 hari)
+  - Streak: berapa bulan berturut-turut menyelesaikan puasa Ayyamul Bidh
+- **🚀 Akses Cepat**: Tombol pintas untuk navigasi ke fitur-fitur utama
 
 ### 🕌 Jadwal Shalat Komprehensif
-- **7 Waktu Shalat**: Imsak, Subuh, Syuruq, Dzuhur, Ashar, Maghrib, Isya
-- **Jam Digital Real-Time**: Jam yang diperbarui setiap detik dengan deteksi zona waktu otomatis
-- **Hitung Mundur Shalat**: Informasi waktu tersisa ke shalat berikutnya dengan format "Akan tiba dalam X menit"
-- **Penanda Otomatis**: Menandai waktu shalat yang sedang berlangsung
-- **Tabel Bulanan**: Jadwal lengkap untuk satu bulan
-- **Lokasi Akurat**: Berdasarkan GPS atau input manual
+
+Fitur jadwal shalat yang lengkap dan akurat berdasarkan lokasi Anda:
+
+- **7 Waktu Shalat**: Imsak, Subuh, Terbit (Syuruq), Dzuhur, Ashar, Maghrib, dan Isya
+- **⏰ Jam Real-Time**: Ditampilkan dengan zona waktu yang terdeteksi otomatis
+- **⏱️ Hitung Mundur**: Informasi "Akan tiba dalam X menit" untuk shalat berikutnya
+- **✨ Penanda Visual**: Shalat yang sedang berlangsung diberi highlight khusus
+- **📆 Tabel Jadwal Bulanan**: Jadwal lengkap untuk 30 hari ke depan dengan scroll horizontal
+- **📍 Berbasis Lokasi**: Menggunakan koordinat GPS atau input manual kota untuk akurasi tinggi
+- **⚙️ Metode Kalkulasi**: Mendukung 7 metode perhitungan, default menggunakan standar Kementerian Agama RI
 
 ### 📅 Kalender Hijriyah Interaktif
-- **Konversi Dual-Direction**: Gregorian ↔ Hijri
-- **Visual Menarik**: Kalender dengan highlight tanggal Ayyamul Bidh (13, 14, 15)
-- **Navigasi Mudah**: Berpindah antar bulan dengan cepat
-- **Info Detail**: Informasi lengkap untuk setiap tanggal
 
-### 📊 Tracker Puasa Pintar
-- **Mark/Unmark Fleksibel**: Tandai hari puasa dengan mudah
-- **Statistik Lengkap**: 
-  - Progress bulanan (target 3 hari per bulan)
-  - Progress tahunan (target 36 hari per tahun)
-  - Streak tracking (berapa bulan berturut-turut)
-- **History Lengkap**: Riwayat puasa dengan filter
-- **Backup Data**: Export/import untuk keamanan data
+Kalender visual yang memudahkan pelacakan tanggal Hijriyah:
 
-### 📖 Panduan Islami
-- **Dalil Shahih**: Hadits tentang keutamaan puasa Ayyamul Bidh
-- **Doa Lengkap**: Doa berbuka dan sahur dalam bahasa Arab dan terjemahan
-- **FAQ Praktis**: Jawaban pertanyaan umum
-- **Tips Bermanfaat**: Panduan menjalankan puasa sunnah
+- **🔄 Konversi Tanggal**: Konversi dua arah antara kalender Masehi (Gregorian) dan Hijriyah
+- **🎨 Tampilan Visual Menarik**: 
+  - Grid kalender dengan highlight otomatis untuk tanggal Ayyamul Bidh (13, 14, 15)
+  - Penanda hari yang sudah berpuasa (terintegrasi dengan tracker)
+  - Indikator tanggal hari ini
+- **🧭 Navigasi Mudah**: Tombol prev/next untuk berpindah bulan, plus tombol "Hari Ini"
+- **📋 Jadwal 3 Bulan**: Menampilkan jadwal Ayyamul Bidh untuk 3 bulan ke depan
+- **ℹ️ Info Detail**: Klik tanggal untuk melihat informasi lengkap
+
+### 📊 Tracker Puasa yang Pintar
+
+Sistem pencatatan puasa yang lengkap dengan analitik:
+
+- **✅ Check/Uncheck Sederhana**: Tandai hari puasa hanya dengan satu klik
+- **📈 Statistik Multi-Level**:
+  - **Bulanan**: Progress dari target 3 hari per bulan (dengan persentase dan bar chart)
+  - **Tahunan**: Progress dari target 36 hari per tahun (dengan persentase)
+  - **Streak**: Tracking berapa bulan berturut-turut Anda menyelesaikan 3 hari puasa
+- **📜 Riwayat Lengkap**: 
+  - Accordion per bulan dengan status: Lengkap (3/3), Sebagian (1-2/3), atau Kosong
+  - Filter dan sortir berdasarkan tanggal
+- **💾 Backup & Restore**: 
+  - Export data ke format JSON
+  - Import data dari backup dengan validasi integrity
+  - Backup otomatis sebelum import
+
+### 📖 Panduan Islami Lengkap
+
+Referensi keislaman yang bermanfaat:
+
+- **📜 Dalil & Hadits**: Hadits shahih tentang keutamaan puasa Ayyamul Bidh dengan sanad
+- **🤲 Doa-Doa Puasa**: 
+  - Doa berbuka puasa (Arab + Latin + Terjemahan Indonesia)
+  - Doa sahur (Arab + Latin + Terjemahan Indonesia)
+  - Niat puasa sunnah
+- **❓ FAQ (Tanya Jawab)**: Jawaban untuk 10+ pertanyaan umum seputar puasa Ayyamul Bidh
+- **💡 Tips Praktis**: Panduan dan tips agar konsisten menjalankan puasa sunnah
 
 ### ⚙️ Pengaturan Fleksibel
-- **Lokasi**: Auto-detect GPS atau manual input kota
-- **Metode Kalkulasi**: Pilih dari 7 metode (default: Kemenag RI)
-- **Data Management**: Export/import data dalam format JSON
-- **Reset Safety**: Reset data dengan konfirmasi ganda
+
+Kustomisasi aplikasi sesuai kebutuhan Anda:
+
+- **📍 Manajemen Lokasi**:
+  - Auto-detect menggunakan GPS browser (dengan izin pengguna)
+  - Input manual: Nama kota + Negara
+  - Simpan preferensi lokasi
+- **🕌 Metode Kalkulasi Shalat** (7 pilihan):
+  - Kementerian Agama Republik Indonesia (Default) ⭐
+  - Muslim World League (MWL)
+  - Islamic Society of North America (ISNA)
+  - Egyptian General Authority of Survey
+  - Umm Al-Qura University, Mekkah
+  - University of Islamic Sciences, Karachi
+  - Institute of Geophysics, University of Tehran
+- **💾 Manajemen Data**:
+  - **Export**: Unduh semua data dalam format JSON
+  - **Import**: Restore data dari file backup dengan validasi
+  - **Reset**: Hapus semua data (dengan konfirmasi ganda untuk keamanan)
+- **🔒 Privasi**: Semua data tersimpan di browser Anda (localStorage), tidak ada server eksternal
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Cara Menggunakan
 
-### 🌟 Untuk Pengguna (Non-Technical)
+### 🌟 Untuk Pengguna Umum (Tanpa Pengetahuan Teknis)
 
-**Cara Termudah - Langsung di Browser:**
+**Cara paling mudah - Langsung buka di browser:**
 
-1. **Download atau Clone Project**
-   - Klik tombol "Code" → "Download ZIP" di GitHub
+1. **Download Aplikasi**:
+   - Klik tombol hijau "Code" di halaman GitHub ini
+   - Pilih "Download ZIP"
    - Extract file ZIP ke folder di komputer Anda
 
-2. **Buka Aplikasi**
-   - Double-click file `index.html`
-   - Atau klik kanan → "Open with" → Pilih browser favorit (Chrome/Firefox/Edge)
+2. **Buka Aplikasi**:
+   - Cari file `index.html` di folder hasil extract
+   - Double-click file tersebut, atau
+   - Klik kanan → "Open with" → Pilih browser favorit (Chrome/Firefox/Edge)
 
-3. **Setup Lokasi (Pertama Kali)**
-   - Aplikasi akan meminta izin lokasi GPS → Klik "Allow/Izinkan"
-   - Atau skip dan set lokasi manual di halaman **Pengaturan**
+3. **Setup Awal** (hanya sekali):
+   - Aplikasi akan meminta izin untuk mengakses lokasi GPS → Klik "Izinkan/Allow"
+   - Jika tidak ingin menggunakan GPS, klik "Skip" dan atur lokasi manual di menu **Pengaturan**
 
 4. **Siap Digunakan!** 🎉
-   - Dashboard akan menampilkan informasi lengkap
-   - Tandai hari puasa Anda di halaman **Tracker**
-   - Lihat jadwal shalat di halaman **Jadwal Shalat**
+   - Dashboard akan menampilkan semua informasi
+   - Mulai tandai hari puasa Anda di menu **Tracker**
+   - Lihat jadwal shalat di menu **Jadwal Shalat**
+   - Cek kalender Hijriyah di menu **Kalender**
 
-**Tips Pengguna:**
-- 💾 Export data secara berkala untuk backup (Menu Pengaturan)
-- 🔖 Bookmark aplikasi untuk akses cepat
-- 📍 Update lokasi jika pindah kota
-- 🌙 Cek countdown Ayyamul Bidh di dashboard setiap hari
+**💡 Tips untuk Pengguna:**
+- 💾 **Backup Rutin**: Export data Anda secara berkala dari menu Pengaturan
+- 🔖 **Bookmark**: Tambahkan ke bookmark browser untuk akses cepat
+- 📍 **Update Lokasi**: Jika pindah kota, update lokasi di Pengaturan
+- 🌙 **Cek Rutin**: Lihat countdown Ayyamul Bidh di dashboard setiap hari
 
 ---
 
 ### 👨‍💻 Untuk Developer
 
-**Opsi 1: Langsung di Browser (No Build)**
+Aplikasi ini sangat mudah untuk di-develop karena tidak memerlukan build process yang kompleks.
+
+**Opsi 1: Buka Langsung di Browser (Paling Sederhana)**
+
 ```bash
 # Clone repository
 git clone https://github.com/yourusername/puasa-ayyamul-bidh.git
 cd puasa-ayyamul-bidh
 
-# Buka index.html di browser
-# Atau gunakan Live Server extension di VS Code
+# Buka index.html langsung di browser
+# Atau gunakan extension "Live Server" di VS Code untuk auto-reload
 ```
 
-**Opsi 2: Development Server (Recommended)**
+**Opsi 2: Development Server dengan Vite (Direkomendasikan)**
+
 ```bash
-# Install dependencies (dev only)
+# Install dependencies (hanya untuk dev tools)
 npm install
 
-# Run development server dengan Vite
+# Jalankan development server
 npm run dev
+# Aplikasi akan berjalan di http://localhost:5173
 
-# Buka http://localhost:5173 di browser
+# Build untuk production (optional)
+npm run build
 ```
 
-**Opsi 3: Alternative HTTP Server**
+**Opsi 3: HTTP Server Alternatif**
+
 ```bash
-# Install http-server globally (jika belum)
-npm install -g http-server
-
-# atau gunakan npm script
+# Menggunakan http-server
 npm run serve
-
-# Buka http://localhost:8000
+# Aplikasi akan berjalan di http://localhost:8000
 ```
 
-**Setup Awal:**
-1. Izinkan lokasi GPS atau set manual di Pengaturan
-2. Pilih metode kalkulasi (default: Kemenag RI)
-3. Aplikasi siap untuk development!
+**Setup Awal Development:**
+1. Izinkan akses lokasi GPS atau set manual di menu Pengaturan
+2. Pilih metode kalkulasi shalat (default: Kemenag RI sudah sesuai untuk Indonesia)
+3. Buka DevTools untuk melihat console logs dan debugging
+4. Mulai coding!
+
+**📖 Dokumentasi Developer:**
+Lihat folder `.agent/` untuk dokumentasi lengkap:
+- `AI_AGENT_GUIDE.md` - Panduan lengkap untuk AI assistants
+- `CODING_STANDARDS.md` - Style guide dan konvensi kode
+- `SECURITY_GUIDELINES.md` - Best practices keamanan
+- `PROJECT_OVERVIEW.md` - Arsitektur dan overview sistem
 
 ---
 
-## 🏗️ Tech Stack
+## 🏗️ Teknologi yang Digunakan
 
-### Core
-- **HTML5** - Semantic markup
-- **CSS3 + Bootstrap 5.3.8** - Responsive styling
-- **Vanilla JavaScript (ES6 Modules)** - Zero dependencies, no build tools required
-- **localStorage** - Client-side data persistence dengan validation
+### Core Technologies
 
-### APIs & External Services
-- **[Aladhan API](https://aladhan.com)** - Prayer times & Hijri calendar conversion
-- **Geolocation API** - Auto-detect user location
+**Framework & Library Utama:**
+- **HTML5** - Semantic markup dengan accessibility terbaik
+- **CSS3** - Custom styling modern
+- **Bootstrap 5.3.8** - Framework CSS untuk responsive design dan komponen UI
+- **Vanilla JavaScript ES6+** - Modular JavaScript tanpa framework, menggunakan ES6 Modules
+- **localStorage Web API** - Penyimpanan data lokal dengan validation layer
+
+**External APIs:**
+- **[Aladhan API](https://aladhan.com/prayer-times-api)** - Prayer times calculation & Hijri calendar conversion
+- **Browser Geolocation API** - Deteksi lokasi pengguna otomatis
 
 ### Development Tools
-- **[Google Antigravity Editor](https://www.google.com/antigravity)** - AI-powered code editor untuk development 🤖
-- **[Google Gemini 3.0 Pro](https://deepmind.google/technologies/gemini/)** - AI assistant untuk coding dan problem solving 🧠
-- **[Anthropic Claude 4.5 Sonnet](https://www.anthropic.com/claude)** - AI assistant untuk code review dan documentation 📝
-- **Vite** - Dev server only (bukan untuk build)
-- **npm** - Package management untuk dev tools
 
-> **Note**: Aplikasi ini **tidak memerlukan build process**. JavaScript modules di-load langsung di browser.
+**AI-Powered Development:**
+- **[Google Antigravity Editor](https://www.google.com/antigravity)** - AI-powered code editor untuk development workflow 🤖
+- **[Google Gemini 3.0 Pro](https://deepmind.google/technologies/gemini/)** - AI assistant untuk coding, refactoring, dan problem solving 🧠
+- **[Anthropic Claude 4.5 Sonnet](https://www.anthropic.com/claude)** - AI assistant untuk code review, documentation, dan quality assurance 📝
+
+**Build Tools (Dev Only):**
+- **Vite 7.2.4** - Lightning-fast development server dengan Hot Module Replacement (HMR)
+- **http-server 14.1.1** - Simple HTTP server alternatif
+- **Terser 5.44.1** - JavaScript minifier untuk production build
+- **npm** - Package manager
+
+**Styling & Assets:**
+- **Bootstrap Icons** - Icon library
+- **Google Fonts** - Web fonts (Inter untuk Latin, Amiri untuk Arabic)
+
+> **⚠️ Catatan Penting**: Aplikasi ini **tidak memerlukan build process untuk berjalan**. Semua JavaScript modules dimuat langsung oleh browser menggunakan ES6 import/export. Vite dan build tools hanya digunakan untuk development experience yang lebih baik (hot reload, dll).
 
 ---
 
@@ -154,523 +230,719 @@ npm run serve
 
 ```
 puasa-ayyamul-bidh/
-├── .agent/                     # 🤖 AI agent documentation
-│   ├── AI_AGENT_GUIDE.md       # Quick reference untuk AI assistants
-│   ├── PROJECT_OVERVIEW.md     # Architecture & modules
-│   ├── SECURITY_GUIDELINES.md  # Security best practices
-│   ├── CODING_STANDARDS.md     # Code style conventions
-│   └── workflows/              # Automation workflows
+├── .agent/                      # 🤖 Dokumentasi AI Agent & Workflows
+│   ├── rules/                   # Aturan dan guidelines untuk AI
+│   ├── workflows/               # Workflow automasi
+│   ├── AI_AGENT_GUIDE.md        # Panduan lengkap untuk AI assistants
+│   ├── PROJECT_OVERVIEW.md      # Overview arsitektur sistem
+│   ├── SECURITY_GUIDELINES.md   # Best practices keamanan
+│   └── CODING_STANDARDS.md      # Standar dan konvensi kode
 │
-├── js/                         # 📦 JavaScript modules
-│   ├── config.js              # ⚙️ Constants & configuration
-│   ├── validators.js          # 🛡️ Validation & sanitization
-│   ├── storage.js             # 💾 localStorage wrapper (dengan validation)
-│   ├── app.js                 # 🎮 Main application controller
-│   ├── prayer-times.js        # 🕌 Prayer times API integration
-│   ├── hijri-calendar.js      # 📅 Hijri calendar logic
-│   ├── tracker.js             # 📊 Fasting tracker & statistics
-│   ├── utils.js               # 🔧 Helper functions
-│   └── main.js                # 🚪 Entry point
+├── js/                          # 📦 JavaScript Modules (ES6)
+│   ├── config.js                # ⚙️  Konfigurasi dan konstanta global
+│   ├── validators.js            # 🛡️  Validasi dan sanitasi data (security layer)
+│   ├── storage.js               # 💾  localStorage wrapper dengan auto-validation
+│   ├── app.js                   # 🎮  Main application controller & lifecycle
+│   ├── prayer-times.js          # 🕌  Integrasi Aladhan API untuk jadwal shalat
+│   ├── hijri-calendar.js        # 📅  Logika kalender Hijriyah & konversi
+│   ├── hijri-calculator.js      # 🧮  Kalkulasi Hijri lokal (progressive loading)
+│   ├── tracker.js               # 📊  Tracker puasa dengan statistik
+│   ├── utils.js                 # 🔧  Helper functions & utilities
+│   ├── request-queue.js         # 🚦  Queue management untuk API requests
+│   └── main.js                  # 🚪  Entry point aplikasi
 │
-├── css/                        # 🎨 Stylesheets
-│   ├── style.css              # Main styles
-│   └── components.css         # Component styles
+├── css/                         # 🎨 Stylesheets
+│   ├── style.css                # Main stylesheet
+│   └── components.css           # Component-specific styles
 │
-├── assets/                     # 🖼️ Images & static files
-├── plan/                       # 📋 Planning & documentation
-│   ├── code-review-report.md
-│   └── implementation-summary.md
+├── assets/                      # 🖼️  Images & static files
 │
-├── *.html                      # 📄 HTML pages
-├── package.json
-├── vite.config.js
-└── README.md                   # 📖 This file
+├── plan/                        # 📋  Planning docs & implementation notes
+│   ├── code-review-report.md    # Laporan security audit
+│   ├── implementation-summary.md # Ringkasan implementasi
+│   └── ... (dokumen planning lainnya)
+│
+├── dist/                        # 📦  Production build output (generated)
+│
+├── *.html                       # 📄  HTML Pages
+│   ├── index.html               # Dashboard / Home page
+│   ├── jadwal-shalat.html       # Prayer times page
+│   ├── kalender.html            # Hijri calendar page
+│   ├── tracker.html             # Fasting tracker page
+│   ├── panduan.html             # Islamic guide page
+│   └── pengaturan.html          # Settings page
+│
+├── package.json                 # 📦  npm configuration
+├── vite.config.js               # ⚡  Vite configuration
+└── README.md                    # 📖  Dokumentasi ini
+
 ```
+
+### Penjelasan File Penting
+
+| File | Ukuran | Deskripsi |
+|------|--------|-----------|
+| `js/app.js` | ~16 KB | Controller utama yang mengkoordinasikan semua modules |
+| `js/validators.js` | ~11 KB | Security layer dengan validasi schema lengkap |
+| `js/hijri-calendar.js` | ~13 KB | Logika kalender Hijriyah dengan progressive loading |
+| `js/prayer-times.js` | ~11 KB | Integrasi API dengan caching & error handling |
+| `js/utils.js` | ~10 KB | Helper functions untuk formatting, timezone, dll |
+| `js/tracker.js` | ~10 KB | Manajemen data puasa dengan statistik |
+| `js/storage.js` | ~6 KB | localStorage wrapper dengan validation otomatis |
 
 ---
 
-## 🧩 Architecture
+## 🧩 Arsitektur Sistem
 
-### Modular Design
+### Desain Modular
 
-Aplikasi menggunakan **ES6 Modules** dengan separation of concerns:
+Aplikasi menggunakan **ES6 Modules** dengan prinsip **Separation of Concerns** dan **Single Responsibility**:
 
 ```javascript
-// Dependency flow
+// Dependency Flow (Hierarki Module)
 main.js
-  └─> app.js (coordinator)
-       ├─> config.js (constants)
-       ├─> validators.js (validation)
-       ├─> storage.js (localStorage wrapper)
-       ├─> prayer-times.js (API integration)
-       ├─> hijri-calendar.js (calendar logic)
-       ├─> tracker.js (fasting data)
-       └─> utils.js (helpers)
+  └─▶ app.js (Application Controller)
+       ├─▶ config.js       (Global constants & configuration)
+       ├─▶ validators.js   (Input validation & sanitization)
+       ├─▶ storage.js      (localStorage dengan auto-validation)
+       ├─▶ prayer-times.js (Aladhan API integration)
+       ├─▶ hijri-calendar.js (Kalender Hijriyah logic)
+       ├─▶ hijri-calculator.js (Local Hijri calculation)
+       ├─▶ tracker.js      (Fasting data management)
+       ├─▶ request-queue.js (API request queuing)
+       └─▶ utils.js        (Helper utilities)
 ```
 
-### Key Modules
+### Key Modules & Tanggung Jawabnya
 
-| Module | Purpose | Key Features |
-|--------|---------|--------------|
-| **config.js** | Centralized constants | No magic numbers, all config in one place |
-| **validators.js** | Security layer | Schema validation, sanitization, prototype pollution prevention |
-| **storage.js** | Data persistence | localStorage wrapper with automatic validation |
-| **app.js** | Application controller | Coordinates all modules, manages lifecycle |
-| **prayer-times.js** | Prayer times | API integration with caching & validation |
-| **hijri-calendar.js** | Hijri calendar | Date conversion & Ayyamul Bidh calculation |
-| **tracker.js** | Fasting data | Statistics, streaks, import/export |
-| **utils.js** | Utilities | Date formatting, toast notifications, helpers |
+| Module | Purpose | Key Features | Dependencies |
+|--------|---------|--------------|--------------|
+| **config.js** | Konfigurasi terpusat | Constants, API endpoints, validation rules | - |
+| **validators.js** | Security layer | Schema validation, sanitization, prototype pollution prevention | config.js |
+| **storage.js** | Data persistence | localStorage wrapper dengan auto-validation | validators.js, config.js |
+| **app.js** | Application controller | Lifecycle management, koordinasi modules, event handling | Semua modules |
+| **prayer-times.js** | Prayer times API | Aladhan API integration, caching, error handling | validators.js, storage.js, request-queue.js |
+| **hijri-calendar.js** | Hijri calendar | Date conversion, Ayyamul Bidh calculation, progressive loading | hijri-calculator.js, prayer-times.js, validators.js |
+| **hijri-calculator.js** | Local Hijri calc | Offline Hijri calculation untuk initial load | - |
+| **tracker.js** | Fasting tracker | Data management, statistics, import/export | storage.js, validators.js |
+| **utils.js** | Utilities | Date formatting, timezone detection, toast, helpers | config.js |
+| **request-queue.js** | API queue | Rate limiting, request queuing untuk API calls | - |
 
----
+### Data Flow Pattern
 
-## 🔒 Security
-
-### Security Score: **8.5/10** 🎯
-
-Aplikasi menerapkan **security-first approach** dengan multiple layers of protection:
-
-#### ✅ Implemented Protections
-
-1. **XSS Prevention**
-   - Input sanitization via `Validators.sanitizeString()`
-   - Safe DOM manipulation (textContent, createElement)
-   - No innerHTML with dynamic data
-
-2. **Prototype Pollution Prevention**
-   - Deep cloning with filtering (`__proto__`, `constructor`)
-   - Validation sebelum object assignment
-   - Safe import/export functions
-
-3. **localStorage Injection Prevention**
-   - Automatic schema validation on read
-   - Type-specific validators (config, fasting, cache)
-   - Integrity checking
-
-4. **API Response Validation**
-   - Schema validation untuk semua API responses
-   - Type checking dan range validation
-   - Sanitization before display
-
-5. **Input Sanitization**
-   - HTML escaping untuk user input
-   - URL encoding untuk API requests
-   - Coordinate validation
-
-#### 📋 Security Audit (2025-11-25)
-
-| Vulnerability Type | Status | Fix |
-|-------------------|--------|-----|
-| XSS | ✅ FIXED | textContent usage, sanitization |
-| Prototype Pollution | ✅ FIXED | Deep cloning with validation |
-| localStorage Injection | ✅ FIXED | Schema validation on read |
-| Unvalidated API Data | ✅ FIXED | validators.js module |
-| Debug Code in Production | ✅ FIXED | Conditional window.app |
-
-**Details**: See `plan/code-review-report.md` and `plan/implementation-summary.md`
-
-### Design Principles
-- **Mobile-first** - Responsive dari smartphone sampai desktop
-- **Accessible** - Semantic HTML, ARIA labels, keyboard navigation
-- **Fast** - Cached data, minimal API calls, optimized
-- **Clean** - Modern, minimalist, Islamic aesthetic
-
-### Color Palette
-- Primary: Emerald Green (#10b981)
-- Accent: Teal (#14b8a6)
-- Background: Light gray (#f9fafb)
-- Text: Dark gray (#1f2937)
-
-### Typography
-- Latin: **Inter** (Google Fonts)
-- Arabic: **Amiri** (Google Fonts)
-
----
-
-## 📱 Features Lengkap
-
-### 1. 🏠 Dashboard
-- **Tanggal Dual Calendar**: Tanggal Hijriyah & Masehi hari ini dengan auto-update
-- **Countdown Ayyamul Bidh**: Hitung mundur dinamis ke puasa berikutnya (13, 14, 15 Hijriyah)
-- **Waktu Shalat Hari Ini**: 
-  - **Jam Real-Time**: Menampilkan HH:MM:SS yang update setiap detik ⏰
-  - **Timezone Auto-Detect**: WIB/WITA/WIT berdasarkan lokasi sistem
-  - Countdown ke shalat berikutnya dengan teks "Akan tiba dalam X menit"
-  - Grid 6 waktu shalat dengan highlight waktu aktif
-- **Statistik Visual**: 
-  - Progress puasa bulan ini (X/3 hari)
-  - Total tahun ini (X/36 hari)
-  - Streak bulan berturut-turut
-- **Quick Actions**: Tombol akses cepat ke semua halaman
-
-### 2. 🕌 Jadwal Shalat
-- **Real-Time Clock Display**: 
-  - Clock digital dengan update setiap detik
-  - Timezone auto-detection (WIB/WITA/WIT)
-  - Desain modern dengan gradient biru muda
-- **7 Waktu Lengkap**: Imsak, Subuh, Syuruq, Dzuhur, Ashar, Maghrib, Isya
-- **Countdown Real-Time**: Hitung mundur ke shalat berikutnya dengan teks yang lebih jelas
-- **Visual Highlight**: Card khusus untuk shalat berikutnya
-- **Tabel Jadwal Bulanan**: Jadwal lengkap 30 hari dengan scroll horizontal
-- **Location-Based**: Kalkulasi akurat berdasarkan koordinat GPS atau kota
-
-### 3. 📅 Kalender Hijriyah
-- **Konversi Tanggal**: 
-  - Gregorian → Hijri
-  - Hijri → Gregorian
-- **Visual Kalender**: 
-  - Grid kalender interaktif
-  - Highlight khusus untuk tanggal 13, 14, 15 (Ayyamul Bidh)
-  - Penanda hari ini
-- **Navigasi Mudah**: 
-  - Prev/Next month
-  - Jump to specific month/year
-- **Info Detail**: Klik tanggal untuk info lebih lengkap
-
-### 4. 📊 Tracker Puasa
-- **Check/Uncheck Interface**: Mark hari puasa dengan satu klik
-- **Statistik Multi-Level**:
-  - **Per Bulan**: Progress 3 hari target (dengan persentase)
-  - **Per Tahun**: Progress 36 hari target (dengan persentase)
-  - **Streak**: Berapa bulan berturut-turut lengkap (3/3 hari)
-- **History Lengkap**: 
-  - List semua hari puasa yang sudah dijalankan
-  - Filter per bulan/tahun
-  - Sortir berdasarkan tanggal
-- **Data Export/Import**: 
-  - Format JSON untuk portabilitas
-  - Backup otomatis sebelum import
-  - Validasi data integrity
-
-### 5. 📖 Panduan
-- **Dalil & Hadits**: 
-  - Keutamaan puasa Ayyamul Bidh
-  - Hadits shahih dengan sanad
-  - Penjelasan konteks
-- **Doa-Doa**: 
-  - Doa berbuka puasa (Arab + Latin + Terjemah)
-  - Doa sahur (Arab + Latin + Terjemah)
-  - Niat puasa sunnah
-- **FAQ Lengkap**: 
-  - Apa itu Ayyamul Bidh?
-  - Bolehkah puasa jika ada yang terlewat?
-  - Tips untuk konsisten
-  - Dan 10+ pertanyaan lainnya
-- **Tips Praktis**: Panduan menjalankan puasa dengan mudah
-
-### 6. ⚙️ Pengaturan
-- **Location Management**:
-  - Auto-detect via GPS (dengan permission request)
-  - Manual input: City + Country
-  - Save preferences ke localStorage
-- **Calculation Method** (7 pilihan):
-  - Kementerian Agama RI (Default) ⭐
-  - Muslim World League (MWL)
-  - Islamic Society of North America (ISNA)
-  - Egyptian General Authority of Survey
-  - Umm Al-Qura University, Makkah
-  - University of Islamic Sciences, Karachi
-  - Institute of Geophysics, Tehran
-- **Data Management**:
-  - **Export**: Download semua data sebagai JSON
-  - **Import**: Upload backup file dengan validasi
-  - **Reset**: Hapus semua data dengan konfirmasi ganda
-- **Privacy Note**: Semua data tersimpan di browser, tidak ada server
-
----
-
-## 🌐 Browser Support
-
-| Browser | Version | Status |
-|---------|---------|--------|
-| Chrome/Edge | Latest | ✅ Fully supported |
-| Firefox | Latest | ✅ Fully supported |
-| Safari | Latest | ✅ Fully supported |
-| Opera | Latest | ✅ Fully supported |
-| Mobile Safari | iOS 12+ | ✅ Supported |
-| Chrome Mobile | Latest | ✅ Supported |
-
-**Catatan**: Geolocation memerlukan HTTPS atau localhost.
-
----
-
-## 🔧 Configuration
-
-### Prayer Calculation Methods
-
-Pilih pada halaman Pengaturan:
-
-- **Kementerian Agama RI** (Default - Indonesia) ✅
-- Muslim World League (MWL)
-- Islamic Society of North America (ISNA)
-- Egyptian General Authority of Survey
-- Umm Al-Qura University, Makkah
-- University of Islamic Sciences, Karachi
-- Institute of Geophysics, University of Tehran
-
-### Data Management
-
-**Export:**
-```javascript
-// Download data dalam format JSON
-{
-  "puasa_ayyamul_bidh": { ... },
-  "app_config": { ... },
-  "exported_at": "2025-11-25T10:00:00.000Z"
-}
+```mermaid
+graph TB
+    User[👤 User Interaction] --> UI[🖥️ HTML Pages]
+    UI --> App[🎮 app.js Controller]
+    
+    App --> PT[🕌 prayer-times.js]
+    App --> HC[📅 hijri-calendar.js]
+    App --> TR[📊 tracker.js]
+    
+    PT --> API1[🌐 Aladhan API]
+    HC --> API1
+    HC --> CALC[🧮 hijri-calculator.js]
+    
+    PT --> Cache[💾 storage.js]
+    HC --> Cache
+    TR --> Cache
+    
+    Cache --> LS[📦 localStorage]
+    
+    PT --> VAL[🛡️ validators.js]
+    HC --> VAL
+    TR --> VAL
+    Cache --> VAL
+    
+    VAL --> CFG[⚙️ config.js]
+    
+    style App fill:#10b981
+    style VAL fill:#ef4444
+    style Cache fill:#3b82f6
 ```
 
-**Import:**
-- Upload file JSON hasil export
-- Data divalidasi sebelum di-import
-- Backup data lama otomatis
+### Security Architecture
+
+Aplikasi menerapkan **Defense in Depth** dengan multiple security layers:
+
+1. **Input Layer** → `validators.js` - Validasi & sanitasi semua input
+2. **Storage Layer** → `storage.js` - Auto-validation pada read/write localStorage
+3. **API Layer** → `prayer-times.js` - Validasi response sebelum digunakan
+4. **Presentation Layer** → Safe DOM manipulation (textContent, createElement)
+
+
 
 ---
 
-## 👨‍💻 Development
+## 🔒 Keamanan & Kualitas
 
-### Setup Development
+### 🛡️ Skor Keamanan: **8.5/10**
+
+Aplikasi ini dibangun dengan pendekatan **security-first** menggunakan multiple layers of protection:
+
+#### Proteksi Keamanan yang Diterapkan
+
+| Layer | Proteksi | Implementasi |
+|-------|----------|-------------|
+| **Input** | XSS Prevention | Sanitasi input via `Validators.sanitizeString()`, safe DOM manipulation |
+| **Storage** | localStorage Injection Prevention | Auto-validation pada semua read/write operations |
+| **API** | Response Validation | Schema validation untuk semua API responses |
+| **Object** | Prototype Pollution Prevention | Deep cloning dengan filtering `__proto__`, `constructor`, dll |
+| **Display** | Safe Rendering | Hanya gunakan `textContent`, `createElement` - NO `innerHTML` |
+
+#### 📋 Hasil Security Audit (November 2025)
+
+✅ **Semua critical vulnerabilities telah diperbaiki:**
+- XSS (Cross-Site Scripting) 
+- Prototype Pollution
+- localStorage Injection
+- Unvalidated API Data
+- Debug Code Leakage
+
+📄 **Detail lengkap**: Lihat `plan/code-review-report.md` dan `plan/implementation-summary.md`
+
+---
+
+## 🎨 Desain & UX
+
+### Prinsip Desain
+
+- **📱 Mobile-First**: Responsive dari smartphone hingga desktop
+- **♿ Accessible**: Semantic HTML, ARIA labels, keyboard navigation support
+- **⚡ Performance**: Caching optimal, minimal API calls, lazy loading
+- **🎯 Clean & Simple**: Interface modern, minimalis dengan estetika Islami
+
+### Palet Warna
+
+| Fungsi | Warna | Hex Code |
+|--------|-------|----------|
+| Primary | Emerald Green | `#10b981` |
+| Accent | Teal | `#14b8a6` |
+| Background | Light Gray | `#f9fafb` |
+| Text | Dark Gray | `#1f2937` |
+
+### Tipografi
+
+- **Latin**: Inter (Google Fonts) - modern sans-serif
+- **Arabic**: Amiri (Google Fonts) - traditional Arabic font
+
+---
+
+## 📱 Penjelasan Detail Fitur
+
+Berikut adalah penjelasan lengkap untuk setiap halaman dan fitur dalam aplikasi:
+
+### 1. 🏠 Halaman Dashboard (Beranda)
+
+**Informasi Real-Time:**
+- Tanggal Hijriyah dan Masehi hari ini dengan auto-update
+- Jam digital yang update setiap detik dengan zona waktu Indonesia (WIB/WITA/WIT)
+- Countdown dinamis ke periode Ayyamul Bidh berikutnya
+
+**Ringkasan Waktu Shalat:**
+- Grid 6 waktu shalat hari ini (Subuh, Dzuhur, Ashar, Maghrib, Isya, Imsak)
+- Countdown ke shalat berikutnya dengan format "Akan tiba dalam X menit"
+- Highlight otomatis untuk shalat yang sedang berlangsung
+
+**Statistik Puasa:**
+- Progress bulan ini (contoh: 2/3 hari)
+- Total puasa tahun ini (contoh: 24/36 hari)
+- Streak: berapa bulan berturut-turut menyelesaikan 3 hari puasa
+
+**Akses Cepat:**
+- Tombol navigasi ke semua halaman utama
+
+### 2. 🕌 Halaman Jadwal Shalat
+
+**Display Waktu:**
+- Jam digital real-time (HH:MM:SS) dengan zona waktu otomatis
+- 7 waktu shalat lengkap: Imsak, Subuh, Terbit, Dzuhur, Ashar, Maghrib, Isya
+- Countdown real-time ke shalat berikutnya
+
+**Jadwal Bulanan:**
+- Tabel jadwal lengkap untuk 30 hari ke depan
+- Scroll horizontal untuk kemudahan navigasi
+
+**Akurasi:**
+- Berbasis koordinat GPS atau input manual kota
+- Mendukung 7 metode kalkulasi internasional
+
+### 3. 📅 Halaman Kalender Hijriyah
+
+**Konversi Tanggal:**
+- Gregorian (Masehi) → Hijri (Komariyah)
+- Hijri (Komariyah) → Gregorian (Masehi)
+
+**Tampilan Kalender:**
+- Grid visual dengan highlight tanggal Ayyamul Bidh (13, 14, 15)
+- Integrasi dengan tracker - menampilkan tanggal yang sudah berpuasa
+- Penanda hari ini
+
+**Navigasi:**
+- Tombol Prev/Next untuk berpindah bulan
+- Tombol "Hari Ini" untuk kembali ke bulan sekarang
+- Jadwal 3 bulan ke depan untuk Ayyamul Bidh
+
+### 4. 📊 Halaman Tracker Puasa
+
+**Pencatatan:**
+- Checkbox untuk mark/unmark hari puasa
+- Interface sederhana dan intuitif
+
+**Analitik:**
+- **Bulanan**: Progress dari target 3 hari (dengan bar chart)
+- **Tahunan**: Progress dari target 36 hari (dengan persentase)
+- **Streak**: Tracking konsistensi (berapa bulan berturut-turut lengkap)
+
+**Riwayat:**
+- Accordion per bulan dengan status: Lengkap (3/3), Sebagian (1-2/3), Kosong
+- Filter dan sorting berdasarkan tanggal
+
+**Backup & Restore:**
+- Export: Download data ke file JSON
+- Import: Upload file backup dengan validasi integrity
+- Backup otomatis sebelum import untuk keamanan
+
+### 5. 📖 Halaman Panduan Islami
+
+**Dalil & Hadits:**
+- Hadits shahih tentang keutamaan puasa Ayyamul Bidh
+- Sanad dan penjelasan konteks
+
+**Doa-Doa:**
+- Doa berbuka puasa (Arab, Latin, Terjemahan Indonesia)
+- Doa sahur (Arab, Latin, Terjemahan Indonesia)
+- Niat puasa sunnah
+
+**Tanya Jawab (FAQ):**
+- 10+ pertanyaan umum dan jawabannya
+- Hukum, tata cara, dan tips praktis
+
+### 6. ⚙️ Halaman Pengaturan
+
+**Manajemen Lokasi:**
+- Auto-detect menggunakan GPS browser (dengan izin pengguna)
+- Input manual: Nama Kota + Negara
+- Simpan preferensi untuk penggunaan berikutnya
+
+**Metode Kalkulasi Shalat:**
+1. Kementerian Agama RI (Default - Indonesia) ⭐
+2. Muslim World League (MWL)
+3. Islamic Society of North America (ISNA)
+4. Egyptian General Authority of Survey
+5. Umm Al-Qura University, Mekkah
+6. University of Islamic Sciences, Karachi
+7. Institute of Geophysics, University of Tehran
+
+**Manajemen Data:**
+- **Export**: Unduh semua data dalam format JSON
+- **Import**: Restore dari file backup dengan validasi
+- **Reset**: Hapus semua data (konfirmasi ganda untuk mencegah kesalahan)
+
+**Privasi:**
+- Semua data tersimpan lokal di browser Anda (localStorage)
+- Tidak ada pengiriman data ke server eksternal
+- Data hanya bisa diakses oleh Anda
+
+---
+
+## 🌐 Dukungan Browser
+
+| Browser | Versi Minimum | Status |
+|---------|---------------|--------|
+| Chrome / Edge | Terbaru | ✅ Didukung penuh |
+| Firefox | Terbaru | ✅ Didukung penuh |
+| Safari | Terbaru | ✅ Didukung penuh |
+| Opera | Terbaru | ✅ Didukung penuh |
+| Mobile Safari | iOS 12+ | ✅ Didukung |
+| Chrome Mobile | Android 5+ | ✅ Didukung |
+
+> **⚠️ Catatan Penting**: Fitur Geolocation (GPS) memerlukan koneksi HTTPS atau localhost untuk alasan keamanan.
+
+---
+
+## 👨‍💻 Panduan Development
+
+### Setup Cepat
+
 ```bash
-# Clone repo
+# 1. Clone repository
 git clone https://github.com/yourusername/puasa-ayyamul-bidh.git
 cd puasa-ayyamul-bidh
 
-# Install dev dependencies  
+# 2. Install dev dependencies
 npm install
 
-# Run dev server
+# 3. Jalankan development server
 npm run dev
-# atau
+# Atau gunakan alternatif:
 npm run serve
 ```
 
-### Code Guidelines
+### Coding Guidelines
 
-Lihat dokumentasi lengkap di `.agent/` folder:
-- `AI_AGENT_GUIDE.md` - Quick reference
-- `CODING_STANDARDS.md` - Style guide
-- `SECURITY_GUIDELINES.md` - Security patterns
+**Dokumentasi lengkap** tersedia di folder `.agent/`:
 
-**Quick Rules:**
-- ✅ Use `Config` constants (no magic numbers)
-- ✅ Validate all external data
-- ✅ Sanitize user input
-- ✅ Use `Storage` module (not direct localStorage)
-- ✅ Add JSDoc comments
-- ✅ Handle errors properly
+- `AI_AGENT_GUIDE.md` - Panduan comprehensive untuk AI assistants
+- `CODING_STANDARDS.md` - Style guide dan konvensi kode
+- `SECURITY_GUIDELINES.md` - Security patterns dan best practices
+- `PROJECT_OVERVIEW.md` - Arsitektur sistem
+
+**Rules Penting (Quick Reference):**
+
+✅ **DO:**
+- Gunakan konstanta dari `Config` (hindari magic numbers)
+- Validasi **semua** data eksternal (API, localStorage, user input)
+- Sanitasi input user sebelum digunakan
+- Gunakan `Storage` module, **bukan** direct `localStorage`
+- Tambahkan JSDoc comments untuk fungsi public
+- Handle errors dengan proper error messages
+
+❌ **DON'T:**
+- Jangan gunakan `innerHTML` dengan dynamic data
+- Jangan simpan data sensitif ke localStorage
+- Jangan skip validation, meskipun data dari trusted source
 
 ### Testing
 
 **Manual Testing:**
 ```bash
 npm run dev
-# Test features di browser
+# Buka browser, test semua fitur
 ```
 
 **Security Testing:**
-- XSS: Try injecting `<script>alert('XSS')</script>`
-- localStorage: Manually edit via DevTools
-- API: Test dengan invalid responses
+- Test XSS: Coba inject `<script>alert('XSS')</script>` pada input
+- Test localStorage: Edit manual via DevTools, pastikan validation bekerja
+- Test API: Simulasikan invalid responses
 
-**Future**: Unit tests, integration tests, E2E tests
+**Roadmap**: Unit tests dengan Jest, E2E tests dengan Playwright
 
 ---
 
-## 📝 API Reference
+---
 
-### Aladhan API Endpoints Used
+## 📝 Referensi API
 
-```javascript
-// Prayer times by city
-GET /v1/timingsByCity/{date}?city={city}&country={country}&method={method}
+### Aladhan API Endpoints
 
-// Prayer times by coordinates
-GET /v1/timings/{date}?latitude={lat}&longitude={lon}&method={method}
+Aplikasi menggunakan endpoints berikut dari [Aladhan API](https://aladhan.com/prayer-times-api):
 
-// Hijri calendar conversion
-GET /v1/gToH/{date}  // Gregorian to Hijri
-GET /v1/hToG/{date}  // Hijri to Gregorian
+```http
+# Waktu shalat berdasarkan kota
+GET /v1/timingsByCity/{date}
+    ?city={city}
+    &country={country}
+    &method={method}
 
-// Monthly calendar
-GET /v1/calendarByCity/{year}/{month}?city={city}&country={country}
+# Waktu shalat berdasarkan koordinat GPS
+GET /v1/timings/{date}
+    ?latitude={lat}
+    &longitude={lon}
+    &method={method}
+
+# Konversi tanggal: Gregorian → Hijri
+GET /v1/gToH/{date}
+
+# Konversi tanggal: Hijri → Gregorian
+GET /v1/hToG/{date}
+
+# Kalender bulanan
+GET /v1/calendarByCity/{year}/{month}
+    ?city={city}
+    &country={country}
 ```
 
-**Rate Limiting**: Be mindful (caching implemented)
+**Parameter `method` (Metode Kalkulasi):**
+- `20` = Kementerian Agama RI (Default)
+- `3` = Muslim World League (MWL)
+- `2` = Islamic Society of North America (ISNA)
+- `5` = Egyptian General Authority
+- `4` = Umm Al-Qura University
+- `1` = University of Islamic Sciences, Karachi
+- `7` = Institute of Geophysics, Tehran
+
+> **Note**: Aplikasi mengimplementasikan caching untuk mengurangi API calls dan meningkatkan performa.
 
 ---
 
-## 🐛 Known Issues & Limitations
+---
 
-- [x] ~~Calendar page belum diimplementasi~~ ✅ **Completed!**
-- [x] ~~Tracker page perlu visualisasi chart~~ ✅ **Completed!**
-- [ ] Notifikasi browser belum ada
-- [ ] PWA support belum ada
-- [ ] Multi-language belum ada (saat ini 100% Bahasa Indonesia)
+## 🐛 Known Issues & Future Improvements
 
-**See**: Issues tracker on GitHub
+### ✅ Completed Features
+- ✅ Kalender Hijriyah interaktif dengan progressive loading
+- ✅ Tracker puasa dengan visualisasi chart dan statistik lengkap
+- ✅ Real-time clock dengan timezone auto-detection
+- ✅ Responsive menu untuk desktop dan mobile
+- ✅ Lokalisasi 100% Bahasa Indonesia
+
+### 🚧 Planned Features (Roadmap)
+- [ ] **Browser Notifications** - Notifikasi untuk mengingatkan jadwal shalat
+- [ ] **PWA Support** - Progressive Web App untuk install di home screen
+- [ ] **Dark Mode** - Tema gelap untuk kenyamanan mata
+- [ ] **Multi-language** - Dukungan bahasa Inggris dan Arab
+- [ ] **Automated Tests** - Unit tests, integration tests, E2E tests
+
+📋 **Lihat lebih lengkap**: [GitHub Issues](https://github.com/yourusername/puasa-ayyamul-bidh/issues)
 
 ---
 
-## 🆕 Update Terkini (2025-11-26)
+## 🆕 Update Terkini
 
-### ✨ Fitur Baru & Peningkatan
+### Versi 1.0.0 (Desember 2025)
 
-1.  **Jam Digital & Zona Waktu Otomatis** ⏰
-    -   Menambahkan jam digital real-time (HH:MM:SS) pada dashboard dan halaman jadwal shalat.
-    -   Deteksi otomatis zona waktu Indonesia (WIB/WITA/WIT) berdasarkan offset sistem.
-    -   Perbaikan format hitung mundur menjadi lebih natural ("Akan tiba dalam X menit").
+**🎉 Fitur-Fitur Utama yang Telah Diimplementasikan:**
 
-2.  **Perbaikan Responsivitas Menu** 📱
-    -   Optimasi tampilan menu navigasi untuk perangkat mobile.
-    -   Perbaikan layout dan alignment ikon pada tampilan desktop.
-    -   Peningkatan aksesibilitas tombol navigasi.
+1. **⏰ Jam Real-Time & Zona Waktu**
+   - Jam digital (HH:MM:SS) yang update setiap detik
+   - Auto-detection zona waktu Indonesia (WIB/WITA/WIT)
+   - Countdown "Akan tiba dalam X menit" untuk shalat berikutnya
 
-3.  **Lokalisasi Lengkap ke Bahasa Indonesia** 🇮🇩
-    -   Mengubah semua teks tampilan dari Bahasa Inggris ke Bahasa Indonesia.
-    -   Perubahan mencakup:
-        - "Dashboard" → "Beranda" di semua halaman
-        - "Loading..." → "Memuat..." 
-        - "Complete/Partial" → "Lengkap/Sebagian"
-        - "Export/Import" → "Ekspor/Impor"
-    -   Aplikasi sekarang 100% Bahasa Indonesia untuk UI.
+2. **📅 Kalender Hijriyah Interaktif**
+   - Grid kalender visual dengan highlight Ayyamul Bidh
+   - Progressive loading (load lokal dulu, kemudian upgrade dengan API)
+   - Integrasi dengan tracker puasa
+   - Jadwal 3 bulan ke depan
 
-4.  **Implementasi Kalender Hijriyah Interaktif** 📅
-    -   Kalender visual dengan highlight Ayyamul Bidh (13, 14, 15).
-    -   Navigasi mudah antar bulan (Prev/Next/Today).
-    -   Integrasi dengan tracker untuk menampilkan hari yang sudah puasa.
-    -   Jadwal 3 bulan ke depan untuk Ayyamul Bidh.
+3. **📊 Tracker Puasa Lengkap**
+   - Checkbox interface yang simple
+   - Statistik bulanan, tahunan, dan streak
+   - Visual bar chart untuk progress
+   - History accordion dengan status lengkap
+   - Export/Import dengan validasi
 
-5.  **Tracker Puasa Lengkap** 📊
-    -   Checkbox interface untuk mark/unmark hari puasa.
-    -   Statistik komprehensif: bulanan, tahunan, dan streak.
-    -   Visual chart monthly progress.
-    -   History accordion dengan status lengkap/sebagian/kosong.
+4. **🕌 Jadwal Shalat Komprehensif**
+   - 7 waktu shalat (Imsak, Subuh, Terbit, Dzuhur, Ashar, Maghrib, Isya)
+   - Tabel jadwal bulanan 30 hari
+   - Location-based dengan GPS atau manual
 
-6.  **Update Footer** 👨‍💻
-    -   Footer sekarang menampilkan "Dikembangkan oleh **Gulajava Ministudio**".
+5. **🇮🇩 Lokalisasi Penuh**
+   - 100% Bahasa Indonesia di seluruh UI
+   - Tidak ada lagi teks Inggris yang tersisa
 
-### 🐛 Bug Fixes
+6. **📱 Responsivitas**
+   - Mobile-first design
+   - Hamburger menu yang mudah diakses
+   - Layout optimal untuk semua ukuran layar
 
-1.  **Fix Parse Error Waktu Shalat**
-    -   Memperbaiki parser waktu yang gagal dengan format "04:32 (WIB)".
-    -   Validator sekarang menghapus timezone suffix otomatis.
+7. **🛡️ Keamanan**
+   - XSS prevention dengan input sanitization
+   - Prototype pollution protection
+   - localStorage validation
+   - API response validation
 
-2.  **Fix Process Environment Error**
-    -   Mengganti `process.env` dengan `import.meta.env` untuk kompatibilitas browser.
-    -   Menghilangkan error "process is not defined" di console.
+**🐛 Bug Fixes:**
+- ✅ Parse error waktu shalat dengan format "04:32 (WIB)"
+- ✅ `process.env` error diganti dengan `import.meta.env`
+- ✅ Footer credit updated ke "Gulajava Ministudio"
 
----
-
-## 🗺️ Roadmap
-
-### v1.1 (Q1 2026)
-- [ ] Kalender page dengan visual interaktif
-- [ ] Tracker charts (dengan Chart.js)
-- [ ] Browser notifications
-- [ ] Dark mode toggle
-
-### v2.0 (Q2 2026)
-- [ ] PWA support (offline-first)
-- [ ] Multi-language (EN, AR)
-- [ ] Social sharing
-- [ ] Automated tests
-
-### v3.0 (Future)
-- [ ] Mobile apps (React Native)
-- [ ] Backend sync (optional)
-- [ ] Community features
+**📄 Detail lengkap**: Lihat `plan/implementation-summary.md`
 
 ---
 
-## 🤝 Contributing
+---
 
-Contributions are welcome! Please:
+## 🗺️ Roadmap Pengembangan
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Follow coding standards (see `.agent/CODING_STANDARDS.md`)
-4. Ensure security guidelines (see `.agent/SECURITY_GUIDELINES.md`)
-5. Commit changes (`git commit -m 'Add AmazingFeature'`)
-6. Push to branch (`git push origin feature/AmazingFeature`)
-7. Open Pull Request
+### v1.1 - Peningkatan UX (Q1 2026)
+- [ ] **Browser Notifications** - Notifikasi push untuk waktu shalat
+- [ ] **Dark Mode** - Toggle tema gelap untuk kenyamanan mata
+- [ ] **Offline Mode Enhancement** - Service Worker untuk pengalaman offline lebih baik
+- [ ] **Performance Optimization** - Code splitting dan lazy loading
 
-**Before PR:**
-- [ ] Code follows standards
-- [ ] Security review passed
-- [ ] Manual testing done
-- [ ] No console.log / debug code
+### v2.0 - Ekspansi Fitur (Q2 2026)
+- [ ] **PWA Full Support** - Install ke home screen, fully offline-capable
+- [ ] **Multi-language** - Interface dalam Bahasa Inggris dan Arab
+- [ ] **Social Sharing** - Share progress puasa ke social media
+- [ ] **Reminders & Alerts** - Customizable reminders untuk puasa
+- [ ] **Automated Testing** - Unit tests, integration tests, E2E tests
+
+### v3.0 - Ekosistem (Future)
+- [ ] **Mobile Apps** - Native apps dengan React Native / Flutter
+- [ ] **Backend Sync** - Optional cloud backup dan sync antar device
+- [ ] **Community Features** - Leaderboard, challenges, dan group fasting tracker
+- [ ] **Widget Support** - Desktop dan mobile widgets
+
+**💡 Have ideas?** Submit feature requests di [GitHub Issues](https://github.com/yourusername/puasa-ayyamul-bidh/issues)
 
 ---
 
-## 📄 License
+## 🤝 Kontribusi
 
-Open source dan gratis untuk digunakan. Dibuat untuk kepentingan umum umat Muslim.
+Kami sangat menghargai kontribusi dari komunitas! Berikut cara berkontribusi:
+
+### Langkah-langkah Kontribusi
+
+1. **Fork** repository ini
+2. **Clone** fork Anda ke lokal:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/puasa-ayyamul-bidh.git
+   ```
+3. **Create branch** untuk fitur Anda:
+   ```bash
+   git checkout -b feature/FiturAmazingAnda
+   ```
+4. **Baca dokumentasi** di `.agent/` folder:
+   - `CODING_STANDARDS.md` - Panduan style code
+   - `SECURITY_GUIDELINES.md` - Panduan keamanan
+5. **Develop & Test** - Kembangkan fitur dan test secara menyeluruh
+6. **Commit** dengan pesan yang jelas:
+   ```bash
+   git commit -m "feat: menambahkan fitur amazing"
+   ```
+7. **Push** ke branch Anda:
+   ```bash
+   git push origin feature/FiturAmazingAnda
+   ```
+8. **Open Pull Request** dengan deskripsi lengkap
+
+### Checklist Sebelum Pull Request
+
+- [ ] Code mengikuti coding standards
+- [ ] Security review passed (tidak ada vulnerability)
+- [ ] Manual testing berhasil di berbagai browser
+- [ ] Tidak ada `console.log` atau debug code
+- [ ] Dokumentasi diupdate jika menambah fitur baru
+- [ ] Commit messages jelas dan deskriptif
+
+**Types of Contributions:**
+- 🐛 Bug fixes
+- ✨ New features
+- 📚 Documentation improvements
+- 🎨 UI/UX enhancements
+- 🔒 Security improvements
+- ♿ Accessibility improvements
 
 ---
 
-## 🙏 Credits & Acknowledgments
+## 📄 Lisensi
 
-### APIs & Services
-- **[Aladhan API](https://aladhan.com)** - Prayer times & Hijri calendar data
-- **[Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)** - Location detection
+Aplikasi ini bersifat **open source** dan gratis untuk digunakan.
 
-### Libraries & Tools (Dev Only)
-- **[Bootstrap 5](https://getbootstrap.com)** - UI framework
+**MIT License** - Anda bebas untuk:
+- ✅ Menggunakan untuk project pribadi atau komersial
+- ✅ Memodifikasi sesuai kebutuhan
+- ✅ Mendistribusikan ke orang lain
+- ✅ Menggunakan sebagai bahan pembelajaran
+
+**Dengan syarat:**
+- 📝 Tetap cantumkan credit ke project original
+- 📝 Sertakan copy dari MIT License
+
+Dibuat dengan ❤️ untuk kepentingan umum umat Muslim di seluruh dunia.
+
+---
+
+## 🙏 Credits & Terima Kasih
+
+### APIs & External Services
+
+- **[Aladhan API](https://aladhan.com)** - Penyedia data waktu shalat dan konversi kalender Hijriyah
+- **[Browser Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)** - Deteksi lokasi otomatis
+
+### Libraries & Frameworks
+
+- **[Bootstrap 5.3.8](https://getbootstrap.com)** - Framework CSS untuk responsive design
 - **[Bootstrap Icons](https://icons.getbootstrap.com)** - Icon library
-- **[Vite](https://vitejs.dev)** - Development server
-- **[Google Fonts](https://fonts.google.com)** - Web fonts (Inter, Amiri)
+- **[Google Fonts](https://fonts.google.com)** - Web fonts (Inter untuk Latin, Amiri untuk Arabic)
 
-### Development Powered By
-- **[Google Antigravity Editor](https://www.google.com/antigravity)** - AI-powered development environment 🚀
-- **[Google Gemini 3.0 Pro](https://deepmind.google/technologies/gemini/)** - AI coding assistant (Gemini 3.0) 🤖
-- **[Anthropic Claude 4.5 Sonnet](https://www.anthropic.com/claude)** - AI code reviewer & documentation assistant 📚
+### Development Tools
 
-### Inspiration
-- Islamic calendar & lunar calendar systems
-- Muslim community needs for fasting tracking
+- **[Vite](https://vitejs.dev)** - Lightning-fast development server
+- **[http-server](https://github.com/http-party/http-server)** - Simple HTTP server
+- **[Terser](https://terser.org/)** - JavaScript minifier
 
----
+### AI-Powered Development Partner
 
-## 📞 Contact & Support
+Development aplikasi ini dipercepat dengan bantuan AI assistants:
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/puasa-ayyamul-bidh/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/puasa-ayyamul-bidh/discussions)
-- **Email**: your.email@example.com
+- **[Google Antigravity Editor](https://www.google.com/antigravity)** 🚀 - AI-powered IDE untuk workflow yang lebih produktif
+- **[Google Gemini 3.0 Pro](https://deepmind.google/technologies/gemini/)** 🤖 - AI coding assistant untuk development dan refactoring
+- **[Anthropic Claude 3.5 Sonnet](https://www.anthropic.com/claude)** 📚 - AI assistant untuk code review dan documentation
 
----
+### Inspirasi & Dukungan
 
-## 📊 Project Stats
+- Komunitas Muslim di seluruh dunia yang menjalankan puasa sunnah
+- Sistem kalender Hijriyah (Komariyah) dan Masehi (Syamsiyah)
+- Kebutuhan umat untuk tools yang memudahkan ibadah
 
-- **Created**: 2025
-- **Last Updated**: 2025-11-26
-- **Security Score**: 8.5/10
-- **Code Quality**: 7.0/10
-- **UI Language**: 100% Bahasa Indonesia 🇮🇩
-- **Lines of Code**: ~3,000+
-- **Files**: 9 JS modules, 6 HTML pages, 2 CSS files
+**Developed by: [Gulajava Ministudio](https://github.com/yourusername)** 👨‍💻
 
 ---
 
-## 💡 Pro Tips
+## 📞 Kontak & Dukungan
 
-### For Users
-- 💾 Export data secara berkala untuk backup
-- 📍 Update lokasi jika pindah kota
-- 🔔 Bookmark halaman untuk akses cepat
+Butuh bantuan atau ingin memberikan feedback? Hubungi kami melalui:
 
-### For Developers
-- 📖 Baca `.agent/AI_AGENT_GUIDE.md` dulu
-- 🛡️ Selalu validate external data
-- ⚙️ Use Config constants, NO magic numbers
-- 🧪 Test security fixes manually
+- 🐛 **Report Bugs**: [GitHub Issues](https://github.com/yourusername/puasa-ayyamul-bidh/issues)
+- 💬 **Diskusi & Ide**: [GitHub Discussions](https://github.com/yourusername/puasa-ayyamul-bidh/discussions)
+- 📧 **Email**: [your.email@example.com](mailto:your.email@example.com)
+- 📱 **Website**: [puasa-ayyamul-bidh.vercel.app](https://puasa-ayyamul-bidh.vercel.app) (if deployed)
 
 ---
 
-**Dibuat dengan ❤️ untuk umat Muslim**
+## 📊 Statistik Project
 
-Semoga bermanfaat dan menjadi amal jariyah! 🤲
+| Metric | Value |
+|--------|-------|
+| **Dibuat** | 2025 |
+| **Terakhir Update** | Desember 2025 |
+| **Versi** | 1.0.0 |
+| **Security Score** | 8.5/10 🛡️ |
+| **Code Quality** | 7.0/10 ⭐ |
+| **Bahasa UI** | 100% Bahasa Indonesia 🇮🇩 |
+| **Total Code** | ~3,500+ baris |
+| **JavaScript Modules** | 11 files |
+| **HTML Pages** | 6 halaman |
+| **CSS Files** | 2 files |
+| **Total File Size** | ~90 KB (uncompressed) |
+
+---
+
+## 💡 Tips & Best Practices
+
+### Untuk Pengguna
+
+| Tip | Deskripsi |
+|-----|-----------|
+| 💾 **Backup Rutin** | Export data setiap bulan untuk keamanan |
+| 📍 **Update Lokasi** | Perbarui jika pindah kota agar jadwal shalat akurat |
+| 🔖 **Bookmark** | Simpan ke bookmark browser untuk akses cepat |
+| 📱 **Install PWA** | (Coming soon) Install sebagai app untuk pengalaman native |
+| ✅ **Konsisten** | Tandai puasa segera setelah selesai agar tidak lupa |
+
+### Untuk Developer
+
+| Tip | Deskripsi |
+|-----|-----------|
+| 📖 **Baca Docs** | Mulai dengan `.agent/AI_AGENT_GUIDE.md` |
+| 🛡️ **Security First** | Validasi SEMUA data eksternal tanpa exception |
+| ⚙️ **Use Constants** | Gunakan `Config`, hindari magic numbers |
+| 🧪 **Test Manually** | Jangan skip manual testing, esp. untuk security |
+| 📝 **JSDoc** | Dokumentasikan public functions dengan JSDoc |
+| 🔍 **Code Review** | Review security guidelines sebelum commit |
+
+---
+
+## 🌟 Star History
+
+Jika project ini bermanfaat untuk Anda, tolong berikan ⭐ **Star** di GitHub untuk mendukung pengembangan lebih lanjut!
+
+[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/puasa-ayyamul-bidh&type=Date)](https://star-history.com/#yourusername/puasa-ayyamul-bidh&Date)
+
+---
+
+<div align="center">
+
+**Dibuat dengan ❤️ untuk Umat Muslim di Seluruh Dunia**
+
+Semoga aplikasi ini bermanfaat dan menjadi **amal jariyah** bagi kita semua! 🤲
 
 **Barakallahu fiikum!** ✨
 
 ---
 
-*Last updated: 2025-11-26 | Security audit: 2025-11-25 ✅ | UI Localization: 100% Bahasa Indonesia 🇮🇩*
+*Terakhir diupdate: Desember 2025 | Security Audit: November 2025 ✅ | UI: 100% Bahasa Indonesia 🇮🇩*
+
+</div>
