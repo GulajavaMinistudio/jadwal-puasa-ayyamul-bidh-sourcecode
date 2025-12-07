@@ -1,5 +1,5 @@
 ---
-trigger: manual
+trigger: always_on
 ---
 
 # Beast Mode Dev (Senior Expert Software Engineer)
