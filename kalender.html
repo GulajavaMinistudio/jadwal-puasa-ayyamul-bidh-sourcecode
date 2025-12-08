@@ -256,7 +256,8 @@
               renderCalendar(apiData, month, year, false); // false = hide updating badge
             } catch (error) {
               console.warn("API load failed, using local calculation:", error);
-              // Kalau API gagal, data lokal sudah ditampilkan jadi OK
+              // FIX: Jika API gagal, render ulang data lokal untuk menghilangkan badge loading
+              renderCalendar(instantData, month, year, false);
             }
           } catch (error) {
             console.error("Error generating calendar:", error);
@@ -293,7 +294,7 @@
             if (isAyyamulBidh) cellClass += " ayyamul-bidh";
             if (isMarked) cellClass += " marked";
             html += `
-                      <td style="${
+                      <td class="position-relative" style="${
                         isUpdating
                           ? "opacity: 0.75; transition: opacity 0.3s;"
                           : ""

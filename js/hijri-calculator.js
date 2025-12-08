@@ -12,6 +12,50 @@ export class HijriCalculator {
    * @returns {object} Hijri date {day, month, year, monthName}
    */
   static gregorianToHijri(gregorianDate) {
+    // 1. Try using Intl.DateTimeFormat (Modern Browsers) - Much more accurate
+    // This aligns local calculation closer to API results (Umm al-Qura)
+    if (
+      typeof Intl !== "undefined" &&
+      typeof Intl.DateTimeFormat === "function"
+    ) {
+      try {
+        const formatter = new Intl.DateTimeFormat(
+          "en-US-u-ca-islamic-umalqura",
+          {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+          }
+        );
+
+        const parts = formatter.formatToParts(gregorianDate);
+        const dayPart = parts.find((p) => p.type === "day");
+        const monthPart = parts.find((p) => p.type === "month");
+        const yearPart = parts.find((p) => p.type === "year");
+
+        if (dayPart && monthPart && yearPart) {
+          const day = parseInt(dayPart.value);
+          const month = parseInt(monthPart.value);
+          const year = parseInt(yearPart.value);
+
+          return {
+            day: day,
+            month: month,
+            year: year,
+            monthName: this.getMonthName(month),
+            calculated: true,
+            accuracy: "high (Intl)", // Better accuracy than arithmetic
+          };
+        }
+      } catch (e) {
+        console.warn(
+          "Intl Hijri calculation failed, falling back to arithmetic",
+          e
+        );
+      }
+    }
+
+    // 2. Fallback: Arithmetic Approximation (Legacy)
     // Islamic epoch: July 16, 622 CE
     const islamicEpoch = new Date(622, 6, 16);
 
