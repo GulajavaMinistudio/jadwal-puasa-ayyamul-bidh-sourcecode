@@ -1,4 +1,5 @@
 ---
+agent: "agent"
 description: "Menganalisis sesi terakhir untuk mencatat progress, mengambil pelajaran, dan menyimpannya ke instruksi memory proyek."
 tools:
   [
