@@ -85,7 +85,9 @@ export class HijriCalendar {
       // Fallback to local calculation
       try {
         const [day, month, year] = date.split("-").map(Number);
-        const localDate = new Date(year, month - 1, day);
+
+        // FIX: Gunakan normalized date creation untuk fallback calculation
+        const localDate = Utils.createLocalDate(year, month, day);
         const fallbackData = HijriCalculator.gregorianToHijri(localDate);
 
         const fallbackResult = {
@@ -161,8 +163,8 @@ export class HijriCalendar {
    * @returns {Promise<object>} Data tanggal Hijri hari ini
    */
   async getCurrentHijriDate() {
-    const today = new Date();
-    const dateStr = Utils.formatDateForAPI(today);
+    // FIX: Gunakan getTodayString() yang timezone-safe
+    const dateStr = Utils.getTodayString();
     return await this.gregorianToHijri(dateStr);
   }
 
@@ -181,15 +183,19 @@ export class HijriCalendar {
       ).padStart(2, "0")}-${hijriYear}`;
       try {
         const gregorian = await this.hijriToGregorian(hijriDate);
+
+        // FIX: Gunakan normalized date creation untuk avoid timezone shift
+        const gregorianDate = Utils.createLocalDate(
+          gregorian.year,
+          gregorian.month,
+          gregorian.day
+        );
+
         dates.push({
           hijriDay: day,
           hijriMonth: hijriMonth,
           hijriYear: hijriYear,
-          gregorianDate: new Date(
-            gregorian.year,
-            gregorian.month - 1,
-            gregorian.day
-          ),
+          gregorianDate: gregorianDate,
           formatted: gregorian.formatted,
         });
       } catch (error) {
@@ -262,7 +268,8 @@ export class HijriCalendar {
     const daysInMonth = new Date(year, month, 0).getDate();
 
     for (let day = 1; day <= daysInMonth; day++) {
-      const gregorianDate = new Date(year, month - 1, day);
+      // FIX: Gunakan normalized date creation untuk avoid timezone shift
+      const gregorianDate = Utils.createLocalDate(year, month, day);
       const hijri = HijriCalculator.gregorianToHijri(gregorianDate);
 
       calendar.push({

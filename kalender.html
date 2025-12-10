@@ -268,10 +268,10 @@
           const tbody = document.getElementById("calendarBody");
           const firstDay = new Date(year, month - 1, 1).getDay();
           const daysInMonth = new Date(year, month, 0).getDate();
-          const today = new Date();
-          const todayStr = `${today.getDate()}-${
-            today.getMonth() + 1
-          }-${today.getFullYear()}`;
+
+          // FIX: Gunakan timezone-safe date comparison
+          const today = Utils.getTodayLocal();
+
           let html = "<tr>";
           // Empty cells for days before month starts
           for (let i = 0; i < firstDay; i++) {
@@ -280,7 +280,10 @@
           // Calendar days
           for (let day = 1; day <= daysInMonth; day++) {
             const dayData = calendarData[day - 1];
-            const isToday = `${day}-${month}-${year}` === todayStr;
+
+            // FIX: Gunakan timezone-safe comparison
+            const isToday = Utils.isToday(day, month, year);
+
             const isAyyamulBidh = dayData && dayData.isAyyamulBidh;
             const isMarked =
               dayData &&

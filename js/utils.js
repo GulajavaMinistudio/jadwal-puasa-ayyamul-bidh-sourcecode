@@ -32,11 +32,12 @@ export const Utils = {
   },
 
   /**
-   * Dapatkan tanggal hari ini
-   * @returns {Date} Objek Date hari ini
+   * Dapatkan tanggal hari ini (timezone-safe)
+   * Updated untuk gunakan normalized local date
+   * @returns {Date} Objek Date hari ini (normalized to local midnight)
    */
   getCurrentDate() {
-    return new Date();
+    return this.getTodayLocal();
   },
 
   /**
@@ -355,5 +356,90 @@ export const Utils = {
     if (offset === 9) return "WIT"; // UTC+9
 
     return "WIB"; // Default
+  },
+
+  /**
+   * TIMEZONE-SAFE DATE UTILITIES
+   * Functions untuk mengatasi masalah timezone inconsistency antara devices
+   */
+
+  /**
+   * Get today's date as a normalized local date (timezone-safe)
+   * Mengembalikan tanggal hari ini yang sudah dinormalisasi ke midnight lokal
+   * @returns {Date} Date object set to local midnight (00:00:00)
+   */
+  getTodayLocal() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset to midnight local time
+    return today;
+  },
+
+  /**
+   * Create normalized local date (timezone-safe)
+   * Membuat date object yang konsisten di semua timezone
+   * @param {number} year - Tahun
+   * @param {number} month - Bulan (1-12)
+   * @param {number} day - Tanggal
+   * @returns {Date} Date object set to local midnight
+   */
+  createLocalDate(year, month, day) {
+    const date = new Date(year, month - 1, day);
+    date.setHours(0, 0, 0, 0); // Normalize to midnight
+    return date;
+  },
+
+  /**
+   * Get today's date as string DD-MM-YYYY (timezone-safe)
+   * Menggunakan local date untuk avoid timezone shift
+   * @returns {string} Tanggal hari ini dalam format DD-MM-YYYY
+   */
+  getTodayString() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    return `${day}-${month}-${year}`;
+  },
+
+  /**
+   * Compare two dates (date only, ignore time) - timezone-safe
+   * @param {Date} date1 - Tanggal pertama
+   * @param {Date} date2 - Tanggal kedua
+   * @returns {boolean} True jika tanggal sama
+   */
+  isSameDate(date1, date2) {
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+
+    d1.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+
+    return d1.getTime() === d2.getTime();
+  },
+
+  /**
+   * Check if a date is today (timezone-safe)
+   * @param {number} day - Tanggal
+   * @param {number} month - Bulan (1-12)
+   * @param {number} year - Tahun
+   * @returns {boolean} True jika hari ini
+   */
+  isToday(day, month, year) {
+    const today = this.getTodayLocal();
+    const compareDate = this.createLocalDate(year, month, day);
+    return today.getTime() === compareDate.getTime();
+  },
+
+  /**
+   * Format date to DD-MM-YYYY for API (timezone-safe)
+   * Update dari formatDateForAPI yang lama untuk gunakan local time
+   * @param {Date} date - Objek Date
+   * @returns {string} Tanggal dalam format DD-MM-YYYY
+   */
+  formatDateForAPISafe(date) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
   },
 };
